@@ -3,11 +3,32 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #103968;
+  --primary-foreground: #ffffff;
+  --accent: #f2c808;
+  --accent-foreground: #103968;
+  --success: #10b981;
+  --success-bg: #ecfdf5;
+  --warning: #f59e0b;
+  --warning-bg: #fffbeb;
+  --danger: #ef4444;
+  --danger-bg: #fef2f2;
+  --muted: #6b7280;
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 64px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -23,4 +44,311 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.sidebar-transition {
+  transition: width 0.3s ease;
+}
+
+.content-transition {
+  transition: margin-left 0.3s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes shine {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+.animate-shine {
+  animation: shine 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  aside,
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+  }
+  body {
+    background: #ffffff;
+  }
+  .doc-paper-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    break-after: page;
+  }
+}
+
+/* ==========================================================================
+   Exact DOCX Template Table Styles (RPS & Rubrik)
+   ========================================================================== */
+
+.doc-paper-sheet {
+  width: min(100%, 80rem);
+  background: #ffffff;
+  border: 1px solid #d9e0e9;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  padding: clamp(0.75rem, 2.5vw, 2.5rem);
+  margin-bottom: 2rem;
+  position: relative;
+  scroll-margin-top: 1rem;
+}
+
+.doc-kop-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.5px solid #0f172a;
+  margin-bottom: 1.25rem;
+  font-size: 0.68rem;
+  background: #ffffff;
+}
+
+.doc-kop-table td {
+  border: 1px solid #0f172a;
+  padding: 0.35rem 0.5rem;
+  vertical-align: middle;
+}
+
+.doc-template-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 1.5px solid #0f172a;
+  font-size: 0.7rem;
+  color: #0f172a;
+  line-height: 1.45;
+  background: #ffffff;
+}
+
+.doc-template-table th,
+.doc-template-table td {
+  min-width: 0;
+  border: 1px solid #0f172a;
+  padding: 0.4rem 0.5rem;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.doc-template-table thead th,
+.doc-template-table .doc-th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+}
+
+.doc-template-table .doc-th-sub {
+  background-color: #f8fafc;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.67rem;
+  color: #1e293b;
+}
+
+.doc-template-table .doc-th-num {
+  background-color: #f1f5f9;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-align: center;
+  color: #334155;
+}
+
+.doc-cell-input {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  padding: 0.15rem 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease;
+}
+
+.doc-cell-input:hover {
+  border: 1px dashed #94a3b8;
+  background: #f8fafc;
+}
+
+.doc-cell-input:focus {
+  border: 1px solid #103968;
+  background: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 57, 104, 0.15);
+}
+
+.doc-cell-textarea {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  min-height: 2.2rem;
+  field-sizing: content;
+  overflow-wrap: anywhere;
+  resize: vertical;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  padding: 0.2rem 0.3rem;
+  border-radius: 0.25rem;
+  line-height: 1.45;
+  transition: all 0.15s ease;
+}
+
+.doc-cell-textarea:hover {
+  border: 1px dashed #94a3b8;
+  background: #f8fafc;
+}
+
+.doc-cell-textarea:focus {
+  border: 1px solid #103968;
+  background: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 57, 104, 0.15);
+}
+
+.doc-nested-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 1px solid #0f172a;
+  margin-top: 0.4rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.67rem;
+}
+
+.doc-nested-table th,
+.doc-nested-table td {
+  min-width: 0;
+  border: 1px solid #0f172a;
+  padding: 0.3rem 0.45rem;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.doc-nested-table thead th,
+.doc-nested-table .doc-nested-th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+}
+
+.doc-exam-banner {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+  padding: 0.6rem 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.doc-section-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.01em;
+}
+
+.doc-rtm-kop {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.doc-rtm-kop strong {
+  display: block;
+  font-size: 0.76rem;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.doc-rtm-kop span {
+  display: block;
+  font-size: 0.65rem;
+  color: #334155;
+  line-height: 1.35;
+}
+
+.doc-rtm-badge {
+  display: inline-block;
+  background-color: #103968;
+  color: #ffffff;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.doc-check {
+  font-weight: 700;
+  color: #15803d;
+  font-size: 0.85rem;
+  text-align: center;
 }

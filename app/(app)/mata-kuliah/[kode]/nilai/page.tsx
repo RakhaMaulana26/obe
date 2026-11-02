@@ -1,0 +1,173 @@
+"use client";
+
+import { use, useMemo, useState } from "react";
+import Link from "next/link";
+import { useApp, daftarTahunOffering, daftarKelasOffering, kelasAktifUntuk, tahunAktifUntuk } from "@/app/lib/store";
+import { DAFTAR_KELAS, mahasiswaUntukKelas, nilaiAwalUntuk, type AsesmenKode, type NilaiMap } from "@/app/lib/data";
+import { Btn, Card, EmptyState, PageHeading, inputCls } from "@/app/components/ui";
+
+export default function NilaiPage({ params }: { params: Promise<{ kode: string }> }) {
+  const { kode } = use(params);
+  const mkKode = decodeURIComponent(kode).toUpperCase();
+  const { mataKuliah, nilaiUntuk, setNilaiOffering, daftarAsesmen, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih } = useApp();
+  const daftarTahun = daftarTahunOffering(mataKuliah, mkKode);
+  const tahun = tahunAktifUntuk(mataKuliah, tahunDipilih, mkKode);
+  const daftarKelas = daftarKelasOffering(mataKuliah, mkKode, tahun);
+  const kelas = kelasAktifUntuk(mataKuliah, kelasDipilih, mkKode, tahun);
+  const mk = mataKuliah.find((m) => m.kode === mkKode && m.tahun === tahun && m.kelas === kelas) ?? mataKuliah.find((m) => m.kode === mkKode);
+
+  const kolom = useMemo(() => daftarAsesmen.map((a) => a.kode), [daftarAsesmen]);
+  // Salinan kerja nilai penawaran aktif; disetel ulang saat konteks (MK/tahun) berubah.
+  const konteks = `${mkKode}::${tahun}::${kelas}`;
+  const [konteksLalu, setKonteksLalu] = useState(konteks);
+  const [draft, setDraft] = useState<NilaiMap>(() => JSON.parse(JSON.stringify(nilaiUntuk(mkKode, tahun, kelas))) as NilaiMap);
+  const [cari, setCari] = useState("");
+  const [pesan, setPesan] = useState("");
+  const [kotor, setKotor] = useState(false);
+
+  if (konteksLalu !== konteks) {
+    setKonteksLalu(konteks);
+    setDraft(JSON.parse(JSON.stringify(nilaiUntuk(mkKode, tahun, kelas))) as NilaiMap);
+    setKotor(false);
+    setPesan("");
+  }
+
+  const q = cari.trim().toLowerCase();
+  const roster = mahasiswaUntukKelas(kelas);
+  const baris = q ? roster.filter((m) => m.nama.toLowerCase().includes(q) || m.nrp.includes(q)) : roster;
+
+  const galat: string[] = [];
+  for (const m of roster) {
+    for (const k of kolom) {
+      const v = draft[m.nrp]?.[k];
+      if (v === undefined || v === null || Number.isNaN(v) || v < 0 || v > 100) galat.push(`${m.nrp}/${k}`);
+    }
+  }
+
+  function ubah(nrp: string, k: AsesmenKode, v: number) {
+    setDraft((p) => ({ ...p, [nrp]: { ...p[nrp], [k]: v } }));
+    setKotor(true);
+  }
+
+  function simpan() {
+    if (galat.length > 0) {
+      setPesan(`${galat.length} sel belum valid (harus 0–100). Perbaiki sel yang bertanda merah.`);
+      return;
+    }
+    setNilaiOffering(mkKode, tahun, kelas, draft);
+    setKotor(false);
+    setPesan(`Nilai ${mkKode} tahun ${tahun} Kelas ${kelas} tersimpan. Dashboard dan detail capaian otomatis menghitung ulang.`);
+  }
+
+  const rataKolom: Record<string, number> = {};
+  for (const k of kolom) {
+    const arr = roster.map((m) => draft[m.nrp]?.[k] ?? 0);
+    rataKolom[k] = arr.length ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 100) / 100 : 0;
+  }
+
+  return (
+    <div className="space-y-6">
+      <PageHeading
+        title={`Input Nilai — ${mk?.kode ?? mkKode} | Kelas ${kelas}`}
+        action={<Link href={`/mata-kuliah/${mkKode}`} className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">← Hub MK</Link>}
+      />
+
+      {pesan && <div className={`rounded-lg border p-3 text-sm ${galat.length === 0 ? "border-green-200 bg-green-50 text-green-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>{pesan}</div>}
+
+      <Card>
+        <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end">
+          <div className="w-full max-w-xs">
+            <label htmlFor="pilih-tahun-nilai" className="mb-1.5 block text-sm font-medium text-gray-700">
+              Tahun ajaran (nilai tersimpan per tahun)
+            </label>
+            <select
+              id="pilih-tahun-nilai"
+              value={tahun}
+              onChange={(e) => setTahunDipilih(mkKode, e.target.value)}
+              className={inputCls}
+            >
+              {daftarTahun.map((t) => (
+                <option key={t} value={t}>{t}{t === tahun && mk?.dosen ? ` • ${mk.dosen}` : ""}</option>
+              ))}
+            </select>
+          </div>
+          <div className="w-full max-w-xs">
+            <label htmlFor="pilih-kelas-nilai" className="mb-1.5 block text-sm font-medium text-gray-700">Kelas</label>
+            <select id="pilih-kelas-nilai" value={kelas} onChange={(e) => setKelasDipilih(mkKode, tahun, e.target.value)} className={inputCls}>
+              {DAFTAR_KELAS.filter((item) => daftarKelas.includes(item)).map((item) => <option key={item} value={item}>Kelas {item}</option>)}
+            </select>
+          </div>
+          {mk?.dosen ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/[0.06] px-3 py-2 text-xs font-medium text-primary">
+              {mk.dosen}
+              {mk.kelas ? ` • Kelas ${mk.kelas}` : ""}
+            </span>
+          ) : null}
+        </div>
+        {roster.length > 0 ? <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-center">
+          <input value={cari} onChange={(e) => setCari(e.target.value)} placeholder="Cari nama / NRP..." className={`${inputCls} lg:!w-64`} />
+          <div className="flex flex-wrap items-center gap-2 lg:ml-auto">
+            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${galat.length === 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-700"}`}>
+              {galat.length === 0 ? "Semua sel valid" : `${galat.length} sel belum valid`}
+            </span>
+            {kotor && <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">Belum disimpan</span>}
+            <Btn variant="outline" onClick={() => { setDraft(nilaiAwalUntuk(mkKode, tahun, kelas)); setKotor(true); setPesan(`Nilai Kelas ${kelas} dikosongkan. Klik Simpan nilai untuk menerapkan.`); }} tour="Kosongkan seluruh nilai penawaran ini (belum tersimpan sampai klik Simpan)." tourTitle="Kosongkan nilai">Kosongkan</Btn>
+            <Btn onClick={simpan} tour="Simpan seluruh nilai — dashboard dan capaian menghitung ulang otomatis." tourTitle="Simpan nilai">Simpan nilai</Btn>
+          </div>
+        </div> : null}
+
+        {roster.length === 0 ? <EmptyState title="Belum ada mahasiswa" desc="Tambahkan data mahasiswa terlebih dahulu sebelum mengisi nilai." /> : <div className="overflow-x-auto">
+          <table className="w-full min-w-[900px] text-left text-sm">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="pb-3 pr-2 text-xs font-semibold uppercase tracking-wide text-gray-500">NRP</th>
+                <th className="pb-3 pr-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Nama</th>
+                {daftarAsesmen.map((a) => (
+                  <th key={a.kode} className="px-1 pb-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" title={`${a.nama} — ${a.deskripsi}`}>{a.kode}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {baris.map((m, i) => (
+                <tr key={m.nrp} className="hover:bg-gray-50/70">
+                  <td className="py-1.5 pr-2 font-mono text-xs text-gray-400">{m.nrp}</td>
+                  <td className="max-w-44 truncate py-1.5 pr-2 text-[13px] font-medium text-gray-800" title={m.nama}>
+                    <span className="mr-1.5 text-[11px] text-gray-300">{i + 1}.</span>{m.nama}
+                  </td>
+                  {kolom.map((k) => {
+                    const v = draft[m.nrp]?.[k];
+                    const valid = v !== undefined && v !== null && !Number.isNaN(v) && v >= 0 && v <= 100;
+                    return (
+                      <td key={k} className="px-1 py-1.5">
+                        <input
+                          type="number" min={0} max={100}
+                          value={v ?? ""}
+                          onChange={(e) => ubah(m.nrp, k, Number(e.target.value))}
+                          className={`w-[68px] rounded-md border px-2 py-1.5 text-center font-mono text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/25 ${valid ? "border-gray-200 text-gray-800" : "border-red-400 bg-red-50 text-red-700"}`}
+                        />
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className="border-t-2 border-gray-200 bg-gray-50/60">
+                <td colSpan={2} className="py-2.5 pr-2 text-right text-xs font-bold text-primary">Rata-rata</td>
+                {kolom.map((k) => (
+                  <td key={k} className="px-1 py-2.5 text-center font-mono text-[13px] font-bold text-primary">{rataKolom[k]?.toFixed(1)}</td>
+                ))}
+              </tr>
+            </tfoot>
+          </table>
+        </div>}
+
+        <div className="mt-4 flex flex-wrap justify-end gap-2">
+          <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-[#103968] transition hover:brightness-95">
+            Lihat hasil di Dashboard →
+          </Link>
+        </div>
+      </Card>
+    </div>
+  );
+}

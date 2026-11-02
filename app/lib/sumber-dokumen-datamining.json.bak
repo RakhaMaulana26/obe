@@ -1,0 +1,628 @@
+{
+    "bobotRubrik":  {
+                        "Sub-CPMK.8":  {
+                                           "kuis":  0,
+                                           "post":  5,
+                                           "laporan":  0,
+                                           "proyek":  10,
+                                           "mid":  0
+                                       },
+                        "Sub-CPMK.4":  {
+                                           "kuis":  0,
+                                           "post":  0,
+                                           "laporan":  8,
+                                           "proyek":  0,
+                                           "mid":  7
+                                       },
+                        "Sub-CPMK.3":  {
+                                           "kuis":  4,
+                                           "post":  0,
+                                           "laporan":  4,
+                                           "proyek":  0,
+                                           "mid":  7
+                                       },
+                        "Sub-CPMK.1":  {
+                                           "kuis":  2,
+                                           "post":  0,
+                                           "laporan":  1,
+                                           "proyek":  0,
+                                           "mid":  2
+                                       },
+                        "Sub-CPMK.2":  {
+                                           "kuis":  0,
+                                           "post":  0,
+                                           "laporan":  6,
+                                           "proyek":  0,
+                                           "mid":  9
+                                       },
+                        "Sub-CPMK.5":  {
+                                           "kuis":  4,
+                                           "post":  4,
+                                           "laporan":  2,
+                                           "proyek":  0,
+                                           "mid":  0
+                                       },
+                        "Sub-CPMK.6":  {
+                                           "kuis":  0,
+                                           "post":  10,
+                                           "laporan":  5,
+                                           "proyek":  0,
+                                           "mid":  0
+                                       },
+                        "Sub-CPMK.7":  {
+                                           "kuis":  0,
+                                           "post":  6,
+                                           "laporan":  4,
+                                           "proyek":  0,
+                                           "mid":  0
+                                       }
+                    },
+    "cpmk":  [
+                 {
+                     "kode":  "CPMK.1",
+                     "deskripsi":  "Mampu menjelaskan konsep dan proses data mining serta mengimplementasikan preprocessing data (manipulasi, visualisasi, dan normalisasi) untuk menyiapkan data yang berkualitas."
+                 },
+                 {
+                     "kode":  "CPMK.2",
+                     "deskripsi":  "Mampu menerapkan dan mengimplementasikan klasifikasi k-NN dan Decision Tree beserta validasi model untuk memperoleh model terbaik."
+                 },
+                 {
+                     "kode":  "CPMK.3",
+                     "deskripsi":  "Mampu menerapkan dan mengimplementasikan association rule, clustering beserta analisa cluster, dan predictive mining pada data nyata."
+                 },
+                 {
+                     "kode":  "CPMK.4",
+                     "deskripsi":  "Mampu menerapkan text mining untuk membangun aplikasi mesin pencarian sederhana."
+                 }
+             ],
+    "ikCpmk":  {
+                   "CPMK.3":  {
+                                  "IK-11.a":  0.25
+                              },
+                   "CPMK.2":  {
+                                  "IK-11.a":  0.25
+                              },
+                   "CPMK.4":  {
+                                  "IK-11.a":  0.25
+                              },
+                   "CPMK.1":  {
+                                  "IK-11.a":  0.25
+                              }
+               },
+    "mataKuliah":  {
+                       "kode":  "TI045105",
+                       "referensiUtama":  [
+                                              "[1]Han, J., Kamber, M., \u0026 Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.",
+                                              "[2]Tan, P.-N., Steinbach, M., Karpatne, A., \u0026 Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.",
+                                              "[3]VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media.",
+                                              "[4]Géron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.",
+                                              "[5]Manning, C. D., Raghavan, P., \u0026 Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.",
+                                              "[6]scikit-learn developers. scikit-learn User Guide. https://scikit-learn.org/stable/user_guide.html"
+                                          ],
+                       "referensiPendukung":  [
+                                                  "[1]Barakbah, A. R., \u0026 Kiyoki, Y. (2009). A Pillar Algorithm for K-Means Optimization by Distance Maximization for Initial Centroid Designation. IEEE Symposium on Computational Intelligence and Data Mining (CIDM), 61–68.",
+                                                  "[2]Barakbah, A. R., \u0026 Arai, K. (2007). Hierarchical K-Means: An Algorithm for Centroids Initialization for K-Means. Reports of the Faculty of Science and Engineering, Saga University."
+                                              ],
+                       "semester":  4,
+                       "kaprodi":  "Yanuar Risah PrayogiNIP. 198801062019031009",
+                       "deskripsi":  "Mata kuliah workshop ini (1 jam teori dan 2 jam praktikum per minggu) mempelajari konsep dan implementasi teknik data mining untuk menggali pola dan pengetahuan dari data. Materi meliputi proses data mining, preprocessing data (manipulasi, visualisasi, dan normalisasi), klasifikasi dengan k-NN dan Decision Tree beserta validasi model, association rule, clustering dan analisa cluster, predictive mining, serta text mining dan mesin pencarian. Setiap topik diawali penjelasan konsep dan perhitungan, lalu diimplementasikan menggunakan Python pada sesi praktikum, sehingga mahasiswa mampu mengintegrasikan teknik data mining ke dalam aplikasi. Pada akhir semester mahasiswa membangun aplikasi mesin pencarian sederhana secara berkelompok.",
+                       "rumpun":  "Keilmuan Inti",
+                       "sksTeori":  "1",
+                       "tanggal":  "2026-10-30",
+                       "dosen":  "Aliridho Barakbah dan Entin Martiana",
+                       "koordinator":  "Entin Martiana\nNIP. 197403122000122001",
+                       "pengembang":  "Entin Martiana\nNIP. 197403122000122001",
+                       "nama":  "Workshop Data Mining",
+                       "prasyarat":  "-",
+                       "sksPraktik":  "1",
+                       "bahanKajian":  [
+                                           "Pengantar Data Mining",
+                                           "Preprocessing Data (Manipulasi \u0026 Visualisasi)",
+                                           "Preprocessing Data (Normalisasi Data)",
+                                           "Klasifikasi \u0026 k-NN",
+                                           "Validasi Model dalam Klasifikasi",
+                                           "Decision Tree",
+                                           "Association Rule",
+                                           "Clustering",
+                                           "Analisa Cluster",
+                                           "Predictive Mining",
+                                           "Konsep Dasar Text Mining",
+                                           "Text Mining \u0026 Mesin Pencarian"
+                                       ]
+                   },
+    "rencanaSub":  {
+                       "Sub-CPMK.8":  {
+                                          "materi":  "Konsep text mining dan information retrieval (pertemuan 13)\nText preprocessing dan stemming Bahasa Indonesia\nTF-IDF dan inverted index (pertemuan 14)\nVector space model dan cosine similarity\nDemonstrasi mini project (pertemuan 15)\n(Pustaka Utama 5, bab 1, 2, 6, 8)\n(Pustaka Utama 1, bab 13)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), Project Based Learning\nPenugasan:\nEval-8: Mini project kelompok aplikasi mesin pencarian sederhana untuk koleksi dokumen berbahasa Indonesia, didemonstrasikan pada pertemuan 15\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "13, 14, 15",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-8: Source code dan laporan diunggah ke LMS, didemonstrasikan via Zoom\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nRubrik Holistik\nTeknik:\nDemonstrasi aplikasi dan presentasi mini project",
+                                          "indikator":  "Ketepatan menerapkan case folding, tokenisasi, stopword removal, dan stemming Bahasa Indonesia\nKetepatan menghitung TF-IDF dan membangun inverted index\nKetepatan meranking dokumen dengan cosine similarity\nKetepatan mengevaluasi hasil pencarian (precision, recall)\nKemampuan mengintegrasikan mesin pencarian ke dalam aplikasi dan mendemonstrasikannya"
+                                      },
+                       "Sub-CPMK.4":  {
+                                          "materi":  "Induksi pohon keputusan\nEntropy, information gain, gain ratio, Gini index\nID3, C4.5, CART\nPruning dan tuning parameter\nPraktikum: DecisionTreeClassifier, visualisasi pohon, GridSearchCV\n(Pustaka Utama 1, bab 8.2)\n(Pustaka Utama 2, bab 3)\n(Pustaka Utama 4, bab 6)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-4: Laporan praktikum Decision Tree (perhitungan manual dan implementasi) beserta tuning parameter\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "6, 7",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-4: Notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nRubrik Analitik\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+                                          "indikator":  "Ketepatan menghitung entropy, information gain, gain ratio, dan Gini index\nKetepatan membangun pohon keputusan dan mengekstrak aturan IF-THEN\nKetepatan mengimplementasikan Decision Tree dan memvisualisasikan pohon\nKetepatan melakukan pruning dan tuning parameter (max_depth, min_samples_split)"
+                                      },
+                       "Sub-CPMK.3":  {
+                                          "materi":  "Konsep klasifikasi (supervised learning)\nUkuran jarak dan algoritma k-NN\nConfusion matrix dan metrik evaluasi\nHold-out dan k-fold cross validation\nPraktikum: KNeighborsClassifier, cross_val_score, tuning k\n(Pustaka Utama 1, bab 8.5 \u0026 9.5)\n(Pustaka Utama 2, bab 3–4)\n(Pustaka Utama 6)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-3: Kuis perhitungan k-NN dan metrik evaluasi, serta laporan praktikum klasifikasi k-NN dan validasi model\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "4, 5",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-3: Kuis online di LMS; notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nPedoman Penskoran dan Rubrik Analitik\nTeknik:\nTes tulis (kuis), demonstrasi hasil, dan laporan praktikum",
+                                          "indikator":  "Ketepatan menghitung jarak dan menentukan kelas dengan k-NN\nKetepatan menyusun confusion matrix serta menghitung akurasi, presisi, recall, dan F1-score\nKetepatan menerapkan hold-out dan k-fold cross validation\nKetepatan menentukan nilai k terbaik berdasarkan hasil validasi"
+                                      },
+                       "Sub-CPMK.1":  {
+                                          "materi":  "Definisi dan proses data mining (KDD, CRISP-DM)\nTugas data mining: klasifikasi, clustering, asosiasi, prediksi\nAplikasi data mining\nPraktikum: Python, Jupyter/Google Colab, NumPy, pandas, eksplorasi awal dataset\n(Pustaka Utama 1, bab 1)\n(Pustaka Utama 2, bab 1)\n(Pustaka Utama 3, bab 2–3)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-1: Kuis konsep data mining dan laporan praktikum eksplorasi awal dataset\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "1",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-1: Kuis online di LMS; notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nPedoman Penskoran dan Rubrik Analitik\nTeknik:\nTes tulis (kuis), demonstrasi hasil, dan laporan praktikum",
+                                          "indikator":  "Ketepatan menjelaskan definisi, tahapan KDD/CRISP-DM, dan jenis tugas data mining\nKetepatan memberi contoh aplikasi data mining sesuai domain\nKetepatan menyiapkan lingkungan Python/Jupyter dan membaca dataset\nKetepatan menampilkan statistik deskriptif dan mengidentifikasi tipe atribut"
+                                      },
+                       "Sub-CPMK.2":  {
+                                          "materi":  "Tipe atribut dan statistik deskriptif\nManipulasi data dengan pandas\nVisualisasi data dengan Matplotlib/Seaborn\nData cleaning\nNormalisasi min-max, z-score, decimal scaling\n(Pustaka Utama 1, bab 2–3)\n(Pustaka Utama 3, bab 3–4)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-2: Laporan praktikum preprocessing (manipulasi, visualisasi, normalisasi) pada dataset studi kasus\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "2, 3",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-2: Notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nRubrik Analitik\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+                                          "indikator":  "Ketepatan melakukan seleksi, filter, agregasi, dan penggabungan data\nKetepatan memilih dan menginterpretasi visualisasi data\nKetepatan menangani missing value, noise, dan outlier\nKetepatan menghitung dan mengimplementasikan normalisasi min-max, z-score, dan decimal scaling"
+                                      },
+                       "Sub-CPMK.5":  {
+                                          "materi":  "Market basket analysis\nFrequent itemset, support, confidence, lift\nAlgoritma Apriori dan FP-Growth\nPraktikum: TransactionEncoder dan mlxtend\n(Pustaka Utama 1, bab 6)\n(Pustaka Utama 2, bab 5)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-5: Kuis perhitungan Apriori dan laporan praktikum market basket analysis\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "9",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-5: Kuis online di LMS; notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nPedoman Penskoran dan Rubrik Analitik\nTeknik:\nTes tulis (kuis), demonstrasi hasil, dan laporan praktikum",
+                                          "indikator":  "Ketepatan menghitung support, confidence, dan lift\nKetepatan menghasilkan frequent itemset dan aturan asosiasi dengan Apriori/FP-Growth\nKetepatan menentukan minimum support dan confidence yang menghasilkan aturan bermakna"
+                                      },
+                       "Sub-CPMK.6":  {
+                                          "materi":  "Konsep clustering\nK-Means dan inisialisasi centroid\nHierarchical clustering dan dendrogram\nAnalisa cluster: SSE, silhouette, elbow\nPraktikum: KMeans, AgglomerativeClustering, profiling cluster\n(Pustaka Utama 1, bab 10)\n(Pustaka Utama 2, bab 7)\n(Pustaka Pendukung 1, 2)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-6: Laporan praktikum clustering dan analisa cluster pada dataset nyata\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "10, 11",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-6: Notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nRubrik Analitik\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+                                          "indikator":  "Ketepatan menerapkan K-Means dan hierarchical clustering\nKetepatan menjelaskan pengaruh inisialisasi centroid\nKetepatan menghitung SSE dan silhouette coefficient serta menerapkan metode elbow\nKetepatan menginterpretasi karakteristik setiap cluster"
+                                      },
+                       "Sub-CPMK.7":  {
+                                          "materi":  "Konsep predictive mining\nRegresi linier sederhana dan berganda\nEvaluasi prediksi: MAE, RMSE, MAPE\nPraktikum: LinearRegression dan KNeighborsRegressor\n(Pustaka Utama 4, bab 4)\n(Pustaka Utama 3, bab 5)",
+                                          "tatapMuka":  "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\nPenugasan:\nEval-7: Laporan praktikum pemodelan prediksi dengan regresi\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "pertemuan":  "12",
+                                          "daring":  "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\nPenugasan:\nEval-7: Notebook dan laporan PDF diunggah ke LMS\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+                                          "kriteria":  "Kriteria:\nRubrik Analitik\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+                                          "indikator":  "Ketepatan membedakan klasifikasi dan prediksi numerik\nKetepatan membangun model regresi linier sederhana dan berganda\nKetepatan menghitung MAE, RMSE, dan MAPE\nKetepatan memvisualisasikan dan menginterpretasi hasil prediksi"
+                                      }
+                   },
+    "barisUjian":  {
+                       "mid":  "Mid Test: tes tulis (teori) dan tes praktik (live coding), mengukur ketercapaian Sub-CPMK.1 – Sub-CPMK.4.",
+                       "post":  "Post Test: tes tulis (teori) dan tes praktik (live coding), mengukur ketercapaian Sub-CPMK.5 – Sub-CPMK.8."
+                   },
+    "rubrikUmum":  {
+                       "laporan":  [
+                                       "Kode berjalan benar dan rapi, seluruh tahapan lengkap, hasil (tabel/grafik/metrik) tepat, analisis tajam dan dikaitkan dengan konteks data.",
+                                       "Kode berjalan benar dengan kekurangan kecil, hasil sebagian besar tepat, interpretasi benar tetapi belum mendalam.",
+                                       "Kode berjalan sebagian, terdapat beberapa kesalahan hasil, interpretasi masih umum.",
+                                       "Kode banyak error atau hasil tidak tepat, analisis lemah.",
+                                       "Kode tidak berjalan/tidak dikumpulkan atau tidak menunjukkan pemahaman materi."
+                                   ],
+                       "kuis":  [
+                                    "Menguasai konsep secara menyeluruh, seluruh jawaban dan perhitungan benar.",
+                                    "Menguasai konsep dengan baik, terdapat kesalahan kecil.",
+                                    "Memahami konsep utama, namun terdapat beberapa kesalahan.",
+                                    "Memahami konsep dasar, tetapi banyak kesalahan.",
+                                    "Belum menunjukkan pemahaman konsep yang memadai."
+                                ],
+                       "proyek":  [
+                                      "Aplikasi berjalan lancar, hasil pencarian relevan dan dievaluasi, kode rapi, seluruh anggota berkontribusi dan menguasai sistem.",
+                                      "Aplikasi berjalan baik dengan kekurangan kecil pada evaluasi atau antarmuka.",
+                                      "Aplikasi berjalan terbatas, evaluasi belum lengkap.",
+                                      "Aplikasi banyak error, hasil pencarian tidak relevan.",
+                                      "Aplikasi tidak selesai atau tidak didemonstrasikan."
+                                  ],
+                       "post":  [
+                                    "Jawaban teori dan perhitungan tepat; seluruh tugas praktik selesai, kode berjalan tanpa error, hasil tepat dan dijelaskan dengan baik.",
+                                    "Jawaban teori benar dengan kekurangan kecil; hampir seluruh tugas praktik benar.",
+                                    "Konsep dasar dipahami; sebagian tugas praktik selesai dengan beberapa kesalahan.",
+                                    "Banyak kesalahan konsep dan perhitungan; sebagian besar tugas praktik tidak selesai.",
+                                    "Tidak menunjukkan pemahaman konsep maupun kemampuan implementasi."
+                                ],
+                       "mid":  [
+                                   "Jawaban teori dan perhitungan tepat; seluruh tugas praktik selesai, kode berjalan tanpa error, hasil tepat dan dijelaskan dengan baik.",
+                                   "Jawaban teori benar dengan kekurangan kecil; hampir seluruh tugas praktik benar.",
+                                   "Konsep dasar dipahami; sebagian tugas praktik selesai dengan beberapa kesalahan.",
+                                   "Banyak kesalahan konsep dan perhitungan; sebagian besar tugas praktik tidak selesai.",
+                                   "Tidak menunjukkan pemahaman konsep maupun kemampuan implementasi."
+                               ]
+                   },
+    "tugasRubrik":  {
+                        "laporan":  {
+                                        "lain":  "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+                                        "metode":  "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+                                        "waktu":  "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai.",
+                                        "indikator":  "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+                                        "jadwal":  "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+                                        "luaran":  "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+                                        "bentuk":  "Laporan praktikum individual berupa notebook (Jupyter/Google Colab) dan laporan PDF.",
+                                        "judul":  "Laporan Praktikum Workshop Data Mining",
+                                        "deskripsi":  "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil."
+                                    },
+                        "kuis":  {
+                                     "lain":  "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+                                     "metode":  "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+                                     "waktu":  "20–30 menit setiap kuis.",
+                                     "indikator":  "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+                                     "jadwal":  "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+                                     "luaran":  "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+                                     "bentuk":  "Kuis individual (tertulis di kelas atau daring melalui LMS/Google Form).",
+                                     "judul":  "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+                                     "deskripsi":  "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran."
+                                 },
+                        "proyek":  {
+                                       "lain":  "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+                                       "metode":  "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+                                       "waktu":  "Minggu ke-13–15; demonstrasi pada minggu ke-15.",
+                                       "indikator":  "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+                                       "jadwal":  "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+                                       "luaran":  "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+                                       "bentuk":  "Mini project kelompok (3–4 mahasiswa) disertai laporan dan demonstrasi aplikasi.",
+                                       "judul":  "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+                                       "deskripsi":  "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian."
+                                   },
+                        "post":  {
+                                     "lain":  "Tes susulan mengikuti ketentuan akademik PENS.",
+                                     "metode":  "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+                                     "waktu":  "Teori 50 menit; praktik 100 menit.",
+                                     "indikator":  "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+                                     "jadwal":  "Minggu ke-16 sesuai RPS.",
+                                     "luaran":  "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+                                     "bentuk":  "Tes tulis (teori) dan tes praktik individual (live coding).",
+                                     "judul":  "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+                                     "deskripsi":  "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya."
+                                 },
+                        "mid":  {
+                                    "lain":  "Tes susulan mengikuti ketentuan akademik PENS.",
+                                    "metode":  "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+                                    "waktu":  "Teori 50 menit; praktik 100 menit.",
+                                    "indikator":  "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+                                    "jadwal":  "Minggu ke-8 sesuai RPS.",
+                                    "luaran":  "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+                                    "bentuk":  "Tes tulis (teori) dan tes praktik individual (live coding).",
+                                    "judul":  "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+                                    "deskripsi":  "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya."
+                                }
+                    },
+    "rubrikDetail":  {
+                         "laporan":  {
+                                         "Sub-CPMK.4":  [
+                                                            {
+                                                                "bobot":  8,
+                                                                "tingkat":  [
+                                                                                "Perhitungan manual entropy/gain benar dan sesuai hasil pustaka; pohon divisualisasikan; tuning dengan GridSearchCV menghasilkan parameter terbaik.",
+                                                                                "Benar; perbandingan manual vs pustaka kurang.",
+                                                                                "Model berjalan tanpa tuning yang benar.",
+                                                                                "Model tidak berjalan."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-4: Decision Tree dan tuning"
+                                                            }
+                                                        ],
+                                         "Sub-CPMK.3":  [
+                                                            {
+                                                                "bobot":  4,
+                                                                "tingkat":  [
+                                                                                "k-NN dan k-fold cross validation benar; metrik evaluasi lengkap; nilai k terbaik ditentukan dan dijelaskan.",
+                                                                                "Benar; analisis pemilihan k kurang.",
+                                                                                "k-NN berjalan, validasi belum tepat.",
+                                                                                "k-NN tidak berjalan."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-3: k-NN dan validasi model"
+                                                            }
+                                                        ],
+                                         "Sub-CPMK.1":  [
+                                                            {
+                                                                "bobot":  1,
+                                                                "tingkat":  [
+                                                                                "Dataset dibaca benar; statistik deskriptif, tipe atribut, dan masalah kualitas data teridentifikasi lengkap.",
+                                                                                "Eksplorasi benar dengan kekurangan kecil.",
+                                                                                "Eksplorasi belum lengkap.",
+                                                                                "Dataset gagal dibaca."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-1: Eksplorasi awal dataset"
+                                                            }
+                                                        ],
+                                         "Sub-CPMK.2":  [
+                                                            {
+                                                                "bobot":  6,
+                                                                "tingkat":  [
+                                                                                "Manipulasi tepat, visualisasi sesuai tipe data, missing value/outlier ditangani, normalisasi diterapkan dan dibandingkan.",
+                                                                                "Seluruh tahapan berjalan dengan kekurangan kecil.",
+                                                                                "Sebagian tahapan benar.",
+                                                                                "Preprocessing tidak berjalan."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-2: Preprocessing data"
+                                                            }
+                                                        ],
+                                         "Sub-CPMK.5":  [
+                                                            {
+                                                                "bobot":  2,
+                                                                "tingkat":  [
+                                                                                "Aturan asosiasi dihasilkan benar; support/confidence/lift dianalisis; aturan bermakna dipilih.",
+                                                                                "Benar; analisis kurang.",
+                                                                                "Parameter atau interpretasi kurang tepat.",
+                                                                                "Algoritma tidak berjalan."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-5: Apriori/FP-Growth"
+                                                            }
+                                                        ],
+                                         "Sub-CPMK.6":  [
+                                                            {
+                                                                "bobot":  5,
+                                                                "tingkat":  [
+                                                                                "K-Means dan hierarchical clustering benar; jumlah cluster terbaik ditentukan dengan elbow/silhouette; profil cluster bermakna.",
+                                                                                "Benar; analisa cluster kurang lengkap.",
+                                                                                "Clustering berjalan tanpa analisa cluster.",
+                                                                                "Clustering tidak berjalan."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-6: Clustering dan analisa cluster"
+                                                            }
+                                                        ],
+                                         "Sub-CPMK.7":  [
+                                                            {
+                                                                "bobot":  4,
+                                                                "tingkat":  [
+                                                                                "Model regresi benar; MAE/RMSE/MAPE tepat; grafik aktual vs prediksi diinterpretasikan.",
+                                                                                "Benar; interpretasi kurang.",
+                                                                                "Evaluasi galat kurang lengkap.",
+                                                                                "Model tidak berjalan."
+                                                                            ],
+                                                                "indikator":  "Sub-CPMK-7: Predictive mining"
+                                                            }
+                                                        ]
+                                     },
+                         "kuis":  {
+                                      "Sub-CPMK.3":  [
+                                                         {
+                                                             "bobot":  4,
+                                                             "tingkat":  [
+                                                                             "Jarak, kelas, confusion matrix, dan metrik dihitung benar seluruhnya.",
+                                                                             "Kesalahan kecil tanpa memengaruhi hasil.",
+                                                                             "Beberapa kesalahan prosedural.",
+                                                                             "Banyak kesalahan sehingga hasil salah.",
+                                                                             "Tidak diselesaikan."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-3: Perhitungan k-NN dan metrik evaluasi"
+                                                         }
+                                                     ],
+                                      "Sub-CPMK.1":  [
+                                                         {
+                                                             "bobot":  2,
+                                                             "tingkat":  [
+                                                                             "Tahapan KDD/CRISP-DM dan jenis tugas dijelaskan utuh dengan contoh tepat.",
+                                                                             "Kekurangan kecil.",
+                                                                             "Ada kekeliruan istilah/urutan.",
+                                                                             "Masih miskonsepsi.",
+                                                                             "Tidak memahami konsep."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-1: Konsep dan proses data mining"
+                                                         }
+                                                     ],
+                                      "Sub-CPMK.5":  [
+                                                         {
+                                                             "bobot":  4,
+                                                             "tingkat":  [
+                                                                             "Frequent itemset, aturan, support, confidence, dan lift dihitung benar.",
+                                                                             "Kesalahan kecil pada interpretasi.",
+                                                                             "Kesalahan pada kandidat itemset atau confidence.",
+                                                                             "Aturan yang dihasilkan tidak tepat.",
+                                                                             "Tidak mampu menjalankan Apriori."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-5: Perhitungan Apriori"
+                                                         }
+                                                     ]
+                                  },
+                         "proyek":  {
+                                        "Sub-CPMK.8":  [
+                                                           {
+                                                               "bobot":  3,
+                                                               "tingkat":  [
+                                                                               "Seluruh tahapan preprocessing tepat (termasuk stemming Sastrawi); TF-IDF dan inverted index dibangun benar.",
+                                                                               "Benar dengan kekurangan kecil.",
+                                                                               "Sebagian tahapan keliru.",
+                                                                               "Tidak berjalan."
+                                                                           ],
+                                                               "indikator":  "Text preprocessing, TF-IDF, dan inverted index"
+                                                           },
+                                                           {
+                                                               "bobot":  3,
+                                                               "tingkat":  [
+                                                                               "Cosine similarity meranking dokumen dengan tepat; precision dan recall dihitung untuk beberapa query.",
+                                                                               "Perankingan benar; evaluasi kurang lengkap.",
+                                                                               "Perankingan terbatas, tanpa evaluasi.",
+                                                                               "Perankingan tidak berjalan."
+                                                                           ],
+                                                               "indikator":  "Perankingan dan evaluasi"
+                                                           },
+                                                           {
+                                                               "bobot":  2,
+                                                               "tingkat":  [
+                                                                               "Mesin pencarian terintegrasi dalam aplikasi dengan antarmuka yang berfungsi baik.",
+                                                                               "Terintegrasi dengan kekurangan kecil.",
+                                                                               "Integrasi parsial.",
+                                                                               "Tidak terintegrasi."
+                                                                           ],
+                                                               "indikator":  "Integrasi ke dalam aplikasi"
+                                                           },
+                                                           {
+                                                               "bobot":  2,
+                                                               "tingkat":  [
+                                                                               "Demo lancar untuk berbagai query; seluruh anggota menjawab pertanyaan dengan baik.",
+                                                                               "Demo baik; jawaban kurang lengkap.",
+                                                                               "Demo bermasalah.",
+                                                                               "Tidak demo."
+                                                                           ],
+                                                               "indikator":  "Demonstrasi dan presentasi"
+                                                           }
+                                                       ]
+                                    },
+                         "post":  {
+                                      "Sub-CPMK.5":  [
+                                                         {
+                                                             "bobot":  4,
+                                                             "tingkat":  [
+                                                                             "Perhitungan dan implementasi Apriori benar; aturan bermakna dipilih dengan alasan jelas.",
+                                                                             "Benar dengan kesalahan kecil.",
+                                                                             "Sebagian keliru.",
+                                                                             "Tidak mampu menghasilkan aturan."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-5: Association rule"
+                                                         }
+                                                     ],
+                                      "Sub-CPMK.7":  [
+                                                         {
+                                                             "bobot":  6,
+                                                             "tingkat":  [
+                                                                             "Koefisien regresi dan metrik galat dihitung benar; implementasi dan interpretasi tepat.",
+                                                                             "Benar dengan kesalahan kecil.",
+                                                                             "Evaluasi galat keliru.",
+                                                                             "Tidak mampu membangun model."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-7: Predictive mining"
+                                                         }
+                                                     ],
+                                      "Sub-CPMK.8":  [
+                                                         {
+                                                             "bobot":  5,
+                                                             "tingkat":  [
+                                                                             "TF-IDF dan cosine similarity benar; dokumen diranking tepat sesuai query.",
+                                                                             "Benar dengan kesalahan kecil.",
+                                                                             "Perankingan keliru.",
+                                                                             "Tidak mampu melakukan pembobotan."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-8: Text mining"
+                                                         }
+                                                     ],
+                                      "Sub-CPMK.6":  [
+                                                         {
+                                                             "bobot":  10,
+                                                             "tingkat":  [
+                                                                             "Iterasi K-Means benar; implementasi clustering tepat; jumlah cluster terbaik ditentukan dengan elbow/silhouette dan diinterpretasikan.",
+                                                                             "Benar; analisa kurang lengkap.",
+                                                                             "Clustering tanpa analisa cluster.",
+                                                                             "Tidak mampu melakukan clustering."
+                                                                         ],
+                                                             "indikator":  "Sub-CPMK-6: Clustering dan analisa cluster"
+                                                         }
+                                                     ]
+                                  },
+                         "mid":  {
+                                     "Sub-CPMK.3":  [
+                                                        {
+                                                            "bobot":  7,
+                                                            "tingkat":  [
+                                                                            "Perhitungan k-NN dan metrik benar; implementasi dengan cross validation dan tuning k tepat.",
+                                                                            "Benar dengan kesalahan kecil.",
+                                                                            "Validasi atau metrik keliru.",
+                                                                            "Tidak mampu menerapkan k-NN."
+                                                                        ],
+                                                            "indikator":  "Sub-CPMK-3: k-NN dan validasi"
+                                                        }
+                                                    ],
+                                     "Sub-CPMK.1":  [
+                                                        {
+                                                            "bobot":  2,
+                                                            "tingkat":  [
+                                                                            "Konsep dan proses dijelaskan tepat.",
+                                                                            "Benar dengan kekurangan kecil.",
+                                                                            "Sebagian benar.",
+                                                                            "Tidak memahami konsep."
+                                                                        ],
+                                                            "indikator":  "Sub-CPMK-1: Konsep data mining"
+                                                        }
+                                                    ],
+                                     "Sub-CPMK.2":  [
+                                                        {
+                                                            "bobot":  9,
+                                                            "tingkat":  [
+                                                                            "Perhitungan normalisasi benar; preprocessing dataset tepat dan lengkap.",
+                                                                            "Benar dengan kesalahan kecil.",
+                                                                            "Sebagian langkah keliru.",
+                                                                            "Tidak mampu melakukan preprocessing."
+                                                                        ],
+                                                            "indikator":  "Sub-CPMK-2: Preprocessing dan normalisasi"
+                                                        }
+                                                    ],
+                                     "Sub-CPMK.4":  [
+                                                        {
+                                                            "bobot":  7,
+                                                            "tingkat":  [
+                                                                            "Entropy/information gain dihitung benar; model diimplementasikan dan di-tuning dengan tepat.",
+                                                                            "Benar dengan kesalahan kecil.",
+                                                                            "Model berjalan tanpa tuning yang benar.",
+                                                                            "Tidak mampu membangun pohon."
+                                                                        ],
+                                                            "indikator":  "Sub-CPMK-4: Decision Tree"
+                                                        }
+                                                    ]
+                                 }
+                     },
+    "sub":  [
+                {
+                    "cpmk":  "CPMK.1",
+                    "bobot":  5,
+                    "kode":  "Sub-CPMK.1",
+                    "level":  "",
+                    "deskripsi":  "Mampu menjelaskan konsep, proses (KDD/CRISP-DM), dan aplikasi data mining, serta menyiapkan lingkungan kerja dan melakukan eksplorasi awal dataset [C2, C3]."
+                },
+                {
+                    "cpmk":  "CPMK.1",
+                    "bobot":  15,
+                    "kode":  "Sub-CPMK.2",
+                    "level":  "",
+                    "deskripsi":  "Mampu melakukan preprocessing data yang meliputi manipulasi, visualisasi, pembersihan, dan normalisasi, baik secara konsep maupun implementasi [C3]."
+                },
+                {
+                    "cpmk":  "CPMK.2",
+                    "bobot":  15,
+                    "kode":  "Sub-CPMK.3",
+                    "level":  "",
+                    "deskripsi":  "Mampu menerapkan klasifikasi k-NN dan memvalidasi model klasifikasi (confusion matrix, k-fold cross validation) untuk menentukan parameter terbaik [C3, C4]."
+                },
+                {
+                    "cpmk":  "CPMK.2",
+                    "bobot":  15,
+                    "kode":  "Sub-CPMK.4",
+                    "level":  "",
+                    "deskripsi":  "Mampu membangun model Decision Tree secara manual dan dengan pustaka, serta mengoptimalkannya melalui pruning dan tuning parameter [C3, C4]."
+                },
+                {
+                    "cpmk":  "CPMK.3",
+                    "bobot":  10,
+                    "kode":  "Sub-CPMK.5",
+                    "level":  "",
+                    "deskripsi":  "Mampu menggali aturan asosiasi dengan Apriori/FP-Growth dan mengevaluasi kualitas aturannya [C3, C4]."
+                },
+                {
+                    "cpmk":  "CPMK.3",
+                    "bobot":  15,
+                    "kode":  "Sub-CPMK.6",
+                    "level":  "",
+                    "deskripsi":  "Mampu menerapkan K-Means dan hierarchical clustering serta melakukan analisa cluster untuk menentukan jumlah dan kualitas cluster terbaik [C3, C4]."
+                },
+                {
+                    "cpmk":  "CPMK.3",
+                    "bobot":  10,
+                    "kode":  "Sub-CPMK.7",
+                    "level":  "",
+                    "deskripsi":  "Mampu membangun model predictive mining (regresi) dan mengevaluasi galat prediksinya [C3]."
+                },
+                {
+                    "cpmk":  "CPMK.4",
+                    "bobot":  15,
+                    "kode":  "Sub-CPMK.8",
+                    "level":  "",
+                    "deskripsi":  "Mampu menerapkan konsep dasar text mining (text preprocessing, TF-IDF, vector space model) untuk membangun aplikasi mesin pencarian sederhana [C3, C6]."
+                }
+            ]
+}

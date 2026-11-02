@@ -1,0 +1,72 @@
+{
+  "rencanaSub": {
+    "Sub-CPMK.1": {
+      "pertemuan": "1",
+      "indikator": "Ketepatan menjelaskan definisi, tahapan KDD/CRISP-DM, dan jenis tugas data mining\nKetepatan memberi contoh aplikasi data mining sesuai domain\nKetepatan menyiapkan lingkungan Python/Jupyter dan membaca dataset\nKetepatan menampilkan statistik deskriptif dan mengidentifikasi tipe atribut",
+      "kriteria": "Kriteria:\nPedoman Penskoran dan Rubrik Analitik\n\nTeknik:\nTes tulis (kuis), demonstrasi hasil, dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-1: Kuis konsep data mining dan laporan praktikum eksplorasi awal dataset\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-1: Kuis online di LMS; notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Definisi dan proses data mining (KDD, CRISP-DM)\nTugas data mining: klasifikasi, clustering, asosiasi, prediksi\nAplikasi data mining\nPraktikum: Python, Jupyter/Google Colab, NumPy, pandas, eksplorasi awal dataset\n\n(Pustaka Utama 1, bab 1)\n(Pustaka Utama 2, bab 1)\n(Pustaka Utama 3, bab 2–3)"
+    },
+    "Sub-CPMK.2": {
+      "pertemuan": "2, 3",
+      "indikator": "Ketepatan melakukan seleksi, filter, agregasi, dan penggabungan data\nKetepatan memilih dan menginterpretasi visualisasi data\nKetepatan menangani missing value, noise, dan outlier\nKetepatan menghitung dan mengimplementasikan normalisasi min-max, z-score, dan decimal scaling",
+      "kriteria": "Kriteria:\nRubrik Analitik\n\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-2: Laporan praktikum preprocessing (manipulasi, visualisasi, normalisasi) pada dataset studi kasus\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-2: Notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Tipe atribut dan statistik deskriptif\nManipulasi data dengan pandas\nVisualisasi data dengan Matplotlib/Seaborn\nData cleaning\nNormalisasi min-max, z-score, decimal scaling\n\n(Pustaka Utama 1, bab 2–3)\n(Pustaka Utama 3, bab 3–4)"
+    },
+    "Sub-CPMK.3": {
+      "pertemuan": "4, 5",
+      "indikator": "Ketepatan menghitung jarak dan menentukan kelas dengan k-NN\nKetepatan menyusun confusion matrix serta menghitung akurasi, presisi, recall, dan F1-score\nKetepatan menerapkan hold-out dan k-fold cross validation\nKetepatan menentukan nilai k terbaik berdasarkan hasil validasi",
+      "kriteria": "Kriteria:\nPedoman Penskoran dan Rubrik Analitik\n\nTeknik:\nTes tulis (kuis), demonstrasi hasil, dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-3: Kuis perhitungan k-NN dan metrik evaluasi, serta laporan praktikum klasifikasi k-NN dan validasi model\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-3: Kuis online di LMS; notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Konsep klasifikasi (supervised learning)\nUkuran jarak dan algoritma k-NN\nConfusion matrix dan metrik evaluasi\nHold-out dan k-fold cross validation\nPraktikum: KNeighborsClassifier, cross_val_score, tuning k\n\n(Pustaka Utama 1, bab 8.5 & 9.5)\n(Pustaka Utama 2, bab 3–4)\n(Pustaka Utama 6)"
+    },
+    "Sub-CPMK.4": {
+      "pertemuan": "6, 7",
+      "indikator": "Ketepatan menghitung entropy, information gain, gain ratio, dan Gini index\nKetepatan membangun pohon keputusan dan mengekstrak aturan IF-THEN\nKetepatan mengimplementasikan Decision Tree dan memvisualisasikan pohon\nKetepatan melakukan pruning dan tuning parameter (max_depth, min_samples_split)",
+      "kriteria": "Kriteria:\nRubrik Analitik\n\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-4: Laporan praktikum Decision Tree (perhitungan manual dan implementasi) beserta tuning parameter\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-4: Notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Induksi pohon keputusan\nEntropy, information gain, gain ratio, Gini index\nID3, C4.5, CART\nPruning dan tuning parameter\nPraktikum: DecisionTreeClassifier, visualisasi pohon, GridSearchCV\n\n(Pustaka Utama 1, bab 8.2)\n(Pustaka Utama 2, bab 3)\n(Pustaka Utama 4, bab 6)"
+    },
+    "Sub-CPMK.5": {
+      "pertemuan": "9",
+      "indikator": "Ketepatan menghitung support, confidence, dan lift\nKetepatan menghasilkan frequent itemset dan aturan asosiasi dengan Apriori/FP-Growth\nKetepatan menentukan minimum support dan confidence yang menghasilkan aturan bermakna",
+      "kriteria": "Kriteria:\nPedoman Penskoran dan Rubrik Analitik\n\nTeknik:\nTes tulis (kuis), demonstrasi hasil, dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-5: Kuis perhitungan Apriori dan laporan praktikum market basket analysis\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-5: Kuis online di LMS; notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Market basket analysis\nFrequent itemset, support, confidence, lift\nAlgoritma Apriori dan FP-Growth\nPraktikum: TransactionEncoder dan mlxtend\n\n(Pustaka Utama 1, bab 6)\n(Pustaka Utama 2, bab 5)"
+    },
+    "Sub-CPMK.6": {
+      "pertemuan": "10, 11",
+      "indikator": "Ketepatan menerapkan K-Means dan hierarchical clustering\nKetepatan menjelaskan pengaruh inisialisasi centroid\nKetepatan menghitung SSE dan silhouette coefficient serta menerapkan metode elbow\nKetepatan menginterpretasi karakteristik setiap cluster",
+      "kriteria": "Kriteria:\nRubrik Analitik\n\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-6: Laporan praktikum clustering dan analisa cluster pada dataset nyata\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-6: Notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Konsep clustering\nK-Means dan inisialisasi centroid\nHierarchical clustering dan dendrogram\nAnalisa cluster: SSE, silhouette, elbow\nPraktikum: KMeans, AgglomerativeClustering, profiling cluster\n\n(Pustaka Utama 1, bab 10)\n(Pustaka Utama 2, bab 7)\n(Pustaka Pendukung 1, 2)"
+    },
+    "Sub-CPMK.7": {
+      "pertemuan": "12",
+      "indikator": "Ketepatan membedakan klasifikasi dan prediksi numerik\nKetepatan membangun model regresi linier sederhana dan berganda\nKetepatan menghitung MAE, RMSE, dan MAPE\nKetepatan memvisualisasikan dan menginterpretasi hasil prediksi",
+      "kriteria": "Kriteria:\nRubrik Analitik\n\nTeknik:\nDemonstrasi hasil dan laporan praktikum",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), case-based method\n\nPenugasan:\nEval-7: Laporan praktikum pemodelan prediksi dengan regresi\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-7: Notebook dan laporan PDF diunggah ke LMS\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Konsep predictive mining\nRegresi linier sederhana dan berganda\nEvaluasi prediksi: MAE, RMSE, MAPE\nPraktikum: LinearRegression dan KNeighborsRegressor\n\n(Pustaka Utama 4, bab 4)\n(Pustaka Utama 3, bab 5)"
+    },
+    "Sub-CPMK.8": {
+      "pertemuan": "13, 14, 15",
+      "indikator": "Ketepatan menerapkan case folding, tokenisasi, stopword removal, dan stemming Bahasa Indonesia\nKetepatan menghitung TF-IDF dan membangun inverted index\nKetepatan meranking dokumen dengan cosine similarity\nKetepatan mengevaluasi hasil pencarian (precision, recall)\nKemampuan mengintegrasikan mesin pencarian ke dalam aplikasi dan mendemonstrasikannya",
+      "kriteria": "Kriteria:\nRubrik Holistik\n\nTeknik:\nDemonstrasi aplikasi dan presentasi mini project",
+      "tatapMuka": "Bentuk:\nKuliah tatap muka di kelas (1 jam) dan praktikum di laboratorium komputer (2 jam)\n\nMetode:\nCeramah, demonstrasi, praktik terbimbing (hands-on), Project Based Learning\n\nPenugasan:\nEval-8: Mini project kelompok aplikasi mesin pencarian sederhana untuk koleksi dokumen berbahasa Indonesia, didemonstrasikan pada pertemuan 15\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "daring": "Bentuk:\nSynchronous online class dan praktikum berbasis software (Google Colab)\n\nMetode:\nVideo conference dengan berbagi layar, video tutorial dan simulasi interaktif\n\nPenugasan:\nEval-8: Source code dan laporan diunggah ke LMS, didemonstrasikan via Zoom\n\nEstimasi waktu:\nTeori\nPB: (1 pertemuan x 1 sks x 50 menit)\nPT+KM: (1 pertemuan x 1 sks x 100 menit)\nPraktikum\nPB+PT: (1 pertemuan x 1 sks x 100  menit)\nKM: (1 pertemuan x 1 sks x 50 menit)",
+      "materi": "Konsep text mining dan information retrieval (pertemuan 13)\nText preprocessing dan stemming Bahasa Indonesia\nTF-IDF dan inverted index (pertemuan 14)\nVector space model dan cosine similarity\nDemonstrasi mini project (pertemuan 15)\n\n(Pustaka Utama 5, bab 1, 2, 6, 8)\n(Pustaka Utama 1, bab 13)"
+    }
+  },
+  "barisUjian": {
+    "mid": "Mid Test: tes tulis (teori) dan tes praktik (live coding), mengukur ketercapaian Sub-CPMK.1 – Sub-CPMK.4.",
+    "post": "Post Test: tes tulis (teori) dan tes praktik (live coding), mengukur ketercapaian Sub-CPMK.5 – Sub-CPMK.8."
+  }
+}

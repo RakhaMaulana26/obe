@@ -1,0 +1,2571 @@
+[
+  [
+    [
+      "Sub-CPMK",
+      "Kemampuan Akhir",
+      "Materi Terkait",
+      "Bobot RPS"
+    ],
+    [
+      "Sub-CPMK-1",
+      "Mahasiswa mampu menjelaskan konsep, proses (KDD/CRISP-DM), dan aplikasi data mining, serta melakukan eksplorasi awal dataset.",
+      "Definisi dan proses data mining, tugas data mining, Python/Jupyter, NumPy, pandas, eksplorasi awal.",
+      "5%"
+    ],
+    [
+      "Sub-CPMK-2",
+      "Mahasiswa mampu melakukan preprocessing data yang meliputi manipulasi, visualisasi, pembersihan, dan normalisasi.",
+      "Manipulasi data, visualisasi, missing value, outlier, normalisasi min-max, z-score, decimal scaling.",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-3",
+      "Mahasiswa mampu menerapkan klasifikasi k-NN dan memvalidasi model klasifikasi untuk menentukan parameter terbaik.",
+      "Ukuran jarak, k-NN, confusion matrix, akurasi/presisi/recall/F1, hold-out, k-fold cross validation.",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-4",
+      "Mahasiswa mampu membangun model Decision Tree serta mengoptimalkannya melalui pruning dan tuning parameter.",
+      "Entropy, information gain, gain ratio, Gini index, ID3/C4.5/CART, pruning, GridSearchCV.",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-5",
+      "Mahasiswa mampu menggali aturan asosiasi dengan Apriori/FP-Growth dan mengevaluasi kualitas aturannya.",
+      "Market basket analysis, support, confidence, lift, Apriori, FP-Growth, mlxtend.",
+      "10%"
+    ],
+    [
+      "Sub-CPMK-6",
+      "Mahasiswa mampu menerapkan K-Means dan hierarchical clustering serta melakukan analisa cluster.",
+      "K-Means, inisialisasi centroid, hierarchical clustering, SSE, silhouette, elbow, profiling cluster.",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-7",
+      "Mahasiswa mampu membangun model predictive mining (regresi) dan mengevaluasi galat prediksinya.",
+      "Regresi linier sederhana dan berganda, KNeighborsRegressor, MAE, RMSE, MAPE.",
+      "10%"
+    ],
+    [
+      "Sub-CPMK-8",
+      "Mahasiswa mampu menerapkan text mining untuk membangun aplikasi mesin pencarian sederhana.",
+      "Text preprocessing, stemming Bahasa Indonesia, TF-IDF, inverted index, cosine similarity, precision dan recall.",
+      "15%"
+    ],
+    [
+      "Total",
+      "",
+      "",
+      "100%"
+    ]
+  ],
+  [
+    [
+      "Sub-CPMK",
+      "Kuis",
+      "Laporan Praktikum",
+      "Mini Project",
+      "Mid Test",
+      "Post Test",
+      "Total (Bobot RPS)"
+    ],
+    [
+      "Sub-CPMK-1",
+      "2%",
+      "1%",
+      "–",
+      "2%",
+      "–",
+      "5%"
+    ],
+    [
+      "Sub-CPMK-2",
+      "–",
+      "6%",
+      "–",
+      "9%",
+      "–",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-3",
+      "4%",
+      "4%",
+      "–",
+      "7%",
+      "–",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-4",
+      "–",
+      "8%",
+      "–",
+      "7%",
+      "–",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-5",
+      "4%",
+      "2%",
+      "–",
+      "–",
+      "4%",
+      "10%"
+    ],
+    [
+      "Sub-CPMK-6",
+      "–",
+      "5%",
+      "–",
+      "–",
+      "10%",
+      "15%"
+    ],
+    [
+      "Sub-CPMK-7",
+      "–",
+      "4%",
+      "–",
+      "–",
+      "6%",
+      "10%"
+    ],
+    [
+      "Sub-CPMK-8",
+      "–",
+      "–",
+      "10%",
+      "–",
+      "5%",
+      "15%"
+    ],
+    [
+      "Total",
+      "10%",
+      "30%",
+      "10%",
+      "25%",
+      "25%",
+      "100%"
+    ]
+  ],
+  [
+    [
+      "",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA"
+    ],
+    [
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA"
+    ],
+    [
+      "MATA KULIAH",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining"
+    ],
+    [
+      "KODE",
+      "TI045105",
+      "TI045105",
+      "TI045105",
+      "SKS",
+      "T = 1, P = 1",
+      "SEMESTER",
+      "4"
+    ],
+    [
+      "DOSEN\nPENGAMPU",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana"
+    ],
+    [
+      "Tugas ke",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)",
+      "1 – Laporan Praktikum (Eval-1 s.d. Eval-7 pada RPS)"
+    ],
+    [
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH"
+    ],
+    [
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7",
+      "Mendukung pencapaian Sub-CPMK-1 sampai Sub-CPMK-7"
+    ],
+    [
+      "BENTUK TUGAS",
+      "BENTUK TUGAS",
+      "BENTUK TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS"
+    ],
+    [
+      "Laporan praktikum individual berupa notebook (Jupyter/Google Colab) dan laporan PDF.",
+      "Laporan praktikum individual berupa notebook (Jupyter/Google Colab) dan laporan PDF.",
+      "Laporan praktikum individual berupa notebook (Jupyter/Google Colab) dan laporan PDF.",
+      "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai.",
+      "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai.",
+      "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai.",
+      "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai.",
+      "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai."
+    ],
+    [
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS"
+    ],
+    [
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining",
+      "Laporan Praktikum Workshop Data Mining"
+    ],
+    [
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS"
+    ],
+    [
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+      "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil."
+    ],
+    [
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS"
+    ],
+    [
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+      "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai."
+    ],
+    [
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN"
+    ],
+    [
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+      "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil."
+    ],
+    [
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN"
+    ],
+    [
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+      "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan."
+    ],
+    [
+      "Bobot Penilaian",
+      "Bobot Penilaian",
+      "30 (%)",
+      "30 (%)",
+      "30 (%)",
+      "30 (%)",
+      "30 (%)",
+      "30 (%)"
+    ],
+    [
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN"
+    ],
+    [
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+      "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS)."
+    ],
+    [
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN"
+    ],
+    [
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu.",
+      "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu."
+    ],
+    [
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN"
+    ],
+    [
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL."
+    ]
+  ],
+  [
+    [
+      "Kriteria / Skor",
+      "Sangat Baik",
+      "Baik",
+      "Cukup",
+      "Kurang",
+      "Sangat Kurang"
+    ],
+    [
+      "Kriteria / Skor",
+      "Skor > 81",
+      "61 < Skor < 80",
+      "41 < Skor < 60",
+      "21 < Skor < 40",
+      "Skor < 20"
+    ],
+    [
+      "Deskripsi Umum",
+      "Kode berjalan benar dan rapi, seluruh tahapan lengkap, hasil (tabel/grafik/metrik) tepat, analisis tajam dan dikaitkan dengan konteks data.",
+      "Kode berjalan benar dengan kekurangan kecil, hasil sebagian besar tepat, interpretasi benar tetapi belum mendalam.",
+      "Kode berjalan sebagian, terdapat beberapa kesalahan hasil, interpretasi masih umum.",
+      "Kode banyak error atau hasil tidak tepat, analisis lemah.",
+      "Kode tidak berjalan/tidak dikumpulkan atau tidak menunjukkan pemahaman materi."
+    ]
+  ],
+  [
+    [
+      "No",
+      "Indikator yang Dinilai",
+      "Bobot",
+      "A/AB - Sangat Baik",
+      "B - Baik",
+      "BC/C - Cukup",
+      "D/E - Kurang"
+    ],
+    [
+      "1",
+      "Sub-CPMK-1: Eksplorasi awal dataset",
+      "1%",
+      "Dataset dibaca benar; statistik deskriptif, tipe atribut, dan masalah kualitas data teridentifikasi lengkap.",
+      "Eksplorasi benar dengan kekurangan kecil.",
+      "Eksplorasi belum lengkap.",
+      "Dataset gagal dibaca."
+    ],
+    [
+      "2",
+      "Sub-CPMK-2: Preprocessing data",
+      "6%",
+      "Manipulasi tepat, visualisasi sesuai tipe data, missing value/outlier ditangani, normalisasi diterapkan dan dibandingkan.",
+      "Seluruh tahapan berjalan dengan kekurangan kecil.",
+      "Sebagian tahapan benar.",
+      "Preprocessing tidak berjalan."
+    ],
+    [
+      "3",
+      "Sub-CPMK-3: k-NN dan validasi model",
+      "4%",
+      "k-NN dan k-fold cross validation benar; metrik evaluasi lengkap; nilai k terbaik ditentukan dan dijelaskan.",
+      "Benar; analisis pemilihan k kurang.",
+      "k-NN berjalan, validasi belum tepat.",
+      "k-NN tidak berjalan."
+    ],
+    [
+      "4",
+      "Sub-CPMK-4: Decision Tree dan tuning",
+      "8%",
+      "Perhitungan manual entropy/gain benar dan sesuai hasil pustaka; pohon divisualisasikan; tuning dengan GridSearchCV menghasilkan parameter terbaik.",
+      "Benar; perbandingan manual vs pustaka kurang.",
+      "Model berjalan tanpa tuning yang benar.",
+      "Model tidak berjalan."
+    ],
+    [
+      "5",
+      "Sub-CPMK-5: Apriori/FP-Growth",
+      "2%",
+      "Aturan asosiasi dihasilkan benar; support/confidence/lift dianalisis; aturan bermakna dipilih.",
+      "Benar; analisis kurang.",
+      "Parameter atau interpretasi kurang tepat.",
+      "Algoritma tidak berjalan."
+    ],
+    [
+      "6",
+      "Sub-CPMK-6: Clustering dan analisa cluster",
+      "5%",
+      "K-Means dan hierarchical clustering benar; jumlah cluster terbaik ditentukan dengan elbow/silhouette; profil cluster bermakna.",
+      "Benar; analisa cluster kurang lengkap.",
+      "Clustering berjalan tanpa analisa cluster.",
+      "Clustering tidak berjalan."
+    ],
+    [
+      "7",
+      "Sub-CPMK-7: Predictive mining",
+      "4%",
+      "Model regresi benar; MAE/RMSE/MAPE tepat; grafik aktual vs prediksi diinterpretasikan.",
+      "Benar; interpretasi kurang.",
+      "Evaluasi galat kurang lengkap.",
+      "Model tidak berjalan."
+    ]
+  ],
+  [
+    [
+      "Nama\nMahasiswa",
+      "Nama\nMahasiswa",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "NRP",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian"
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "(E) \n0-40",
+      "(D) \n41-55",
+      "(C) \n56-60",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(B) \n66-75",
+      "(AB) \n76-86",
+      "(A) \n86-100"
+    ],
+    [
+      "1",
+      "Eksplorasi (Sub-CPMK-1)",
+      "Eksplorasi (Sub-CPMK-1)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "2",
+      "Preprocessing (Sub-CPMK-2)",
+      "Preprocessing (Sub-CPMK-2)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "3",
+      "k-NN dan validasi (Sub-CPMK-3)",
+      "k-NN dan validasi (Sub-CPMK-3)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "4",
+      "Decision Tree (Sub-CPMK-4)",
+      "Decision Tree (Sub-CPMK-4)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "5",
+      "Apriori (Sub-CPMK-5)",
+      "Apriori (Sub-CPMK-5)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "6",
+      "Clustering (Sub-CPMK-6)",
+      "Clustering (Sub-CPMK-6)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "7",
+      "Regresi (Sub-CPMK-7)",
+      "Regresi (Sub-CPMK-7)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai total",
+      "Nilai total",
+      "Nilai total",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  [
+    [
+      "",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA"
+    ],
+    [
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA"
+    ],
+    [
+      "MATA KULIAH",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining"
+    ],
+    [
+      "KODE",
+      "TI045105",
+      "TI045105",
+      "TI045105",
+      "SKS",
+      "T = 1, P = 1",
+      "SEMESTER",
+      "4"
+    ],
+    [
+      "DOSEN\nPENGAMPU",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana"
+    ],
+    [
+      "Tugas ke",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)",
+      "2 – Mini Project Kelompok (Eval-8 pada RPS)"
+    ],
+    [
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH"
+    ],
+    [
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8",
+      "Mendukung pencapaian Sub-CPMK-8"
+    ],
+    [
+      "BENTUK TUGAS",
+      "BENTUK TUGAS",
+      "BENTUK TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS",
+      "WAKTU PENGERJAAN TUGAS"
+    ],
+    [
+      "Mini project kelompok (3–4 mahasiswa) disertai laporan dan demonstrasi aplikasi.",
+      "Mini project kelompok (3–4 mahasiswa) disertai laporan dan demonstrasi aplikasi.",
+      "Mini project kelompok (3–4 mahasiswa) disertai laporan dan demonstrasi aplikasi.",
+      "Minggu ke-13–15; demonstrasi pada minggu ke-15.",
+      "Minggu ke-13–15; demonstrasi pada minggu ke-15.",
+      "Minggu ke-13–15; demonstrasi pada minggu ke-15.",
+      "Minggu ke-13–15; demonstrasi pada minggu ke-15.",
+      "Minggu ke-13–15; demonstrasi pada minggu ke-15."
+    ],
+    [
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS",
+      "JUDUL TUGAS"
+    ],
+    [
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+      "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia"
+    ],
+    [
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS",
+      "DISKRIPSI TUGAS"
+    ],
+    [
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+      "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian."
+    ],
+    [
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS",
+      "METODE PENGERJAAN TUGAS"
+    ],
+    [
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+      "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi."
+    ],
+    [
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN"
+    ],
+    [
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+      "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota."
+    ],
+    [
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN"
+    ],
+    [
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+      "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi."
+    ],
+    [
+      "Bobot Penilaian",
+      "Bobot Penilaian",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)"
+    ],
+    [
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN"
+    ],
+    [
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+      "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15."
+    ],
+    [
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN"
+    ],
+    [
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan.",
+      "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan."
+    ],
+    [
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN"
+    ],
+    [
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nHan, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nModul Workshop Data Mining pada LMS eTHOL."
+    ]
+  ],
+  [
+    [
+      "Kriteria / Skor",
+      "Sangat Baik",
+      "Baik",
+      "Cukup",
+      "Kurang",
+      "Sangat Kurang"
+    ],
+    [
+      "Kriteria / Skor",
+      "Skor > 81",
+      "61 < Skor < 80",
+      "41 < Skor < 60",
+      "21 < Skor < 40",
+      "Skor < 20"
+    ],
+    [
+      "Deskripsi Umum",
+      "Aplikasi berjalan lancar, hasil pencarian relevan dan dievaluasi, kode rapi, seluruh anggota berkontribusi dan menguasai sistem.",
+      "Aplikasi berjalan baik dengan kekurangan kecil pada evaluasi atau antarmuka.",
+      "Aplikasi berjalan terbatas, evaluasi belum lengkap.",
+      "Aplikasi banyak error, hasil pencarian tidak relevan.",
+      "Aplikasi tidak selesai atau tidak didemonstrasikan."
+    ]
+  ],
+  [
+    [
+      "No",
+      "Indikator yang Dinilai",
+      "Bobot",
+      "A/AB - Sangat Baik",
+      "B - Baik",
+      "BC/C - Cukup",
+      "D/E - Kurang"
+    ],
+    [
+      "1",
+      "Text preprocessing, TF-IDF, dan inverted index",
+      "3%",
+      "Seluruh tahapan preprocessing tepat (termasuk stemming Sastrawi); TF-IDF dan inverted index dibangun benar.",
+      "Benar dengan kekurangan kecil.",
+      "Sebagian tahapan keliru.",
+      "Tidak berjalan."
+    ],
+    [
+      "2",
+      "Perankingan dan evaluasi",
+      "3%",
+      "Cosine similarity meranking dokumen dengan tepat; precision dan recall dihitung untuk beberapa query.",
+      "Perankingan benar; evaluasi kurang lengkap.",
+      "Perankingan terbatas, tanpa evaluasi.",
+      "Perankingan tidak berjalan."
+    ],
+    [
+      "3",
+      "Integrasi ke dalam aplikasi",
+      "2%",
+      "Mesin pencarian terintegrasi dalam aplikasi dengan antarmuka yang berfungsi baik.",
+      "Terintegrasi dengan kekurangan kecil.",
+      "Integrasi parsial.",
+      "Tidak terintegrasi."
+    ],
+    [
+      "4",
+      "Demonstrasi dan presentasi",
+      "2%",
+      "Demo lancar untuk berbagai query; seluruh anggota menjawab pertanyaan dengan baik.",
+      "Demo baik; jawaban kurang lengkap.",
+      "Demo bermasalah.",
+      "Tidak demo."
+    ]
+  ],
+  [
+    [
+      "Nama\nMahasiswa",
+      "Nama\nMahasiswa",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "NRP",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian"
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "(E) \n0-40",
+      "(D) \n41-55",
+      "(C) \n56-60",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(B) \n66-75",
+      "(AB) \n76-86",
+      "(A) \n86-100"
+    ],
+    [
+      "1",
+      "Preprocessing, TF-IDF, indeks",
+      "Preprocessing, TF-IDF, indeks",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "2",
+      "Perankingan dan evaluasi",
+      "Perankingan dan evaluasi",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "3",
+      "Integrasi aplikasi",
+      "Integrasi aplikasi",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "4",
+      "Demo dan presentasi",
+      "Demo dan presentasi",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai total",
+      "Nilai total",
+      "Nilai total",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  [
+    [
+      "",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA"
+    ],
+    [
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA"
+    ],
+    [
+      "MATA KULIAH",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining"
+    ],
+    [
+      "KODE",
+      "TI045105",
+      "TI045105",
+      "TI045105",
+      "SKS",
+      "T = 1, P = 1",
+      "SEMESTER",
+      "4"
+    ],
+    [
+      "DOSEN\nPENGAMPU",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana"
+    ],
+    [
+      "Kuis ke",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)",
+      "1–3 (bagian kuis dari Eval-1, Eval-3, dan Eval-5 pada RPS)"
+    ],
+    [
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH"
+    ],
+    [
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5",
+      "Mendukung pencapaian Sub-CPMK-1, Sub-CPMK-3, dan Sub-CPMK-5"
+    ],
+    [
+      "BENTUK EVALUASI",
+      "BENTUK EVALUASI",
+      "BENTUK EVALUASI",
+      "WAKTU PENGERJAAN KUIS",
+      "WAKTU PENGERJAAN KUIS",
+      "WAKTU PENGERJAAN KUIS",
+      "WAKTU PENGERJAAN KUIS",
+      "WAKTU PENGERJAAN KUIS"
+    ],
+    [
+      "Kuis individual (tertulis di kelas atau daring melalui LMS/Google Form).",
+      "Kuis individual (tertulis di kelas atau daring melalui LMS/Google Form).",
+      "Kuis individual (tertulis di kelas atau daring melalui LMS/Google Form).",
+      "20–30 menit setiap kuis.",
+      "20–30 menit setiap kuis.",
+      "20–30 menit setiap kuis.",
+      "20–30 menit setiap kuis.",
+      "20–30 menit setiap kuis."
+    ],
+    [
+      "JUDUL KUIS",
+      "JUDUL KUIS",
+      "JUDUL KUIS",
+      "JUDUL KUIS",
+      "JUDUL KUIS",
+      "JUDUL KUIS",
+      "JUDUL KUIS",
+      "JUDUL KUIS"
+    ],
+    [
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+      "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori"
+    ],
+    [
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS",
+      "DISKRIPSI KUIS"
+    ],
+    [
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+      "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran."
+    ],
+    [
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS",
+      "METODE PENGERJAAN KUIS"
+    ],
+    [
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+      "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan."
+    ],
+    [
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN"
+    ],
+    [
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+      "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan."
+    ],
+    [
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN"
+    ],
+    [
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+      "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan."
+    ],
+    [
+      "Bobot Penilaian",
+      "Bobot Penilaian",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)",
+      "10 (%)"
+    ],
+    [
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN"
+    ],
+    [
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+      "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS)."
+    ],
+    [
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN"
+    ],
+    [
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan.",
+      "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan."
+    ],
+    [
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN"
+    ],
+    [
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nModul Workshop Data Mining pada LMS eTHOL."
+    ]
+  ],
+  [
+    [
+      "Kriteria / Skor",
+      "Sangat Baik",
+      "Baik",
+      "Cukup",
+      "Kurang",
+      "Sangat Kurang"
+    ],
+    [
+      "Kriteria / Skor",
+      "Skor > 81",
+      "61 < Skor < 80",
+      "41 < Skor < 60",
+      "21 < Skor < 40",
+      "Skor < 20"
+    ],
+    [
+      "Deskripsi Umum",
+      "Menguasai konsep secara menyeluruh, seluruh jawaban dan perhitungan benar.",
+      "Menguasai konsep dengan baik, terdapat kesalahan kecil.",
+      "Memahami konsep utama, namun terdapat beberapa kesalahan.",
+      "Memahami konsep dasar, tetapi banyak kesalahan.",
+      "Belum menunjukkan pemahaman konsep yang memadai."
+    ]
+  ],
+  [
+    [
+      "No",
+      "Indikator Penilaian",
+      "Bobot",
+      "A (86–100)",
+      "A− / AB (76–<86)",
+      "B+ / B (66–<76)",
+      "BC / C (56–<66)",
+      "D / E (0–<56)"
+    ],
+    [
+      "1",
+      "Sub-CPMK-1: Konsep dan proses data mining",
+      "2%",
+      "Tahapan KDD/CRISP-DM dan jenis tugas dijelaskan utuh dengan contoh tepat.",
+      "Kekurangan kecil.",
+      "Ada kekeliruan istilah/urutan.",
+      "Masih miskonsepsi.",
+      "Tidak memahami konsep."
+    ],
+    [
+      "2",
+      "Sub-CPMK-3: Perhitungan k-NN dan metrik evaluasi",
+      "4%",
+      "Jarak, kelas, confusion matrix, dan metrik dihitung benar seluruhnya.",
+      "Kesalahan kecil tanpa memengaruhi hasil.",
+      "Beberapa kesalahan prosedural.",
+      "Banyak kesalahan sehingga hasil salah.",
+      "Tidak diselesaikan."
+    ],
+    [
+      "3",
+      "Sub-CPMK-5: Perhitungan Apriori",
+      "4%",
+      "Frequent itemset, aturan, support, confidence, dan lift dihitung benar.",
+      "Kesalahan kecil pada interpretasi.",
+      "Kesalahan pada kandidat itemset atau confidence.",
+      "Aturan yang dihasilkan tidak tepat.",
+      "Tidak mampu menjalankan Apriori."
+    ]
+  ],
+  [
+    [
+      "Nama\nMahasiswa",
+      "Nama\nMahasiswa",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "NRP",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian"
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "(E) \n0-40",
+      "(D) \n41-55",
+      "(C) \n56-60",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(B) \n66-75",
+      "(AB) \n76-86",
+      "(A) \n86-100"
+    ],
+    [
+      "1",
+      "Konsep data mining (Kuis 1)",
+      "Konsep data mining (Kuis 1)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "2",
+      "k-NN dan validasi (Kuis 2)",
+      "k-NN dan validasi (Kuis 2)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "3",
+      "Apriori (Kuis 3)",
+      "Apriori (Kuis 3)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai total",
+      "Nilai total",
+      "Nilai total",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  [
+    [
+      "",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA"
+    ],
+    [
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA"
+    ],
+    [
+      "MATA KULIAH",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining"
+    ],
+    [
+      "KODE",
+      "TI045105",
+      "TI045105",
+      "TI045105",
+      "SKS",
+      "T = 1, P = 1",
+      "SEMESTER",
+      "4"
+    ],
+    [
+      "DOSEN\nPENGAMPU",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana"
+    ],
+    [
+      "Evaluasi ke",
+      "1 (Mid Test)",
+      "1 (Mid Test)",
+      "1 (Mid Test)",
+      "1 (Mid Test)",
+      "1 (Mid Test)",
+      "1 (Mid Test)",
+      "1 (Mid Test)"
+    ],
+    [
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH"
+    ],
+    [
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4",
+      "Sub-CPMK-1, Sub-CPMK-2, Sub-CPMK-3, dan Sub-CPMK-4"
+    ],
+    [
+      "BENTUK EVALUASI",
+      "BENTUK EVALUASI",
+      "BENTUK EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI"
+    ],
+    [
+      "Tes tulis (teori) dan tes praktik individual (live coding).",
+      "Tes tulis (teori) dan tes praktik individual (live coding).",
+      "Tes tulis (teori) dan tes praktik individual (live coding).",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit."
+    ],
+    [
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI"
+    ],
+    [
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+      "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)"
+    ],
+    [
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI"
+    ],
+    [
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+      "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya."
+    ],
+    [
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI"
+    ],
+    [
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis."
+    ],
+    [
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN"
+    ],
+    [
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+      "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik."
+    ],
+    [
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN"
+    ],
+    [
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+      "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree."
+    ],
+    [
+      "Bobot Penilaian",
+      "Bobot Penilaian",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)"
+    ],
+    [
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN"
+    ],
+    [
+      "Minggu ke-8 sesuai RPS.",
+      "Minggu ke-8 sesuai RPS.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN"
+    ],
+    [
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS."
+    ],
+    [
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN"
+    ],
+    [
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nVanderPlas, J. (2016). Python Data Science Handbook. O’Reilly Media.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nModul Workshop Data Mining pada LMS eTHOL."
+    ]
+  ],
+  [
+    [
+      "Kriteria / Skor",
+      "Sangat Baik",
+      "Baik",
+      "Cukup",
+      "Kurang",
+      "Sangat Kurang"
+    ],
+    [
+      "Kriteria / Skor",
+      "Skor > 81",
+      "61 < Skor < 80",
+      "41 < Skor < 60",
+      "21 < Skor < 40",
+      "Skor < 20"
+    ],
+    [
+      "Deskripsi Umum",
+      "Jawaban teori dan perhitungan tepat; seluruh tugas praktik selesai, kode berjalan tanpa error, hasil tepat dan dijelaskan dengan baik.",
+      "Jawaban teori benar dengan kekurangan kecil; hampir seluruh tugas praktik benar.",
+      "Konsep dasar dipahami; sebagian tugas praktik selesai dengan beberapa kesalahan.",
+      "Banyak kesalahan konsep dan perhitungan; sebagian besar tugas praktik tidak selesai.",
+      "Tidak menunjukkan pemahaman konsep maupun kemampuan implementasi."
+    ]
+  ],
+  [
+    [
+      "No",
+      "Indikator yang Dinilai",
+      "Bobot",
+      "A / AB – Sangat Baik",
+      "B – Baik",
+      "BC / C – Cukup",
+      "D / E – Kurang"
+    ],
+    [
+      "1",
+      "Sub-CPMK-1: Konsep data mining",
+      "2%",
+      "Konsep dan proses dijelaskan tepat.",
+      "Benar dengan kekurangan kecil.",
+      "Sebagian benar.",
+      "Tidak memahami konsep."
+    ],
+    [
+      "2",
+      "Sub-CPMK-2: Preprocessing dan normalisasi",
+      "9%",
+      "Perhitungan normalisasi benar; preprocessing dataset tepat dan lengkap.",
+      "Benar dengan kesalahan kecil.",
+      "Sebagian langkah keliru.",
+      "Tidak mampu melakukan preprocessing."
+    ],
+    [
+      "3",
+      "Sub-CPMK-3: k-NN dan validasi",
+      "7%",
+      "Perhitungan k-NN dan metrik benar; implementasi dengan cross validation dan tuning k tepat.",
+      "Benar dengan kesalahan kecil.",
+      "Validasi atau metrik keliru.",
+      "Tidak mampu menerapkan k-NN."
+    ],
+    [
+      "4",
+      "Sub-CPMK-4: Decision Tree",
+      "7%",
+      "Entropy/information gain dihitung benar; model diimplementasikan dan di-tuning dengan tepat.",
+      "Benar dengan kesalahan kecil.",
+      "Model berjalan tanpa tuning yang benar.",
+      "Tidak mampu membangun pohon."
+    ]
+  ],
+  [
+    [
+      "Nama\nMahasiswa",
+      "Nama\nMahasiswa",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "NRP",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian"
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "(E) \n0-40",
+      "(D) \n41-55",
+      "(C) \n56-60",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(B) \n66-75",
+      "(AB) \n76-86",
+      "(A) \n86-100"
+    ],
+    [
+      "1",
+      "Konsep (Sub-CPMK-1)",
+      "Konsep (Sub-CPMK-1)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "2",
+      "Preprocessing (Sub-CPMK-2)",
+      "Preprocessing (Sub-CPMK-2)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "3",
+      "k-NN dan validasi (Sub-CPMK-3)",
+      "k-NN dan validasi (Sub-CPMK-3)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "4",
+      "Decision Tree (Sub-CPMK-4)",
+      "Decision Tree (Sub-CPMK-4)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai total",
+      "Nilai total",
+      "Nilai total",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  [
+    [
+      "",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+      "PROGRAM STUDI SARJANA TERAPAN TEKNIK INFORMATIKA \nDEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER\nPOLITEKNIK ELEKTRONIKA NEGERI SURABAYA"
+    ],
+    [
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA",
+      "RENCANA TUGAS MAHASISWA"
+    ],
+    [
+      "MATA KULIAH",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining",
+      "Workshop Data Mining"
+    ],
+    [
+      "KODE",
+      "TI045105",
+      "TI045105",
+      "TI045105",
+      "SKS",
+      "T = 1, P = 1",
+      "SEMESTER",
+      "4"
+    ],
+    [
+      "DOSEN\nPENGAMPU",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana",
+      "Aliridho Barakbah dan Entin Martiana"
+    ],
+    [
+      "Evaluasi ke",
+      "2 (Post Test)",
+      "2 (Post Test)",
+      "2 (Post Test)",
+      "2 (Post Test)",
+      "2 (Post Test)",
+      "2 (Post Test)",
+      "2 (Post Test)"
+    ],
+    [
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH",
+      "SUB CAPAIAN PEMBELAJARAN MATA KULIAH"
+    ],
+    [
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8",
+      "Sub-CPMK-5, Sub-CPMK-6, Sub-CPMK-7, dan Sub-CPMK-8"
+    ],
+    [
+      "BENTUK EVALUASI",
+      "BENTUK EVALUASI",
+      "BENTUK EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI",
+      "WAKTU PENGERJAAN EVALUASI"
+    ],
+    [
+      "Tes tulis (teori) dan tes praktik individual (live coding).",
+      "Tes tulis (teori) dan tes praktik individual (live coding).",
+      "Tes tulis (teori) dan tes praktik individual (live coding).",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit.",
+      "Teori 50 menit; praktik 100 menit."
+    ],
+    [
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI",
+      "JUDUL EVALUASI"
+    ],
+    [
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+      "Association Rule, Clustering, Predictive Mining, dan Text Mining"
+    ],
+    [
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI",
+      "DISKRIPSI EVALUASI"
+    ],
+    [
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+      "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya."
+    ],
+    [
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI",
+      "METODE PENGERJAAN EVALUASI"
+    ],
+    [
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+      "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis."
+    ],
+    [
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN",
+      "BENTUK DAN FORMAT LUARAN"
+    ],
+    [
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+      "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan."
+    ],
+    [
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN",
+      "INDIKATOR, KRETERIA DAN BOBOT PENILAIAN"
+    ],
+    [
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+      "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen."
+    ],
+    [
+      "Bobot Penilaian",
+      "Bobot Penilaian",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)",
+      "25 (%)"
+    ],
+    [
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN",
+      "JADWAL PELAKSANAAN"
+    ],
+    [
+      "Minggu ke-16 sesuai RPS.",
+      "Minggu ke-16 sesuai RPS.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN",
+      "LAIN-LAIN"
+    ],
+    [
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS.",
+      "Tes susulan mengikuti ketentuan akademik PENS."
+    ],
+    [
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN",
+      "DAFTAR RUJUKAN"
+    ],
+    [
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL.",
+      "Han, J., Kamber, M., & Pei, J. (2012). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.\nTan, P.-N., Steinbach, M., Karpatne, A., & Kumar, V. (2019). Introduction to Data Mining (2nd ed.). Pearson.\nGéron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.\nManning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.\nModul Workshop Data Mining pada LMS eTHOL."
+    ]
+  ],
+  [
+    [
+      "Kriteria / Skor",
+      "Sangat Baik",
+      "Baik",
+      "Cukup",
+      "Kurang",
+      "Sangat Kurang"
+    ],
+    [
+      "Kriteria / Skor",
+      "Skor > 81",
+      "61 < Skor < 80",
+      "41 < Skor < 60",
+      "21 < Skor < 40",
+      "Skor < 20"
+    ],
+    [
+      "Deskripsi Umum",
+      "Jawaban teori dan perhitungan tepat; seluruh tugas praktik selesai, kode berjalan tanpa error, hasil tepat dan dijelaskan dengan baik.",
+      "Jawaban teori benar dengan kekurangan kecil; hampir seluruh tugas praktik benar.",
+      "Konsep dasar dipahami; sebagian tugas praktik selesai dengan beberapa kesalahan.",
+      "Banyak kesalahan konsep dan perhitungan; sebagian besar tugas praktik tidak selesai.",
+      "Tidak menunjukkan pemahaman konsep maupun kemampuan implementasi."
+    ]
+  ],
+  [
+    [
+      "No",
+      "Indikator yang Dinilai",
+      "Bobot",
+      "A / AB – Sangat Baik",
+      "B – Baik",
+      "BC / C – Cukup",
+      "D / E – Kurang"
+    ],
+    [
+      "1",
+      "Sub-CPMK-5: Association rule",
+      "4%",
+      "Perhitungan dan implementasi Apriori benar; aturan bermakna dipilih dengan alasan jelas.",
+      "Benar dengan kesalahan kecil.",
+      "Sebagian keliru.",
+      "Tidak mampu menghasilkan aturan."
+    ],
+    [
+      "2",
+      "Sub-CPMK-6: Clustering dan analisa cluster",
+      "10%",
+      "Iterasi K-Means benar; implementasi clustering tepat; jumlah cluster terbaik ditentukan dengan elbow/silhouette dan diinterpretasikan.",
+      "Benar; analisa kurang lengkap.",
+      "Clustering tanpa analisa cluster.",
+      "Tidak mampu melakukan clustering."
+    ],
+    [
+      "3",
+      "Sub-CPMK-7: Predictive mining",
+      "6%",
+      "Koefisien regresi dan metrik galat dihitung benar; implementasi dan interpretasi tepat.",
+      "Benar dengan kesalahan kecil.",
+      "Evaluasi galat keliru.",
+      "Tidak mampu membangun model."
+    ],
+    [
+      "4",
+      "Sub-CPMK-8: Text mining",
+      "5%",
+      "TF-IDF dan cosine similarity benar; dokumen diranking tepat sesuai query.",
+      "Benar dengan kesalahan kecil.",
+      "Perankingan keliru.",
+      "Tidak mampu melakukan pembobotan."
+    ]
+  ],
+  [
+    [
+      "Nama\nMahasiswa",
+      "Nama\nMahasiswa",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "NRP",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian",
+      "Skor Penilaian"
+    ],
+    [
+      "",
+      "indikator yg dinilai",
+      "indikator yg dinilai",
+      "(E) \n0-40",
+      "(D) \n41-55",
+      "(C) \n56-60",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(BC) \n61-65",
+      "(B) \n66-75",
+      "(AB) \n76-86",
+      "(A) \n86-100"
+    ],
+    [
+      "1",
+      "Association rule (Sub-CPMK-5)",
+      "Association rule (Sub-CPMK-5)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "2",
+      "Clustering (Sub-CPMK-6)",
+      "Clustering (Sub-CPMK-6)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "3",
+      "Regresi (Sub-CPMK-7)",
+      "Regresi (Sub-CPMK-7)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "4",
+      "Text mining (Sub-CPMK-8)",
+      "Text mining (Sub-CPMK-8)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "Nilai skor rerata skor",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Nilai total",
+      "Nilai total",
+      "Nilai total",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ]
+]

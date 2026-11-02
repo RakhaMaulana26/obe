@@ -1,0 +1,869 @@
+{
+    "ik":  [
+               {
+                   "cpl":  "CPL1",
+                   "kode":  "IK-1.a",
+                   "deskripsi":  "Kemampuan menunjukkan nilai-nilai agama dan nilai luhur kebangsaan dalam kehidupan kampus."
+               },
+               {
+                   "cpl":  "CPL1",
+                   "kode":  "IK-1.b",
+                   "deskripsi":  "Kemampuan menunjukkan semangat kebangsaan dan nasionalisme dalam kehidupan kampus."
+               },
+               {
+                   "cpl":  "CPL2",
+                   "kode":  "IK-2.a",
+                   "deskripsi":  "Kemampuan bekerja mandiri maupun dalam tim dengan penuh tanggung jawab."
+               },
+               {
+                   "cpl":  "CPL2",
+                   "kode":  "IK-2.b",
+                   "deskripsi":  "Kemampuan melaporkan ide dan hasil pekerjaan sesuai norma dan etika akademik."
+               },
+               {
+                   "cpl":  "CPL2",
+                   "kode":  "IK-2.c",
+                   "deskripsi":  "Kemampuan menerapkan etika serta Keamanan, Kesehatan, Keselamatan Kerja dan Lingkungan (K3L)."
+               },
+               {
+                   "cpl":  "CPL3",
+                   "kode":  "IK-3.a",
+                   "deskripsi":  "Kemampuan pemecahan masalah bidang spesifik."
+               },
+               {
+                   "cpl":  "CPL3",
+                   "kode":  "IK-3.b",
+                   "deskripsi":  "Kemampuan berpikir kritis dan belajar sepanjang hayat"
+               },
+               {
+                   "cpl":  "CPL3",
+                   "kode":  "IK-3.c",
+                   "deskripsi":  "Kemampuan manajemen pemecahan masalah."
+               },
+               {
+                   "cpl":  "CPL4",
+                   "kode":  "IK-4.a",
+                   "deskripsi":  "Kemampuan merancang arsitektur aplikasi, alur logika, dan struktur data."
+               },
+               {
+                   "cpl":  "CPL4",
+                   "kode":  "IK-4.b",
+                   "deskripsi":  "Kemampuan mengembangkan aplikasi berbasis web, mobile, maupun framework dengan memanfaatkan pola desain perangkat lunak."
+               },
+               {
+                   "cpl":  "CPL4",
+                   "kode":  "IK-4.c",
+                   "deskripsi":  "Kemampuan melakukan pengujian, debugging, serta rekayasa ulang kode untuk meningkatkan kualitas perangkat lunak."
+               },
+               {
+                   "cpl":  "CPL5",
+                   "kode":  "IK-5.a",
+                   "deskripsi":  "Kemampuan merancang model data relasional, spasial, dan multidimensional."
+               },
+               {
+                   "cpl":  "CPL5",
+                   "kode":  "IK-5.b",
+                   "deskripsi":  "Kemampuan mengelola, mengoptimasi, dan melakukan query basis data lanjut maupun data mining."
+               },
+               {
+                   "cpl":  "CPL5",
+                   "kode":  "IK-5.c",
+                   "deskripsi":  "Kemampuan melakukan administrasi basis data secara aman pada lingkungan multi-user dan terdistribusi."
+               },
+               {
+                   "cpl":  "CPL6",
+                   "kode":  "IK-6.a",
+                   "deskripsi":  "Kemampuan merancang topologi jaringan serta kebutuhan infrastruktur."
+               },
+               {
+                   "cpl":  "CPL6",
+                   "kode":  "IK-6.b",
+                   "deskripsi":  "Kemampuan mengkonfigurasi perangkat jaringan dan layanan berbasis server maupun cloud."
+               },
+               {
+                   "cpl":  "CPL6",
+                   "kode":  "IK-6.c",
+                   "deskripsi":  "Kemampuan mengelola administrasi jaringan dengan memperhatikan keamanan dan performa."
+               },
+               {
+                   "cpl":  "CPL7",
+                   "kode":  "IK-7.a",
+                   "deskripsi":  "Kemampuan menerapkan siklus pengembangan perangkat lunak Agile, termasuk integrasi berkelanjutan."
+               },
+               {
+                   "cpl":  "CPL7",
+                   "kode":  "IK-7.b",
+                   "deskripsi":  "Kemampuan berkolaborasi dalam tim lintas disiplin menggunakan manajemen proyek rekayasa."
+               },
+               {
+                   "cpl":  "CPL7",
+                   "kode":  "IK-7.c",
+                   "deskripsi":  "Kemampuan mendokumentasikan, mengevaluasi, dan menjamin kualitas perangkat lunak."
+               },
+               {
+                   "cpl":  "CPL8",
+                   "kode":  "IK-8.a",
+                   "deskripsi":  "Kemampuan menganalisis kebutuhan data dan informasi untuk mendukung pengambilan keputusan."
+               },
+               {
+                   "cpl":  "CPL8",
+                   "kode":  "IK-8.b",
+                   "deskripsi":  "Kemampuan mengembangkan sistem pendukung keputusan berbasis algoritma maupun data mining."
+               },
+               {
+                   "cpl":  "CPL8",
+                   "kode":  "IK-8.c",
+                   "deskripsi":  "Kemampuan mengintegrasikan sistem dengan teknologi berbasis cloud."
+               },
+               {
+                   "cpl":  "CPL9",
+                   "kode":  "IK-9.a",
+                   "deskripsi":  "Kemampuan menganalisis kebutuhan pengguna dalam desain antarmuka."
+               },
+               {
+                   "cpl":  "CPL9",
+                   "kode":  "IK-9.b",
+                   "deskripsi":  "Kemampuan membuat prototipe antarmuka interaktif berbasis standar UX."
+               },
+               {
+                   "cpl":  "CPL9",
+                   "kode":  "IK-9.c",
+                   "deskripsi":  "Kemampuan melakukan evaluasi pengalaman pengguna dan perbaikan desain."
+               },
+               {
+                   "cpl":  "CPL10",
+                   "kode":  "IK-10.a",
+                   "deskripsi":  "Kemampuan mengidentifikasi potensi ancaman keamanan pada perangkat lunak, basis data, dan jaringan."
+               },
+               {
+                   "cpl":  "CPL10",
+                   "kode":  "IK-10.b",
+                   "deskripsi":  "Kemampuan mengimplementasikan teknik proteksi data, autentikasi, dan kontrol akses."
+               },
+               {
+                   "cpl":  "CPL10",
+                   "kode":  "IK-10.c",
+                   "deskripsi":  "Kemampuan melakukan monitoring, evaluasi, serta peningkatan keamanan sistem."
+               },
+               {
+                   "cpl":  "CPL11",
+                   "kode":  "IK-11.a",
+                   "deskripsi":  "Kemampuan mengimplementasikan kecerdasan buatan dan data mining dalam aplikasi."
+               },
+               {
+                   "cpl":  "CPL11",
+                   "kode":  "IK-11.b",
+                   "deskripsi":  "Kemampuan mengembangkan aplikasi berbasis cloud dan mobile dengan mempertimbangkan skalabilitas."
+               },
+               {
+                   "cpl":  "CPL11",
+                   "kode":  "IK-11.c",
+                   "deskripsi":  "Kemampuan menilai relevansi dan dampak penerapan teknologi emerging terhadap kebutuhan industri dan masyarakat."
+               }
+           ],
+    "sumber":  "Kurikulum 2026 New.xlsx",
+    "mataKuliah":  [
+                       {
+                           "sks":  2,
+                           "kode":  "WI040002",
+                           "bobotIK":  {
+                                           "IK-3.a":  100
+                                       },
+                           "nama":  "Matematika-2"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WI040001",
+                           "bobotIK":  {
+                                           "IK-3.a":  100
+                                       },
+                           "nama":  "Matematika - 1"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WI043105",
+                           "bobotIK":  {
+                                           "IK-8.b":  25,
+                                           "IK-3.a":  75
+                                       },
+                           "nama":  "Statistik dan Probabilitas"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WN040001",
+                           "bobotIK":  {
+                                           "IK-1.a":  100
+                                       },
+                           "nama":  "Agama"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WN040002",
+                           "bobotIK":  {
+                                           "IK-1.a":  33,
+                                           "IK-2.b":  34,
+                                           "IK-1.b":  33
+                                       },
+                           "nama":  "Pancasila"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WN040003",
+                           "bobotIK":  {
+                                           "IK-1.a":  33,
+                                           "IK-2.b":  34,
+                                           "IK-1.b":  33
+                                       },
+                           "nama":  "Kewarganegaraan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WN040004",
+                           "bobotIK":  {
+                                           "IK-3.b":  100
+                                       },
+                           "nama":  "Bahasa Indonesia"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WI040003",
+                           "bobotIK":  {
+                                           "IK-3.b":  100
+                                       },
+                           "nama":  "Bahasa Inggris Teknik"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI045102",
+                           "bobotIK":  {
+                                           "IK-9.c":  35,
+                                           "IK-7.c":  35,
+                                           "IK-4.c":  30
+                                       },
+                           "nama":  "Pengujian dan Penjaminan Kualitas Perangkat Lunak"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040407",
+                           "bobotIK":  {
+                                           "IK-8.c":  50,
+                                           "IK-11.b":  25,
+                                           "IK-11.c":  25
+                                       },
+                           "nama":  "Workshop DevOps"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040405",
+                           "bobotIK":  {
+                                           "IK-7.b":  25,
+                                           "IK-7.a":  25,
+                                           "IK-3.b":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Visi Komputer"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040406",
+                           "bobotIK":  {
+                                           "IK-7.b":  25,
+                                           "IK-7.a":  25,
+                                           "IK-3.b":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Workshop Kecerdasan Komputasional"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI045104",
+                           "bobotIK":  {
+                                           "IK-10.b":  25,
+                                           "IK-5.c":  50,
+                                           "IK-10.c":  25
+                                       },
+                           "nama":  "Workshop Administrasi Basis Data"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040403",
+                           "bobotIK":  {
+                                           "IK-10.b":  25,
+                                           "IK-5.c":  50,
+                                           "IK-10.c":  25
+                                       },
+                           "nama":  "Workshop Data Warehouse"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WI040004",
+                           "bobotIK":  {
+                                           "IK-3.b":  100
+                                       },
+                           "nama":  "Bahasa Inggris Profesional"
+                       },
+                       {
+                           "sks":  1,
+                           "kode":  "TI046301",
+                           "bobotIK":  {
+                                           "IK-3.b":  25,
+                                           "IK-2.b":  25,
+                                           "IK-2.a":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Proposal Proyek Akhir"
+                       },
+                       {
+                           "sks":  8,
+                           "kode":  "TI048301",
+                           "bobotIK":  {
+                                           "IK-3.b":  25,
+                                           "IK-2.b":  25,
+                                           "IK-2.a":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Proyek Akhir-2"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI045106",
+                           "bobotIK":  {
+                                           "IK-7.b":  25,
+                                           "IK-7.a":  25,
+                                           "IK-3.b":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Workshop Mesin Pembelajaran"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WI04009",
+                           "bobotIK":  {
+                                           "IK-2.c":  100
+                                       },
+                           "nama":  "Keamanan, Keselamatan dan Kesehatan Lingkungan Hidup (K3L)"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041101",
+                           "bobotIK":  {
+                                           "IK-10.a":  25,
+                                           "IK-9.a":  25,
+                                           "IK-6.a":  25,
+                                           "IK-4.a":  25
+                                       },
+                           "nama":  "Konsep Teknologi Informasi"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI045101",
+                           "bobotIK":  {
+                                           "IK-3.b":  25,
+                                           "IK-4.c":  25,
+                                           "IK-2.a":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Workshop Pengembangan Perangkat Lunak berbasis Agile"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041105",
+                           "bobotIK":  {
+                                           "IK-4.a":  100
+                                       },
+                           "nama":  "Logika dan Algoritma"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040410",
+                           "bobotIK":  {
+                                           "IK-3.a":  100
+                                       },
+                           "nama":  "Aljabar Linier"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041102",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Konsep Pemrograman"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WI04010",
+                           "bobotIK":  {
+                                           "IK-1.a":  33,
+                                           "IK-2.b":  34,
+                                           "IK-1.b":  33
+                                       },
+                           "nama":  "Kewirausahaan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040409",
+                           "bobotIK":  {
+                                           "IK-8.c":  50,
+                                           "IK-11.b":  25,
+                                           "IK-11.c":  25
+                                       },
+                           "nama":  "Workshop Arsitek Cloud"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040408",
+                           "bobotIK":  {
+                                           "IK-8.c":  50,
+                                           "IK-11.b":  25,
+                                           "IK-11.c":  25
+                                       },
+                           "nama":  "Workshop Pengembang Cloud"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI042102",
+                           "bobotIK":  {
+                                           "IK-6.c":  50,
+                                           "IK-10.a":  50
+                                       },
+                           "nama":  "Sistem Operasi"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041104",
+                           "bobotIK":  {
+                                           "IK-8.a":  25,
+                                           "IK-7.a":  25,
+                                           "IK-5.a":  25,
+                                           "IK-11.a":  25
+                                       },
+                           "nama":  "Dasar Sistem Komputer"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "WJ",
+                           "bobotIK":  {
+                                           "IK-1.a":  33,
+                                           "IK-2.b":  34,
+                                           "IK-1.b":  33
+                                       },
+                           "nama":  "Manajemen Proyek dan Pembangunan Berkelanjutan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI042103",
+                           "bobotIK":  {
+                                           "IK-5.a":  100
+                                       },
+                           "nama":  "Basis Data"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI042101",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Algoritma dan Struktur Data"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI042105",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Praktik Algoritma dan Struktur Data"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041107",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Praktik Konsep Pemrograman"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI043101",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Pemrograman Berorientasi Obyek"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI043104",
+                           "bobotIK":  {
+                                           "IK-7.b":  25,
+                                           "IK-7.a":  25,
+                                           "IK-3.b":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Metodologi Agile"
+                       },
+                       {
+                           "sks":  3,
+                           "kode":  "TI047301",
+                           "bobotIK":  {
+                                           "IK-3.b":  25,
+                                           "IK-2.b":  25,
+                                           "IK-2.a":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Proyek Akhir-1"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044102",
+                           "bobotIK":  {
+                                           "IK-5.c":  100
+                                       },
+                           "nama":  "Workshop Sistem Informasi Geografis"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI040404",
+                           "bobotIK":  {
+                                           "IK-6.b":  50,
+                                           "IK-6.a":  50
+                                       },
+                           "nama":  "Workshop Keamanan Jaringan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI045105",
+                           "bobotIK":  {
+                                           "IK-11.a":  100
+                                       },
+                           "nama":  "Workshop Data Mining"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044109",
+                           "bobotIK":  {
+                                           "IK-4.b":  100
+                                       },
+                           "nama":  "Workshop Pola Desain Perangkat Lunak"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044105",
+                           "bobotIK":  {
+                                           "IK-9.a":  25,
+                                           "IK-3.b":  25,
+                                           "IK-2.a":  25,
+                                           "IK-3.c":  25
+                                       },
+                           "nama":  "Workshop Desain Pengalaman Pengguna"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044101",
+                           "bobotIK":  {
+                                           "IK-8.c":  50,
+                                           "IK-11.b":  25,
+                                           "IK-11.c":  25
+                                       },
+                           "nama":  "Workshop Aplikasi dan Komputasi Awan (wajib)"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI043102",
+                           "bobotIK":  {
+                                           "IK-6.a":  100
+                                       },
+                           "nama":  "Konsep Jaringan"
+                       },
+                       {
+                           "sks":  20,
+                           "kode":  "TI045110",
+                           "bobotIK":  {
+                                           "IK-2.b":  50,
+                                           "IK-2.a":  50
+                                       },
+                           "nama":  "Kerja Praktek"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044104",
+                           "bobotIK":  {
+                                           "IK-4.b":  100
+                                       },
+                           "nama":  "Workshop Aplikasi Berbasis Web"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044108",
+                           "bobotIK":  {
+                                           "IK-6.b":  70,
+                                           "IK-10.b":  30
+                                       },
+                           "nama":  "Workshop Administrasi Jaringan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044106",
+                           "bobotIK":  {
+                                           "IK-8.a":  75,
+                                           "IK-3.a":  25
+                                       },
+                           "nama":  "Sistem Pendukung Keputusan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044103",
+                           "bobotIK":  {
+                                           "IK-8.b":  75,
+                                           "IK-11.a":  25
+                                       },
+                           "nama":  "Kecerdasan Artifisial"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI043103",
+                           "bobotIK":  {
+                                           "IK-5.b":  100
+                                       },
+                           "nama":  "Basis Data Lanjut"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041103",
+                           "bobotIK":  {
+                                           "IK-3.b":  25,
+                                           "IK-2.b":  25,
+                                           "IK-2.a":  25,
+                                           "IK-7.b":  25
+                                       },
+                           "nama":  "Workshop Keterampilan Nonteknis"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI043106",
+                           "bobotIK":  {
+                                           "IK-8.c":  50,
+                                           "IK-4.b":  50
+                                       },
+                           "nama":  "Workshop Pemrograman Framework"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI044107",
+                           "bobotIK":  {
+                                           "IK-4.b":  75,
+                                           "IK-11.b":  25
+                                       },
+                           "nama":  "Workshop Pemrograman Perangkat Bergerak"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI042104",
+                           "bobotIK":  {
+                                           "IK-4.b":  100
+                                       },
+                           "nama":  "Workshop Pemrograman Web"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI045103",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Rekayasa Ulang Kode"
+                       },
+                       {
+                           "sks":  1,
+                           "kode":  "TI043108",
+                           "bobotIK":  {
+                                           "IK-6.a":  100
+                                       },
+                           "nama":  "Praktik Konsep Jaringan"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI043107",
+                           "bobotIK":  {
+                                           "IK-4.c":  30,
+                                           "IK-4.a":  70
+                                       },
+                           "nama":  "Praktik Pemrograman Berorientasi Obyek"
+                       },
+                       {
+                           "sks":  1,
+                           "kode":  "TI043109",
+                           "bobotIK":  {
+                                           "IK-5.b":  100
+                                       },
+                           "nama":  "Praktik Basis Data Lanjut"
+                       },
+                       {
+                           "sks":  1,
+                           "kode":  "TI044110",
+                           "bobotIK":  {
+                                           "IK-8.b":  25,
+                                           "IK-11.a":  75
+                                       },
+                           "nama":  "Praktik Kecerdasan Artifisial"
+                       },
+                       {
+                           "sks":  1,
+                           "kode":  "TI042107",
+                           "bobotIK":  {
+                                           "IK-5.a":  100
+                                       },
+                           "nama":  "Praktik Basis Data"
+                       },
+                       {
+                           "sks":  1,
+                           "kode":  "TI042106",
+                           "bobotIK":  {
+                                           "IK-6.c":  50,
+                                           "IK-10.a":  50
+                                       },
+                           "nama":  "Praktik Sistem Operasi"
+                       },
+                       {
+                           "sks":  2,
+                           "kode":  "TI041106",
+                           "bobotIK":  {
+                                           "IK-9.b":  100
+                                       },
+                           "nama":  "Workshop Desain Web"
+                       }
+                   ],
+    "cpl":  [
+                {
+                    "kode":  "CPL1",
+                    "deskripsi":  "Mampu menunjukkan nilai-nilai yang mencerminkan ketakwaan kepada Tuhan Yang Maha Esa, berjiwa Pancasila, dan memiliki kesadaran akan kepentingan bangsa dan negara."
+                },
+                {
+                    "kode":  "CPL2",
+                    "deskripsi":  "Mampu berfungsi secara efektif sebagai anggota serta pemimpin tim, menunjukkan kinerja yang mandiri, berkualitas dan terukur berdasarkan standar kompetensi bidangnya, memenuhi aspek etika profesi, K3L, dan mampu berkomunikasi secara efektif."
+                },
+                {
+                    "kode":  "CPL3",
+                    "deskripsi":  "Mampu menerapkan pengetahuan, teknik, keterampilan, dan metode/tool matematika, sains, teknik, serta teknologi  modern untuk memecahkan masalah keteknikan sesuai dengan disiplin ilmu yang mendorong adanya kemampuan pengembangan diri dan belajar sepanjang hayat."
+                },
+                {
+                    "kode":  "CPL4",
+                    "deskripsi":  "Mampu merancang, mengembangkan, menguji, dan memelihara perangkat lunak aplikasi sesuai kebutuhan pengguna dengan prinsip rekayasa perangkat lunak modern."
+                },
+                {
+                    "kode":  "CPL5",
+                    "deskripsi":  "Mampu merancang, mengelola, dan mengoptimalkan basis data mulai dari perancangan, implementasi, administrasi, hingga analitik data untuk mendukung sistem informasi."
+                },
+                {
+                    "kode":  "CPL6",
+                    "deskripsi":  "Mampu merancang, mengimplementasikan, dan mengelola jaringan komputer skala kecil hingga menengah untuk mendukung kebutuhan organisasi dan keamanan informasi."
+                },
+                {
+                    "kode":  "CPL7",
+                    "deskripsi":  "Mampu menerapkan metodologi pengembangan perangkat lunak berbasis Agile dan DevOps untuk menghasilkan produk yang adaptif, terukur, dan berkelanjutan."
+                },
+                {
+                    "kode":  "CPL8",
+                    "deskripsi":  "Mampu merancang, menganalisis, dan mengimplementasikan sistem pendukung keputusan, sistem informasi, serta solusi analitik berbasis teknologi modern."
+                },
+                {
+                    "kode":  "CPL9",
+                    "deskripsi":  "Mampu merancang dan menerapkan prinsip desain pengalaman pengguna (UX) dalam pengembangan aplikasi agar sesuai kebutuhan, kenyamanan, dan keberagaman pengguna."
+                },
+                {
+                    "kode":  "CPL10",
+                    "deskripsi":  "Mampu menerapkan prinsip keamanan informasi dalam pengembangan perangkat lunak, basis data, dan jaringan untuk menjaga kerahasiaan, integritas, dan ketersediaan sistem."
+                },
+                {
+                    "kode":  "CPL11",
+                    "deskripsi":  "Mampu mengadopsi dan memanfaatkan teknologi emerging (AI, cloud, mobile computing, big data) dalam mengembangkan solusi inovatif di bidang informatika."
+                }
+            ],
+    "misi":  [
+                 "1. Menyelenggarakan proses pendidikan untuk menjadi pusat penghasil tenaga profesional unggulan bidang teknologi informasi khususnya di bidang sistim informasi dan basis data, rekayasa perangkat lunak baik pada perangkat desktop, web maupun mobile dan jaringan komputer yang berpikiran terbuka, kreatif dan siap bersaing di era global.",
+                 "2. Secara aktif menyelenggarakan kegiatan penelitian terapan bidang teknologi informasi yang menghasilkan karya inovatif untuk menyelesaikan masalah-masalah bidang teknologi informasi.",
+                 "3. Secara aktif melakukan pemanfaatan hasil pendidikan dan penelitian di bidang teknologi informasi untuk menyelenggarakan kegiatan pengabdian kepada masyarakat maupun industri.",
+                 "4. Berperan aktif dalam mengembangkan dan mengimplementasikan nilai – nilai etika moral akademis dan sosial kemasyarakatan."
+             ],
+    "visi":  "Menjadi Pusat Unggulan pendidikan Teknologi Rekayasa di bidang Emerging technology yang terkait dengan bidang Teknologi Informasi dalam skala nasional maupun internasional.",
+    "profilLulusan":  [
+                          {
+                              "kode":  "PL-1",
+                              "deskripsi":  "Lulusan yang mampu merancang, membangun, menguji, mengembangkan, dan memelihara perangkat lunak pada platform desktop, web, dan mobile dengan menerapkan prinsip rekayasa perangkat lunak, analisis kebutuhan pengguna, pemrograman, pengujian, serta metode Agile agar menghasilkan perangkat lunak yang berkualitas, aman, mudah digunakan, dan sesuai kebutuhan organisasi maupun masyarakat.",
+                              "nama":  "Software Engineer"
+                          },
+                          {
+                              "kode":  "PL-2",
+                              "deskripsi":  "Lulusan yang mampu menganalisis kebutuhan organisasi dan pengguna, mengidentifikasi masalah bisnis maupun teknis, serta merancang solusi sistem informasi yang efektif dan efisien dengan menjembatani kebutuhan pengguna dan tim pengembang, menyusun spesifikasi sistem, mengevaluasi kelayakan solusi, dan memastikan sistem mendukung tujuan organisasi.",
+                              "nama":  "System Analyst"
+                          },
+                          {
+                              "kode":  "PL-3",
+                              "deskripsi":  "Lulusan yang mampu merancang, mengimplementasikan, mengelola, dan mengembangkan infrastruktur jaringan komputer serta layanan teknologi informasi dengan kompetensi sistem operasi, jaringan komputer, komputasi awan, layanan jaringan, dan keamanan informasi untuk menjamin ketersediaan, keandalan, kinerja, dan keamanan sistem organisasi.",
+                              "nama":  "Network Engineer"
+                          }
+                      ],
+    "ppm":  [
+                {
+                    "kode":  "PPM-1",
+                    "deskripsi":  "Profesional yang memiliki kemampuan merancang, mengembangkan, dan mengelola sistem informasi serta teknologi berbasis perangkat lunak secara efektif dan efisien, serta mampu bekerja mandiri, mengelola proyek teknologi, dan memastikan hasil berkualitas tinggi sesuai standar profesional untuk menyelesaikan masalah teknis dalam dunia industri dan teknologi."
+                },
+                {
+                    "kode":  "PPM-2",
+                    "deskripsi":  "Profesional yang mampu berkontribusi dalam masyarakat dengan memberikan solusi teknologi yang inklusif dan ramah masyarakat untuk meningkatkan kualitas hidup, mendukung keberlanjutan sosial, serta bekerja sama dengan berbagai pihak dalam menyelesaikan masalah sosial yang dihadapi komunitas."
+                },
+                {
+                    "kode":  "PPM-3",
+                    "deskripsi":  "Profesional yang memiliki kemampuan riset dan pengembangan dalam bidang teknologi informasi dengan berpikir kritis dan analitis untuk menyelesaikan masalah akademik dan ilmiah, serta berkomitmen untuk terus meningkatkan kompetensi dan pengetahuan melalui studi lanjut dan eksplorasi teori serta konsep terbaru dalam dunia teknologi."
+                }
+            ],
+    "gae":  [
+                {
+                    "kode":  "A",
+                    "nama":  "Engineering Knowledge"
+                },
+                {
+                    "kode":  "B",
+                    "nama":  "Problem Analysis"
+                },
+                {
+                    "kode":  "C",
+                    "nama":  "Design/development of solutions"
+                },
+                {
+                    "kode":  "D",
+                    "nama":  "Investigation"
+                },
+                {
+                    "kode":  "E",
+                    "nama":  "Tool Usage"
+                },
+                {
+                    "kode":  "F",
+                    "nama":  "The Engineering and The World"
+                },
+                {
+                    "kode":  "G",
+                    "nama":  "Ethics"
+                },
+                {
+                    "kode":  "H",
+                    "nama":  "Individual and Collaborative Teamwork"
+                },
+                {
+                    "kode":  "I",
+                    "nama":  "Communication"
+                },
+                {
+                    "kode":  "J",
+                    "nama":  "Project Management and Finance"
+                },
+                {
+                    "kode":  "K",
+                    "nama":  "Lifelong Learning"
+                }
+            ]
+}

@@ -1,0 +1,181 @@
+[
+  [
+    [
+      "CPL.11",
+      "Mampu mengadopsi dan memanfaatkan teknologi emerging (AI, cloud, mobile computing, big data) dalam mengembangkan solusi inovatif di bidang informatika.",
+      "Mampu mengadopsi dan memanfaatkan teknologi emerging (AI, cloud, mobile computing, big data) dalam mengembangkan solusi inovatif di bidang informatika."
+    ],
+    [
+      "",
+      "IK-11.a",
+      "Kemampuan mengimplementasikan kecerdasan buatan dan data mining dalam aplikasi."
+    ]
+  ],
+  [
+    [
+      "CPMK.1",
+      "Mampu menjelaskan konsep dan proses data mining serta mengimplementasikan preprocessing data (manipulasi, visualisasi, dan normalisasi) untuk menyiapkan data yang berkualitas."
+    ],
+    [
+      "CPMK.2",
+      "Mampu menerapkan dan mengimplementasikan klasifikasi k-NN dan Decision Tree beserta validasi model untuk memperoleh model terbaik."
+    ],
+    [
+      "CPMK.3",
+      "Mampu menerapkan dan mengimplementasikan association rule, clustering beserta analisa cluster, dan predictive mining pada data nyata."
+    ],
+    [
+      "CPMK.4",
+      "Mampu menerapkan text mining untuk membangun aplikasi mesin pencarian sederhana."
+    ]
+  ],
+  [
+    [
+      "IK-CPL",
+      "CPMK.1",
+      "CPMK.2",
+      "CPMK.3",
+      "CPMK.4"
+    ],
+    [
+      "IK-11.a",
+      "√",
+      "√",
+      "√",
+      "√"
+    ]
+  ],
+  [
+    [
+      "Sub-CPMK.1",
+      "Mampu menjelaskan konsep, proses (KDD/CRISP-DM), dan aplikasi data mining, serta menyiapkan lingkungan kerja dan melakukan eksplorasi awal dataset [C2, C3]."
+    ],
+    [
+      "Sub-CPMK.2",
+      "Mampu melakukan preprocessing data yang meliputi manipulasi, visualisasi, pembersihan, dan normalisasi, baik secara konsep maupun implementasi [C3]."
+    ],
+    [
+      "Sub-CPMK.3",
+      "Mampu menerapkan klasifikasi k-NN dan memvalidasi model klasifikasi (confusion matrix, k-fold cross validation) untuk menentukan parameter terbaik [C3, C4]."
+    ],
+    [
+      "Sub-CPMK.4",
+      "Mampu membangun model Decision Tree secara manual dan dengan pustaka, serta mengoptimalkannya melalui pruning dan tuning parameter [C3, C4]."
+    ],
+    [
+      "Sub-CPMK.5",
+      "Mampu menggali aturan asosiasi dengan Apriori/FP-Growth dan mengevaluasi kualitas aturannya [C3, C4]."
+    ],
+    [
+      "Sub-CPMK.6",
+      "Mampu menerapkan K-Means dan hierarchical clustering serta melakukan analisa cluster untuk menentukan jumlah dan kualitas cluster terbaik [C3, C4]."
+    ],
+    [
+      "Sub-CPMK.7",
+      "Mampu membangun model predictive mining (regresi) dan mengevaluasi galat prediksinya [C3]."
+    ],
+    [
+      "Sub-CPMK.8",
+      "Mampu menerapkan konsep dasar text mining (text preprocessing, TF-IDF, vector space model) untuk membangun aplikasi mesin pencarian sederhana [C3, C6]."
+    ]
+  ],
+  [
+    [
+      "CPMK",
+      "Sub-CPMK.1",
+      "Sub-CPMK.2",
+      "Sub-CPMK.3",
+      "Sub-CPMK.4",
+      "Sub-CPMK.5",
+      "Sub-CPMK.6",
+      "Sub-CPMK.7",
+      "Sub-CPMK.8"
+    ],
+    [
+      "CPMK.1",
+      "√",
+      "√",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "CPMK.2",
+      "",
+      "",
+      "√",
+      "√",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "CPMK.3",
+      "",
+      "",
+      "",
+      "",
+      "√",
+      "√",
+      "√",
+      ""
+    ],
+    [
+      "CPMK.4",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "√"
+    ]
+  ],
+  [
+    [
+      "Sub-CPMK",
+      "Bobot (%)"
+    ],
+    [
+      "Sub-CPMK.1",
+      "5"
+    ],
+    [
+      "Sub-CPMK.2",
+      "15"
+    ],
+    [
+      "Sub-CPMK.3",
+      "15"
+    ],
+    [
+      "Sub-CPMK.4",
+      "15"
+    ],
+    [
+      "Sub-CPMK.5",
+      "10"
+    ],
+    [
+      "Sub-CPMK.6",
+      "15"
+    ],
+    [
+      "Sub-CPMK.7",
+      "10"
+    ],
+    [
+      "Sub-CPMK.8",
+      "15"
+    ],
+    [
+      "∑ = 100%",
+      "100"
+    ]
+  ]
+]

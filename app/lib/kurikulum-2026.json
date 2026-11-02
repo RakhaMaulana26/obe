@@ -1,0 +1,836 @@
+{
+  "sumber": "Kurikulum 2026 (2).xlsx",
+  "gaeIabee": [
+    {
+      "kode": "A",
+      "nama": "Engineering Knowledge"
+    },
+    {
+      "kode": "B",
+      "nama": "Problem Analysis"
+    },
+    {
+      "kode": "C",
+      "nama": "Design/development of solutions"
+    },
+    {
+      "kode": "D",
+      "nama": "Investigation"
+    },
+    {
+      "kode": "E",
+      "nama": "Tool Usage"
+    },
+    {
+      "kode": "F",
+      "nama": "The Engineering and The World"
+    },
+    {
+      "kode": "G",
+      "nama": "Ethics"
+    },
+    {
+      "kode": "H",
+      "nama": "Individual and Collaborative Teamwork"
+    },
+    {
+      "kode": "I",
+      "nama": "Communication"
+    },
+    {
+      "kode": "J",
+      "nama": "Project Management and Finance"
+    },
+    {
+      "kode": "K",
+      "nama": "Lifelong Learning"
+    }
+  ],
+  "visi": "Menjadi Pusat Unggulan pendidikan Teknologi Rekayasa di bidang Emerging technology yang terkait dengan bidang Teknologi Informasi dalam skala nasional maupun internasional.",
+  "misi": [
+    "Menyelenggarakan proses pendidikan untuk menjadi pusat penghasil tenaga profesional unggulan bidang teknologi informasi khususnya di bidang sistim informasi dan basis data, rekayasa perangkat lunak baik pada perangkat desktop, web maupun mobile dan jaringan komputer yang berpikiran terbuka, kreatif dan siap bersaing di era global.",
+    "Secara aktif menyelenggarakan kegiatan penelitian terapan bidang teknologi informasi yang menghasilkan karya inovatif untuk menyelesaikan masalah-masalah bidang teknologi informasi.",
+    "Secara aktif melakukan pemanfaatan hasil pendidikan dan penelitian di bidang teknologi informasi untuk menyelenggarakan kegiatan pengabdian kepada masyarakat maupun industri.",
+    "Berperan aktif dalam mengembangkan dan mengimplementasikan nilai – nilai etika moral akademis dan sosial kemasyarakatan."
+  ],
+  "ppm": [
+    {
+      "nomor": 1,
+      "deskripsi": "Profesional yang memiliki kemampuan merancang, mengembangkan, dan mengelola sistem informasi serta teknologi berbasis perangkat lunak secara efektif dan efisien, serta mampu bekerja mandiri, mengelola proyek teknologi, dan memastikan hasil berkualitas tinggi sesuai standar profesional untuk menyelesaikan masalah teknis dalam dunia industri dan teknologi."
+    },
+    {
+      "nomor": 2,
+      "deskripsi": "Profesional yang mampu berkontribusi dalam masyarakat dengan memberikan solusi teknologi yang inklusif dan ramah masyarakat untuk meningkatkan kualitas hidup, mendukung keberlanjutan sosial, serta bekerja sama dengan berbagai pihak dalam menyelesaikan masalah sosial yang dihadapi komunitas."
+    },
+    {
+      "nomor": 3,
+      "deskripsi": "Profesional yang memiliki kemampuan riset dan pengembangan dalam bidang teknologi informasi dengan berpikir kritis dan analitis untuk menyelesaikan masalah akademik dan ilmiah, serta berkomitmen untuk terus meningkatkan kompetensi dan pengetahuan melalui studi lanjut dan eksplorasi teori serta konsep terbaru dalam dunia teknologi."
+    }
+  ],
+  "profilLulusan": [
+    {
+      "nomor": 1,
+      "nama": "Software Engineer",
+      "deskripsi": "Lulusan yang mampu merancang, membangun, menguji, mengembangkan, dan memelihara perangkat lunak pada platform desktop, web, dan mobile dengan menerapkan prinsip rekayasa perangkat lunak, analisis kebutuhan pengguna, pemrograman, pengujian, serta metode Agile agar menghasilkan perangkat lunak yang berkualitas, aman, mudah digunakan, dan sesuai kebutuhan organisasi maupun masyarakat."
+    },
+    {
+      "nomor": 2,
+      "nama": "System Analyst",
+      "deskripsi": "Lulusan yang mampu menganalisis kebutuhan organisasi dan pengguna, mengidentifikasi masalah bisnis maupun teknis, serta merancang solusi sistem informasi yang efektif dan efisien dengan menjembatani kebutuhan pengguna dan tim pengembang, menyusun spesifikasi sistem, mengevaluasi kelayakan solusi, dan memastikan sistem mendukung tujuan organisasi."
+    },
+    {
+      "nomor": 3,
+      "nama": "Network Engineer",
+      "deskripsi": "Lulusan yang mampu merancang, mengimplementasikan, mengelola, dan mengembangkan infrastruktur jaringan komputer serta layanan teknologi informasi dengan kompetensi sistem operasi, jaringan komputer, komputasi awan, layanan jaringan, dan keamanan informasi untuk menjamin ketersediaan, keandalan, kinerja, dan keamanan sistem organisasi."
+    }
+  ],
+  "cpl": [
+    {
+      "kode": "CPL1",
+      "deskripsi": "Mampu menunjukkan nilai-nilai yang mencerminkan ketakwaan kepada Tuhan Yang Maha Esa, berjiwa Pancasila, dan memiliki kesadaran akan kepentingan bangsa dan negara.",
+      "indikator": [
+        {
+          "kode": "IK-1.a",
+          "deskripsi": "Kemampuan menunjukkan nilai-nilai agama dan nilai luhur kebangsaan dalam kehidupan kampus."
+        },
+        {
+          "kode": "IK-1.b",
+          "deskripsi": "Kemampuan menunjukkan semangat kebangsaan dan nasionalisme dalam kehidupan kampus."
+        }
+      ]
+    },
+    {
+      "kode": "CPL2",
+      "deskripsi": "Mampu berfungsi secara efektif sebagai anggota serta pemimpin tim, menunjukkan kinerja yang mandiri, berkualitas dan terukur berdasarkan standar kompetensi bidangnya, memenuhi aspek etika profesi, K3L, dan mampu berkomunikasi secara efektif.",
+      "indikator": [
+        {
+          "kode": "IK-2.a",
+          "deskripsi": "Kemampuan bekerja mandiri maupun dalam tim dengan penuh tanggung jawab."
+        },
+        {
+          "kode": "IK-2.b",
+          "deskripsi": "Kemampuan melaporkan ide dan hasil pekerjaan sesuai norma dan etika akademik."
+        },
+        {
+          "kode": "IK-2.c",
+          "deskripsi": "Kemampuan menerapkan etika serta Keamanan, Kesehatan, Keselamatan Kerja dan Lingkungan (K3L)."
+        }
+      ]
+    },
+    {
+      "kode": "CPL3",
+      "deskripsi": "Mampu menerapkan pengetahuan, teknik, keterampilan, dan metode/tool matematika, sains, teknik, serta teknologi  modern untuk memecahkan masalah keteknikan sesuai dengan disiplin ilmu yang mendorong adanya kemampuan pengembangan diri dan belajar sepanjang hayat.",
+      "indikator": [
+        {
+          "kode": "IK-3.a",
+          "deskripsi": "Kemampuan pemecahan masalah bidang spesifik."
+        },
+        {
+          "kode": "IK-3.b",
+          "deskripsi": "Kemampuan berpikir kritis dan belajar sepanjang hayat"
+        },
+        {
+          "kode": "IK-3.c",
+          "deskripsi": "Kemampuan manajemen pemecahan masalah."
+        }
+      ]
+    },
+    {
+      "kode": "CPL4",
+      "deskripsi": "Mampu merancang, mengembangkan, menguji, dan memelihara perangkat lunak aplikasi sesuai kebutuhan pengguna dengan prinsip rekayasa perangkat lunak modern.",
+      "indikator": [
+        {
+          "kode": "IK-4.a",
+          "deskripsi": "Kemampuan merancang arsitektur aplikasi, alur logika, dan struktur data."
+        },
+        {
+          "kode": "IK-4.b",
+          "deskripsi": "Kemampuan mengembangkan aplikasi berbasis web, mobile, maupun framework dengan memanfaatkan pola desain perangkat lunak."
+        },
+        {
+          "kode": "IK-4.c",
+          "deskripsi": "Kemampuan melakukan pengujian, debugging, serta rekayasa ulang kode untuk meningkatkan kualitas perangkat lunak."
+        }
+      ]
+    },
+    {
+      "kode": "CPL5",
+      "deskripsi": "Mampu merancang, mengelola, dan mengoptimalkan basis data mulai dari perancangan, implementasi, administrasi, hingga analitik data untuk mendukung sistem informasi.",
+      "indikator": [
+        {
+          "kode": "IK-5.a",
+          "deskripsi": "Kemampuan merancang model data relasional, spasial, dan multidimensional."
+        },
+        {
+          "kode": "IK-5.b",
+          "deskripsi": "Kemampuan mengelola, mengoptimasi, dan melakukan query basis data lanjut maupun data mining."
+        },
+        {
+          "kode": "IK-5.c",
+          "deskripsi": "Kemampuan melakukan administrasi basis data secara aman pada lingkungan multi-user dan terdistribusi."
+        }
+      ]
+    },
+    {
+      "kode": "CPL6",
+      "deskripsi": "Mampu merancang, mengimplementasikan, dan mengelola jaringan komputer skala kecil hingga menengah untuk mendukung kebutuhan organisasi dan keamanan informasi.",
+      "indikator": [
+        {
+          "kode": "IK-6.a",
+          "deskripsi": "Kemampuan merancang topologi jaringan serta kebutuhan infrastruktur."
+        },
+        {
+          "kode": "IK-6.b",
+          "deskripsi": "Kemampuan mengkonfigurasi perangkat jaringan dan layanan berbasis server maupun cloud."
+        },
+        {
+          "kode": "IK-6.c",
+          "deskripsi": "Kemampuan mengelola administrasi jaringan dengan memperhatikan keamanan dan performa."
+        }
+      ]
+    },
+    {
+      "kode": "CPL7",
+      "deskripsi": "Mampu menerapkan metodologi pengembangan perangkat lunak berbasis Agile dan DevOps untuk menghasilkan produk yang adaptif, terukur, dan berkelanjutan.",
+      "indikator": [
+        {
+          "kode": "IK-7.a",
+          "deskripsi": "Kemampuan menerapkan siklus pengembangan perangkat lunak Agile, termasuk integrasi berkelanjutan."
+        },
+        {
+          "kode": "IK-7.b",
+          "deskripsi": "Kemampuan berkolaborasi dalam tim lintas disiplin menggunakan manajemen proyek rekayasa."
+        },
+        {
+          "kode": "IK-7.c",
+          "deskripsi": "Kemampuan mendokumentasikan, mengevaluasi, dan menjamin kualitas perangkat lunak."
+        }
+      ]
+    },
+    {
+      "kode": "CPL8",
+      "deskripsi": "Mampu merancang, menganalisis, dan mengimplementasikan sistem pendukung keputusan, sistem informasi, serta solusi analitik berbasis teknologi modern.",
+      "indikator": [
+        {
+          "kode": "IK-8.a",
+          "deskripsi": "Kemampuan menganalisis kebutuhan data dan informasi untuk mendukung pengambilan keputusan."
+        },
+        {
+          "kode": "IK-8.b",
+          "deskripsi": "Kemampuan mengembangkan sistem pendukung keputusan berbasis algoritma maupun data mining."
+        },
+        {
+          "kode": "IK-8.c",
+          "deskripsi": "Kemampuan mengintegrasikan sistem dengan teknologi berbasis cloud."
+        }
+      ]
+    },
+    {
+      "kode": "CPL9",
+      "deskripsi": "Mampu merancang dan menerapkan prinsip desain pengalaman pengguna (UX) dalam pengembangan aplikasi agar sesuai kebutuhan, kenyamanan, dan keberagaman pengguna.",
+      "indikator": [
+        {
+          "kode": "IK-9.a",
+          "deskripsi": "Kemampuan menganalisis kebutuhan pengguna dalam desain antarmuka."
+        },
+        {
+          "kode": "IK-9.b",
+          "deskripsi": "Kemampuan membuat prototipe antarmuka interaktif berbasis standar UX."
+        },
+        {
+          "kode": "IK-9.c",
+          "deskripsi": "Kemampuan melakukan evaluasi pengalaman pengguna dan perbaikan desain."
+        }
+      ]
+    },
+    {
+      "kode": "CPL10",
+      "deskripsi": "Mampu menerapkan prinsip keamanan informasi dalam pengembangan perangkat lunak, basis data, dan jaringan untuk menjaga kerahasiaan, integritas, dan ketersediaan sistem.",
+      "indikator": [
+        {
+          "kode": "IK-10.a",
+          "deskripsi": "Kemampuan mengidentifikasi potensi ancaman keamanan pada perangkat lunak, basis data, dan jaringan."
+        },
+        {
+          "kode": "IK-10.b",
+          "deskripsi": "Kemampuan mengimplementasikan teknik proteksi data, autentikasi, dan kontrol akses."
+        },
+        {
+          "kode": "IK-10.c",
+          "deskripsi": "Kemampuan melakukan monitoring, evaluasi, serta peningkatan keamanan sistem."
+        }
+      ]
+    },
+    {
+      "kode": "CPL11",
+      "deskripsi": "Mampu mengadopsi dan memanfaatkan teknologi emerging (AI, cloud, mobile computing, big data) dalam mengembangkan solusi inovatif di bidang informatika.",
+      "indikator": [
+        {
+          "kode": "IK-11.a",
+          "deskripsi": "Kemampuan mengimplementasikan kecerdasan buatan dan data mining dalam aplikasi."
+        },
+        {
+          "kode": "IK-11.b",
+          "deskripsi": "Kemampuan mengembangkan aplikasi berbasis cloud dan mobile dengan mempertimbangkan skalabilitas."
+        },
+        {
+          "kode": "IK-11.c",
+          "deskripsi": "Kemampuan menilai relevansi dan dampak penerapan teknologi emerging terhadap kebutuhan industri dan masyarakat."
+        }
+      ]
+    }
+  ],
+  "mataKuliah": [
+    {
+      "kode": "WN040001",
+      "nama": "Agama",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 2
+    },
+    {
+      "kode": "WN040003",
+      "nama": "Kewarganegaraan",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 2
+    },
+    {
+      "kode": "WN040002",
+      "nama": "Pancasila",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 3
+    },
+    {
+      "kode": "WI040002",
+      "nama": "Matematika-2",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 3
+    },
+    {
+      "kode": "WI040001",
+      "nama": "Matematika - 1",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 4
+    },
+    {
+      "kode": "TI042101",
+      "nama": "Algoritma dan Struktur Data",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 4
+    },
+    {
+      "kode": "TI041101",
+      "nama": "Konsep Teknologi Informasi",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 5
+    },
+    {
+      "kode": "TI042102",
+      "nama": "Sistem Operasi",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 5
+    },
+    {
+      "kode": "TI041102",
+      "nama": "Konsep Pemrograman",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 6
+    },
+    {
+      "kode": "TI042103",
+      "nama": "Basis Data",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 6
+    },
+    {
+      "kode": "TI041103",
+      "nama": "Keterampilan Nonteknis",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 7
+    },
+    {
+      "kode": "TI042104",
+      "nama": "Pemrograman Web",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 7
+    },
+    {
+      "kode": "TI041104",
+      "nama": "Dasar Sistem Komputer",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 8
+    },
+    {
+      "kode": "TI042105",
+      "nama": "Praktikum Algoritma dan Struktur Data",
+      "semester": 2,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 8
+    },
+    {
+      "kode": "TI041105",
+      "nama": "Logika dan Algoritma",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 9
+    },
+    {
+      "kode": "TI042106",
+      "nama": "Praktikum Sistem Operasi",
+      "semester": 2,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 9
+    },
+    {
+      "kode": "TI041106",
+      "nama": "Workshop Desain Web",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 10
+    },
+    {
+      "kode": "TI042107",
+      "nama": "Praktikum Basis Data",
+      "semester": 2,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 10
+    },
+    {
+      "kode": "TI041107",
+      "nama": "Praktikum Konsep Pemrograman",
+      "semester": 1,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 11
+    },
+    {
+      "kode": "TI042108",
+      "nama": "Praktikum Pemrograman Web",
+      "semester": 2,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 11
+    },
+    {
+      "kode": "TI043101",
+      "nama": "Pemrograman Berorientasi Obyek",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 14
+    },
+    {
+      "kode": "TI044101",
+      "nama": "Workshop Aplikasi dan Komputasi Awan",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 14
+    },
+    {
+      "kode": "TI043102",
+      "nama": "Konsep Jaringan",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 15
+    },
+    {
+      "kode": "TI044102",
+      "nama": "Workshop Sistem Informasi Geografis",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 15
+    },
+    {
+      "kode": "TI043103",
+      "nama": "Basis Data Lanjut",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 16
+    },
+    {
+      "kode": "TI044103",
+      "nama": "Kecerdasan Buatan",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 16
+    },
+    {
+      "kode": "TI043104",
+      "nama": "Metodologi Agile",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 17
+    },
+    {
+      "kode": "TI044104",
+      "nama": "Aplikasi Berbasis Web",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 17
+    },
+    {
+      "kode": "TI043105",
+      "nama": "Statistik dan Probabilitas",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 18
+    },
+    {
+      "kode": "TI044105",
+      "nama": "Desain Pengalaman Pengguna",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 18
+    },
+    {
+      "kode": "TI043106",
+      "nama": "Workshop Pemrograman Framework",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 19
+    },
+    {
+      "kode": "TI044106",
+      "nama": "Sistem Pendukung Keputusan",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 19
+    },
+    {
+      "kode": "TI043107",
+      "nama": "Praktikum Pemrograman Berorientasi Obyek",
+      "semester": 3,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 20
+    },
+    {
+      "kode": "TI044107",
+      "nama": "Workshop Pemrograman Perangkat Bergerak",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 20
+    },
+    {
+      "kode": "TI043108",
+      "nama": "Praktikum Konsep Jaringan",
+      "semester": 3,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 21
+    },
+    {
+      "kode": "TI044108",
+      "nama": "Workshop Administrasi Jaringan",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 21
+    },
+    {
+      "kode": "TI043109",
+      "nama": "Praktikum Basis Data Lanjut",
+      "semester": 3,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 22
+    },
+    {
+      "kode": "TI044109",
+      "nama": "Workshop Pola Desain Perangkat Lunak",
+      "semester": 4,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 22
+    },
+    {
+      "kode": "TI044110",
+      "nama": "Praktikum Kecerdasan Buatan",
+      "semester": 4,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 23
+    },
+    {
+      "kode": "WN040004",
+      "nama": "Bahasa Indonesia",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 26
+    },
+    {
+      "kode": "TI046301",
+      "nama": "Proposal Proyek Akhir",
+      "semester": 6,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 26
+    },
+    {
+      "kode": "WI040003",
+      "nama": "Bahasa Inggris Teknik",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 27
+    },
+    {
+      "kode": "TI040202",
+      "nama": "Kerja Praktek 6 bulan",
+      "semester": 6,
+      "sks": 20,
+      "kategori": "wajib",
+      "barisSumber": 27
+    },
+    {
+      "kode": "TI045101",
+      "nama": "Pengembangan Perangkat Lunak berbasis Agile",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 28
+    },
+    {
+      "kode": "TI045102",
+      "nama": "Pengujian dan Penjaminan Kualitas Perangkat Lunak",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 29
+    },
+    {
+      "kode": "TI045103",
+      "nama": "Workshop Rekayasa Ulang Kode",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 30
+    },
+    {
+      "kode": "TI045104",
+      "nama": "Workshop Administrasi Basis Data",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 31
+    },
+    {
+      "kode": "TI045105",
+      "nama": "Workshop Data Mining",
+      "semester": 5,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 32
+    },
+    {
+      "kode": "TI045106",
+      "nama": "Praktikum Pengembangan Perangkat Lunak berbasis Agile",
+      "semester": 5,
+      "sks": 1,
+      "kategori": "wajib",
+      "barisSumber": 33
+    },
+    {
+      "kode": "TI047301",
+      "nama": "Proyek Akhir-1",
+      "semester": 7,
+      "sks": 3,
+      "kategori": "wajib",
+      "barisSumber": 36
+    },
+    {
+      "kode": "WI040004",
+      "nama": "Bahasa Inggris Profesional",
+      "semester": 8,
+      "sks": 2,
+      "kategori": "wajib",
+      "barisSumber": 36
+    },
+    {
+      "kode": "TI048301",
+      "nama": "Proyek Akhir-2",
+      "semester": 8,
+      "sks": 8,
+      "kategori": "wajib",
+      "barisSumber": 37
+    },
+    {
+      "kode": "KP000001",
+      "nama": "Manajemen Proyek",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-institusi",
+      "barisSumber": 42
+    },
+    {
+      "kode": "TI040401",
+      "nama": "Bisnis Berbasis Teknologi",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 42
+    },
+    {
+      "kode": "KP000002",
+      "nama": "Etika dan Profesionalisme",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-institusi",
+      "barisSumber": 43
+    },
+    {
+      "kode": "TI040402",
+      "nama": "Matematika Diskrit",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 43
+    },
+    {
+      "kode": "KP000003",
+      "nama": "K3 dan Standar Internasional",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-institusi",
+      "barisSumber": 44
+    },
+    {
+      "kode": "TI040403",
+      "nama": "Workshop Data Warehouse",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 44
+    },
+    {
+      "kode": "KP000004",
+      "nama": "Kewirausahaan",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-institusi",
+      "barisSumber": 45
+    },
+    {
+      "kode": "TI040404",
+      "nama": "Workshop Keamanan Jaringan",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 45
+    },
+    {
+      "kode": "KP000005",
+      "nama": "English for developing vocabulary",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-institusi",
+      "barisSumber": 46
+    },
+    {
+      "kode": "TI040405",
+      "nama": "Visi Komputer",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 46
+    },
+    {
+      "kode": "KP000006",
+      "nama": "English for academic",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-institusi",
+      "barisSumber": 47
+    },
+    {
+      "kode": "TI040406",
+      "nama": "Workshop Kecerdasan Komputasional",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 47
+    },
+    {
+      "kode": "TI040407",
+      "nama": "Workshop DevOps",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 48
+    },
+    {
+      "kode": "TI040408",
+      "nama": "Workshop Pengembangan Cloud",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 49
+    },
+    {
+      "kode": "TI040409",
+      "nama": "Workshop Arsitek Cloud",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 50
+    },
+    {
+      "kode": "TI040410",
+      "nama": "Aljabar Linier",
+      "semester": null,
+      "sks": 2,
+      "kategori": "pilihan-prodi",
+      "barisSumber": 51
+    }
+  ],
+  "lembarKosong": [
+    "BOK",
+    "CPMK",
+    "Sub-CPMK",
+    "RPS",
+    "Rubrik"
+  ]
+}

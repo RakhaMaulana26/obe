@@ -1,0 +1,57 @@
+{
+  "laporan": {
+    "judul": "Laporan Praktikum Workshop Data Mining",
+    "bentuk": "Laporan praktikum individual berupa notebook (Jupyter/Google Colab) dan laporan PDF.",
+    "waktu": "Dikerjakan pada sesi praktikum (2 jam) dan diselesaikan paling lambat 1 minggu setelah topik selesai.",
+    "deskripsi": "Setiap topik menghasilkan satu laporan praktikum: eksplorasi awal dataset; preprocessing (manipulasi, visualisasi, normalisasi); klasifikasi k-NN dengan validasi dan tuning nilai k; Decision Tree dengan perhitungan manual dan tuning parameter; market basket analysis dengan Apriori/FP-Growth; clustering dan analisa cluster; serta pemodelan prediksi dengan regresi. Laporan memuat kode yang dapat dijalankan, hasil berupa tabel/grafik/metrik, serta analisis hasil.",
+    "metode": "Dikerjakan secara individual di laboratorium komputer atau melalui Google Colab.\nMenggunakan Python dengan pustaka pandas, NumPy, Matplotlib/Seaborn, scikit-learn, dan mlxtend.\nNotebook harus dapat dijalankan ulang tanpa error.\nNotebook (.ipynb) dan laporan PDF diunggah melalui LMS (eTHOL).\nKode yang terindikasi plagiarisme tidak dinilai.",
+    "luaran": "Obyek Pekerjaan: Dataset studi kasus yang ditentukan pada modul workshop.\nBentuk Luaran:\nNotebook berisi kode, output, dan komentar penjelasan.\nLaporan PDF (tujuan, langkah, hasil, analisis, kesimpulan).\nTabel dan grafik hasil.",
+    "indikator": "Indikator yang dinilai meliputi:\nKetepatan dan kelengkapan implementasi sesuai topik (IK-11.a).\nKebenaran hasil (output, metrik evaluasi, parameter terbaik).\nKualitas analisis dan interpretasi hasil.\nKerapian kode, dokumentasi, dan ketepatan waktu pengumpulan.",
+    "jadwal": "Laporan 1–4: minggu ke-1 s.d. ke-7; Laporan 5–7: minggu ke-9 s.d. ke-12 (sesuai RPS).",
+    "lain": "Keterlambatan pengumpulan dikenai pengurangan nilai sesuai kebijakan dosen pengampu."
+  },
+  "proyek": {
+    "judul": "Aplikasi Mesin Pencarian Sederhana untuk Koleksi Dokumen Berbahasa Indonesia",
+    "bentuk": "Mini project kelompok (3–4 mahasiswa) disertai laporan dan demonstrasi aplikasi.",
+    "waktu": "Minggu ke-13–15; demonstrasi pada minggu ke-15.",
+    "deskripsi": "Kelompok membangun aplikasi mesin pencarian sederhana: mengumpulkan koleksi dokumen berbahasa Indonesia, melakukan text preprocessing (case folding, tokenisasi, stopword removal, stemming), membangun TF-IDF dan inverted index, meranking dokumen dengan cosine similarity, mengevaluasi hasil pencarian dengan precision dan recall, serta mengintegrasikannya ke dalam aplikasi dengan antarmuka pencarian.",
+    "metode": "Dikerjakan secara berkelompok (3–4 mahasiswa) dengan pembagian peran yang jelas.\nKoleksi dokumen dipilih kelompok dengan persetujuan dosen.\nImplementasi menggunakan Python (NLTK, Sastrawi, scikit-learn) dan framework antarmuka yang disepakati.\nSource code, laporan, slide, dan lembar kontribusi diunggah ke LMS (eTHOL) sebelum demonstrasi.",
+    "luaran": "Obyek Pekerjaan: Koleksi dokumen teks berbahasa Indonesia.\nBentuk Luaran:\nAplikasi mesin pencarian yang dapat didemonstrasikan.\nSource code.\nLaporan (metodologi, hasil evaluasi, kesimpulan).\nSlide presentasi dan lembar kontribusi anggota.",
+    "indikator": "Indikator yang dinilai meliputi:\nKetepatan text preprocessing, TF-IDF, dan inverted index.\nKetepatan perankingan dan evaluasi hasil pencarian.\nIntegrasi ke dalam aplikasi (IK-11.a).\nKualitas demonstrasi dan presentasi.",
+    "jadwal": "Pembentukan kelompok dan pemilihan koleksi dokumen: minggu ke-13; demonstrasi: minggu ke-15.",
+    "lain": "Nilai individu dapat disesuaikan berdasarkan lembar kontribusi dan kemampuan menjawab pertanyaan."
+  },
+  "kuis": {
+    "judul": "Konsep Data Mining, Perhitungan k-NN dan Validasi Model, serta Apriori",
+    "bentuk": "Kuis individual (tertulis di kelas atau daring melalui LMS/Google Form).",
+    "waktu": "20–30 menit setiap kuis.",
+    "deskripsi": "Kuis dilaksanakan pada sesi teori. Kuis 1 menguji konsep dan proses data mining; Kuis 2 menguji perhitungan k-NN, confusion matrix, dan metrik evaluasi; Kuis 3 menguji perhitungan frequent itemset, support, confidence, dan lift dengan Apriori. Hasil kuis dibahas sebagai umpan balik pembelajaran.",
+    "metode": "Dikerjakan secara individual.\nDilaksanakan pada sesi teori sesuai jadwal.\nDapat menggunakan LMS (eTHOL), Google Form, maupun lembar soal.\nBersifat closed book; kalkulator diperbolehkan.",
+    "luaran": "Obyek Pekerjaan: Pemahaman konsep dan keterampilan perhitungan mahasiswa.\nBentuk Luaran:\nJawaban pilihan ganda.\nJawaban uraian singkat.\nLangkah dan hasil perhitungan.",
+    "indikator": "Mahasiswa dinilai berdasarkan kemampuan:\nmenjelaskan konsep dan proses data mining;\nmenghitung k-NN dan metrik evaluasi klasifikasi;\nmenghitung support, confidence, dan lift dengan Apriori;\nmenginterpretasikan hasil perhitungan.",
+    "jadwal": "Kuis 1: minggu ke-1; Kuis 2: minggu ke-5; Kuis 3: minggu ke-9 (sesuai RPS).",
+    "lain": "Mahasiswa yang berhalangan hadir dengan alasan sah dapat mengikuti kuis susulan."
+  },
+  "mid": {
+    "judul": "Konsep Data Mining, Preprocessing, dan Klasifikasi (k-NN dan Decision Tree)",
+    "bentuk": "Tes tulis (teori) dan tes praktik individual (live coding).",
+    "waktu": "Teori 50 menit; praktik 100 menit.",
+    "deskripsi": "Bagian teori menguji konsep data mining, perhitungan normalisasi, k-NN, metrik evaluasi, serta entropy/information gain pada Decision Tree. Bagian praktik meminta mahasiswa melakukan eksplorasi dan preprocessing pada dataset baru, membangun model k-NN dan Decision Tree, melakukan validasi dan tuning parameter, serta menginterpretasikan hasilnya.",
+    "metode": "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+    "luaran": "Obyek Pekerjaan: Soal teori dan dataset yang diberikan saat Mid Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook preprocessing data.\nModel k-NN dan Decision Tree beserta metrik evaluasi dan parameter terbaik.",
+    "indikator": "Evaluasi meliputi kemampuan:\nmenjelaskan konsep dan proses data mining;\nmelakukan preprocessing dan normalisasi data;\nmenerapkan k-NN dengan validasi dan tuning;\nmembangun dan melakukan tuning Decision Tree.",
+    "jadwal": "Minggu ke-8 sesuai RPS.",
+    "lain": "Tes susulan mengikuti ketentuan akademik PENS."
+  },
+  "post": {
+    "judul": "Association Rule, Clustering, Predictive Mining, dan Text Mining",
+    "bentuk": "Tes tulis (teori) dan tes praktik individual (live coding).",
+    "waktu": "Teori 50 menit; praktik 100 menit.",
+    "deskripsi": "Bagian teori menguji perhitungan Apriori, iterasi K-Means dan ukuran validitas cluster, regresi dan metrik galat, serta TF-IDF dan cosine similarity. Bagian praktik meminta mahasiswa mengimplementasikan association rule, clustering dengan analisa cluster, model regresi, dan pencarian dokumen berbasis TF-IDF pada data yang diberikan, lalu menuliskan interpretasi hasilnya.",
+    "metode": "Dikerjakan secara individual.\nBagian teori: tes tulis closed book; kalkulator diperbolehkan.\nBagian praktik: live coding di laboratorium; dokumentasi pustaka diperbolehkan, tanpa bantuan orang lain maupun AI generatif.\nJawaban dan notebook diunggah ke LMS (eTHOL) sebelum waktu habis.",
+    "luaran": "Obyek Pekerjaan: Soal teori serta dataset dan koleksi dokumen yang diberikan saat Post Test.\nBentuk Luaran:\nJawaban teori dan perhitungan.\nNotebook association rule, clustering, dan regresi.\nHasil pencarian dokumen terurut untuk query yang diberikan.",
+    "indikator": "Evaluasi meliputi kemampuan:\nmenghasilkan dan menganalisis aturan asosiasi;\nmenerapkan clustering dan menentukan jumlah cluster terbaik;\nmembangun model regresi dan mengevaluasi galat;\nmelakukan text preprocessing, TF-IDF, dan perankingan dokumen.",
+    "jadwal": "Minggu ke-16 sesuai RPS.",
+    "lain": "Tes susulan mengikuti ketentuan akademik PENS."
+  }
+}

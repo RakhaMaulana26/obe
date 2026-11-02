@@ -1,0 +1,312 @@
+{
+  "rubrikUmum": {
+    "laporan": [
+      "Kode berjalan benar dan rapi, seluruh tahapan lengkap, hasil (tabel/grafik/metrik) tepat, analisis tajam dan dikaitkan dengan konteks data.",
+      "Kode berjalan benar dengan kekurangan kecil, hasil sebagian besar tepat, interpretasi benar tetapi belum mendalam.",
+      "Kode berjalan sebagian, terdapat beberapa kesalahan hasil, interpretasi masih umum.",
+      "Kode banyak error atau hasil tidak tepat, analisis lemah.",
+      "Kode tidak berjalan/tidak dikumpulkan atau tidak menunjukkan pemahaman materi."
+    ],
+    "proyek": [
+      "Aplikasi berjalan lancar, hasil pencarian relevan dan dievaluasi, kode rapi, seluruh anggota berkontribusi dan menguasai sistem.",
+      "Aplikasi berjalan baik dengan kekurangan kecil pada evaluasi atau antarmuka.",
+      "Aplikasi berjalan terbatas, evaluasi belum lengkap.",
+      "Aplikasi banyak error, hasil pencarian tidak relevan.",
+      "Aplikasi tidak selesai atau tidak didemonstrasikan."
+    ],
+    "kuis": [
+      "Menguasai konsep secara menyeluruh, seluruh jawaban dan perhitungan benar.",
+      "Menguasai konsep dengan baik, terdapat kesalahan kecil.",
+      "Memahami konsep utama, namun terdapat beberapa kesalahan.",
+      "Memahami konsep dasar, tetapi banyak kesalahan.",
+      "Belum menunjukkan pemahaman konsep yang memadai."
+    ],
+    "mid": [
+      "Jawaban teori dan perhitungan tepat; seluruh tugas praktik selesai, kode berjalan tanpa error, hasil tepat dan dijelaskan dengan baik.",
+      "Jawaban teori benar dengan kekurangan kecil; hampir seluruh tugas praktik benar.",
+      "Konsep dasar dipahami; sebagian tugas praktik selesai dengan beberapa kesalahan.",
+      "Banyak kesalahan konsep dan perhitungan; sebagian besar tugas praktik tidak selesai.",
+      "Tidak menunjukkan pemahaman konsep maupun kemampuan implementasi."
+    ],
+    "post": [
+      "Jawaban teori dan perhitungan tepat; seluruh tugas praktik selesai, kode berjalan tanpa error, hasil tepat dan dijelaskan dengan baik.",
+      "Jawaban teori benar dengan kekurangan kecil; hampir seluruh tugas praktik benar.",
+      "Konsep dasar dipahami; sebagian tugas praktik selesai dengan beberapa kesalahan.",
+      "Banyak kesalahan konsep dan perhitungan; sebagian besar tugas praktik tidak selesai.",
+      "Tidak menunjukkan pemahaman konsep maupun kemampuan implementasi."
+    ]
+  },
+  "rubrikDetail": {
+    "laporan": {
+      "Sub-CPMK.1": [
+        {
+          "indikator": "Sub-CPMK-1: Eksplorasi awal dataset",
+          "bobot": 1,
+          "tingkat": [
+            "Dataset dibaca benar; statistik deskriptif, tipe atribut, dan masalah kualitas data teridentifikasi lengkap.",
+            "Eksplorasi benar dengan kekurangan kecil.",
+            "Eksplorasi belum lengkap.",
+            "Dataset gagal dibaca."
+          ]
+        }
+      ],
+      "Sub-CPMK.2": [
+        {
+          "indikator": "Sub-CPMK-2: Preprocessing data",
+          "bobot": 6,
+          "tingkat": [
+            "Manipulasi tepat, visualisasi sesuai tipe data, missing value/outlier ditangani, normalisasi diterapkan dan dibandingkan.",
+            "Seluruh tahapan berjalan dengan kekurangan kecil.",
+            "Sebagian tahapan benar.",
+            "Preprocessing tidak berjalan."
+          ]
+        }
+      ],
+      "Sub-CPMK.3": [
+        {
+          "indikator": "Sub-CPMK-3: k-NN dan validasi model",
+          "bobot": 4,
+          "tingkat": [
+            "k-NN dan k-fold cross validation benar; metrik evaluasi lengkap; nilai k terbaik ditentukan dan dijelaskan.",
+            "Benar; analisis pemilihan k kurang.",
+            "k-NN berjalan, validasi belum tepat.",
+            "k-NN tidak berjalan."
+          ]
+        }
+      ],
+      "Sub-CPMK.4": [
+        {
+          "indikator": "Sub-CPMK-4: Decision Tree dan tuning",
+          "bobot": 8,
+          "tingkat": [
+            "Perhitungan manual entropy/gain benar dan sesuai hasil pustaka; pohon divisualisasikan; tuning dengan GridSearchCV menghasilkan parameter terbaik.",
+            "Benar; perbandingan manual vs pustaka kurang.",
+            "Model berjalan tanpa tuning yang benar.",
+            "Model tidak berjalan."
+          ]
+        }
+      ],
+      "Sub-CPMK.5": [
+        {
+          "indikator": "Sub-CPMK-5: Apriori/FP-Growth",
+          "bobot": 2,
+          "tingkat": [
+            "Aturan asosiasi dihasilkan benar; support/confidence/lift dianalisis; aturan bermakna dipilih.",
+            "Benar; analisis kurang.",
+            "Parameter atau interpretasi kurang tepat.",
+            "Algoritma tidak berjalan."
+          ]
+        }
+      ],
+      "Sub-CPMK.6": [
+        {
+          "indikator": "Sub-CPMK-6: Clustering dan analisa cluster",
+          "bobot": 5,
+          "tingkat": [
+            "K-Means dan hierarchical clustering benar; jumlah cluster terbaik ditentukan dengan elbow/silhouette; profil cluster bermakna.",
+            "Benar; analisa cluster kurang lengkap.",
+            "Clustering berjalan tanpa analisa cluster.",
+            "Clustering tidak berjalan."
+          ]
+        }
+      ],
+      "Sub-CPMK.7": [
+        {
+          "indikator": "Sub-CPMK-7: Predictive mining",
+          "bobot": 4,
+          "tingkat": [
+            "Model regresi benar; MAE/RMSE/MAPE tepat; grafik aktual vs prediksi diinterpretasikan.",
+            "Benar; interpretasi kurang.",
+            "Evaluasi galat kurang lengkap.",
+            "Model tidak berjalan."
+          ]
+        }
+      ]
+    },
+    "proyek": {
+      "Sub-CPMK.8": [
+        {
+          "indikator": "Text preprocessing, TF-IDF, dan inverted index",
+          "bobot": 3,
+          "tingkat": [
+            "Seluruh tahapan preprocessing tepat (termasuk stemming Sastrawi); TF-IDF dan inverted index dibangun benar.",
+            "Benar dengan kekurangan kecil.",
+            "Sebagian tahapan keliru.",
+            "Tidak berjalan."
+          ]
+        },
+        {
+          "indikator": "Perankingan dan evaluasi",
+          "bobot": 3,
+          "tingkat": [
+            "Cosine similarity meranking dokumen dengan tepat; precision dan recall dihitung untuk beberapa query.",
+            "Perankingan benar; evaluasi kurang lengkap.",
+            "Perankingan terbatas, tanpa evaluasi.",
+            "Perankingan tidak berjalan."
+          ]
+        },
+        {
+          "indikator": "Integrasi ke dalam aplikasi",
+          "bobot": 2,
+          "tingkat": [
+            "Mesin pencarian terintegrasi dalam aplikasi dengan antarmuka yang berfungsi baik.",
+            "Terintegrasi dengan kekurangan kecil.",
+            "Integrasi parsial.",
+            "Tidak terintegrasi."
+          ]
+        },
+        {
+          "indikator": "Demonstrasi dan presentasi",
+          "bobot": 2,
+          "tingkat": [
+            "Demo lancar untuk berbagai query; seluruh anggota menjawab pertanyaan dengan baik.",
+            "Demo baik; jawaban kurang lengkap.",
+            "Demo bermasalah.",
+            "Tidak demo."
+          ]
+        }
+      ]
+    },
+    "kuis": {
+      "Sub-CPMK.1": [
+        {
+          "indikator": "Sub-CPMK-1: Konsep dan proses data mining",
+          "bobot": 2,
+          "tingkat": [
+            "Tahapan KDD/CRISP-DM dan jenis tugas dijelaskan utuh dengan contoh tepat.",
+            "Kekurangan kecil.",
+            "Ada kekeliruan istilah/urutan.",
+            "Masih miskonsepsi.",
+            "Tidak memahami konsep."
+          ]
+        }
+      ],
+      "Sub-CPMK.3": [
+        {
+          "indikator": "Sub-CPMK-3: Perhitungan k-NN dan metrik evaluasi",
+          "bobot": 4,
+          "tingkat": [
+            "Jarak, kelas, confusion matrix, dan metrik dihitung benar seluruhnya.",
+            "Kesalahan kecil tanpa memengaruhi hasil.",
+            "Beberapa kesalahan prosedural.",
+            "Banyak kesalahan sehingga hasil salah.",
+            "Tidak diselesaikan."
+          ]
+        }
+      ],
+      "Sub-CPMK.5": [
+        {
+          "indikator": "Sub-CPMK-5: Perhitungan Apriori",
+          "bobot": 4,
+          "tingkat": [
+            "Frequent itemset, aturan, support, confidence, dan lift dihitung benar.",
+            "Kesalahan kecil pada interpretasi.",
+            "Kesalahan pada kandidat itemset atau confidence.",
+            "Aturan yang dihasilkan tidak tepat.",
+            "Tidak mampu menjalankan Apriori."
+          ]
+        }
+      ]
+    },
+    "mid": {
+      "Sub-CPMK.1": [
+        {
+          "indikator": "Sub-CPMK-1: Konsep data mining",
+          "bobot": 2,
+          "tingkat": [
+            "Konsep dan proses dijelaskan tepat.",
+            "Benar dengan kekurangan kecil.",
+            "Sebagian benar.",
+            "Tidak memahami konsep."
+          ]
+        }
+      ],
+      "Sub-CPMK.2": [
+        {
+          "indikator": "Sub-CPMK-2: Preprocessing dan normalisasi",
+          "bobot": 9,
+          "tingkat": [
+            "Perhitungan normalisasi benar; preprocessing dataset tepat dan lengkap.",
+            "Benar dengan kesalahan kecil.",
+            "Sebagian langkah keliru.",
+            "Tidak mampu melakukan preprocessing."
+          ]
+        }
+      ],
+      "Sub-CPMK.3": [
+        {
+          "indikator": "Sub-CPMK-3: k-NN dan validasi",
+          "bobot": 7,
+          "tingkat": [
+            "Perhitungan k-NN dan metrik benar; implementasi dengan cross validation dan tuning k tepat.",
+            "Benar dengan kesalahan kecil.",
+            "Validasi atau metrik keliru.",
+            "Tidak mampu menerapkan k-NN."
+          ]
+        }
+      ],
+      "Sub-CPMK.4": [
+        {
+          "indikator": "Sub-CPMK-4: Decision Tree",
+          "bobot": 7,
+          "tingkat": [
+            "Entropy/information gain dihitung benar; model diimplementasikan dan di-tuning dengan tepat.",
+            "Benar dengan kesalahan kecil.",
+            "Model berjalan tanpa tuning yang benar.",
+            "Tidak mampu membangun pohon."
+          ]
+        }
+      ]
+    },
+    "post": {
+      "Sub-CPMK.5": [
+        {
+          "indikator": "Sub-CPMK-5: Association rule",
+          "bobot": 4,
+          "tingkat": [
+            "Perhitungan dan implementasi Apriori benar; aturan bermakna dipilih dengan alasan jelas.",
+            "Benar dengan kesalahan kecil.",
+            "Sebagian keliru.",
+            "Tidak mampu menghasilkan aturan."
+          ]
+        }
+      ],
+      "Sub-CPMK.6": [
+        {
+          "indikator": "Sub-CPMK-6: Clustering dan analisa cluster",
+          "bobot": 10,
+          "tingkat": [
+            "Iterasi K-Means benar; implementasi clustering tepat; jumlah cluster terbaik ditentukan dengan elbow/silhouette dan diinterpretasikan.",
+            "Benar; analisa kurang lengkap.",
+            "Clustering tanpa analisa cluster.",
+            "Tidak mampu melakukan clustering."
+          ]
+        }
+      ],
+      "Sub-CPMK.7": [
+        {
+          "indikator": "Sub-CPMK-7: Predictive mining",
+          "bobot": 6,
+          "tingkat": [
+            "Koefisien regresi dan metrik galat dihitung benar; implementasi dan interpretasi tepat.",
+            "Benar dengan kesalahan kecil.",
+            "Evaluasi galat keliru.",
+            "Tidak mampu membangun model."
+          ]
+        }
+      ],
+      "Sub-CPMK.8": [
+        {
+          "indikator": "Sub-CPMK-8: Text mining",
+          "bobot": 5,
+          "tingkat": [
+            "TF-IDF dan cosine similarity benar; dokumen diranking tepat sesuai query.",
+            "Benar dengan kesalahan kecil.",
+            "Perankingan keliru.",
+            "Tidak mampu melakukan pembobotan."
+          ]
+        }
+      ]
+    }
+  }
+}
