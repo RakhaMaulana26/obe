@@ -315,7 +315,17 @@ export interface GradeRow {
   kualitas: number;
 }
 
-export const TABEL_GRADE: GradeRow[] = [];
+// Skala nilai huruf dari lembar penilaian rubrik.docx. Batas 86 tertulis di dua rentang (AB 76–86, A 86–100);
+// di sini 86 masuk A. `max` hanya untuk tampilan rentang — konversi memakai `min` saja agar nilai desimal tidak jatuh ke celah.
+export const TABEL_GRADE: GradeRow[] = [
+  { min: 86, max: 100, huruf: "A", kualitas: 4 },
+  { min: 76, max: 85.99, huruf: "AB", kualitas: 3.5 },
+  { min: 66, max: 75.99, huruf: "B", kualitas: 3 },
+  { min: 61, max: 65.99, huruf: "BC", kualitas: 2.5 },
+  { min: 56, max: 60.99, huruf: "C", kualitas: 2 },
+  { min: 41, max: 55.99, huruf: "D", kualitas: 1 },
+  { min: 0, max: 40.99, huruf: "E", kualitas: 0 },
+];
 export const AMBANG_DEFAULT = 60;
 
 // Akun demo dipertahankan hanya sebagai akses awal ke aplikasi lokal.

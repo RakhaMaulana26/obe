@@ -89,3 +89,12 @@ describe("CPL tingkat MK", () => {
     assert.deepEqual(c.cpl, { CPL11: 80 });
   });
 });
+
+import { konversiHuruf } from "./hitung";
+
+describe("konversi huruf", () => {
+  const kasus: Array<[number, string]> = [[100, "A"], [86, "A"], [85.99, "AB"], [76, "AB"], [75.5, "B"], [66, "B"], [61, "BC"], [60.5, "C"], [56, "C"], [55.9, "D"], [41, "D"], [40.9, "E"], [0, "E"]];
+  for (const [skor, huruf] of kasus) {
+    it(`skor ${skor} → ${huruf}`, () => assert.equal(konversiHuruf(skor).huruf, huruf));
+  }
+});

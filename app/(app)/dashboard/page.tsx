@@ -182,7 +182,7 @@ export default function DashboardPage() {
       .map((grade) => ({
         label: grade.huruf,
         sub: `${grade.min}–${String(grade.max).replace(".99", "")}`,
-        count: rerata.filter((value) => value >= grade.min && value <= grade.max).length,
+        count: rerata.filter((value) => konversiHuruf(value).huruf === grade.huruf).length,
         tone: (grade.max < ambang ? "red" : grade.min >= ambang ? "green" : "amber") as "red" | "amber" | "green",
       }));
   }, [semua, ambang]);
