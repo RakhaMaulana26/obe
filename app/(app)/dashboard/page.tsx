@@ -162,7 +162,7 @@ export default function DashboardPage() {
 
   const fokusCpl = useMemo(
     () =>
-      DAFTAR_CPL.map((cpl) => {
+      DAFTAR_CPL.filter((cpl) => cpl.kode in rataCpl).map((cpl) => {
         const gagal = Object.values(semua).filter((c) => (c.cpl[cpl.kode] ?? 0) < ambang).length;
         const indikator = DAFTAR_IK
           .filter((ik) => ik.cpl === cpl.kode)
@@ -188,7 +188,7 @@ export default function DashboardPage() {
   }, [semua, ambang]);
 
   const profilCpl = useMemo(
-    () => DAFTAR_CPL.map((cpl) => ({ kode: cpl.kode, nama: cpl.deskripsiSingkat, nilai: rataCpl[cpl.kode] ?? 0 })),
+    () => DAFTAR_CPL.filter((cpl) => cpl.kode in rataCpl).map((cpl) => ({ kode: cpl.kode, nama: cpl.deskripsiSingkat, nilai: rataCpl[cpl.kode] ?? 0 })),
     [rataCpl],
   );
   const dataKosong = stats.total === 0;

@@ -81,3 +81,11 @@ describe("nilai per (asesmen, Sub-CPMK)", () => {
     assert.deepEqual(k.filter((x) => x.asesmen === "T1").map((x) => x.sub), ["Sub-CPMK.1", "Sub-CPMK.3", "Sub-CPMK.5"]);
   });
 });
+
+describe("CPL tingkat MK", () => {
+  it("nilai 80 semua → IK dan CPL yang muncul hanya IK-11.a dan CPL11 = 80", () => {
+    const c = hitungCapaianSatuMahasiswa(penuh(80));
+    assert.deepEqual(c.ik, { "IK-11.a": 80 });
+    assert.deepEqual(c.cpl, { CPL11: 80 });
+  });
+});

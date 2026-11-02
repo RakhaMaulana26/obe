@@ -101,9 +101,15 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
     return bagian.join(" + ");
   }
 
+  // Hanya IK yang diukur MK ini; porsi z dinormalisasi atas IK tersebut (sama dengan hitungCPL).
+  const daftarIKTerukur = DAFTAR_IK.filter((i) => i.kode in hasil.ik);
+  const daftarCPLTerukur = DAFTAR_CPL.filter((c) => c.kode in hasil.cpl);
+
   function rincianCpl(kode: string): string {
-    return DAFTAR_IK.filter((i) => i.cpl === kode)
-      .map((i) => `${(hasil?.ik[i.kode] ?? 0).toFixed(2)}×${i.z.toFixed(2)}`)
+    const penyusun = daftarIKTerukur.filter((i) => i.cpl === kode);
+    const totalZ = penyusun.reduce((a, i) => a + i.z, 0) || 1;
+    return penyusun
+      .map((i) => `${(hasil?.ik[i.kode] ?? 0).toFixed(2)}×${(i.z / totalZ).toFixed(2)}`)
       .join(" + ");
   }
 
@@ -309,7 +315,7 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
         <h3 className="mb-1 text-base font-bold text-primary">Langkah 4 — Kemampuan spesifik (IK)</h3>
         <p className="mb-4 text-xs leading-relaxed text-gray-500">Gabungan CPMK yang mengukur kemampuan yang sama.</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {DAFTAR_IK.map((i) => (
+          {daftarIKTerukur.map((i) => (
             <div key={i.kode} className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[13px] font-bold text-primary">{i.kode}</span>
@@ -330,7 +336,7 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
         <h3 className="mb-1 text-base font-bold text-primary">Langkah 5 — Capaian lulusan (CPL)</h3>
         <p className="mb-4 text-xs leading-relaxed text-gray-500">Gabungan kemampuan spesifik sesuai porsinya.</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {DAFTAR_CPL.map((c) => (
+          {daftarCPLTerukur.map((c) => (
             <div key={c.kode} className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[13px] font-bold text-primary">{c.kode}</span>

@@ -9,6 +9,7 @@ import {
   DAFTAR_SUB_CPMK,
   TABEL_GRADE,
   type Asesmen,
+  type IK,
   type AsesmenKode,
   type NilaiMahasiswa,
   type NilaiMap,
@@ -74,13 +75,24 @@ export function hitungCPMK(
   return out;
 }
 
-/** Persamaan (3.3): S_IK_l = Σ S_CPMK_k · u_kl */
+/** IK yang benar-benar diukur MK: punya sedikitnya satu bobot u[cpmk][ik] > 0. */
+export function ikTerukur(bobotU: Record<string, Partial<Record<string, number>>> = BOBOT_U): Set<string> {
+  const out = new Set<string>();
+  for (const peta of Object.values(bobotU)) {
+    for (const [kodeIK, b] of Object.entries(peta)) if ((b ?? 0) > 0) out.add(kodeIK);
+  }
+  return out;
+}
+
+/** Persamaan (3.3): S_IK_l = Σ S_CPMK_k · u_kl — hanya untuk IK yang diukur MK ini. */
 export function hitungIK(
   cpmk: Record<string, number>,
   bobotU: Record<string, Partial<Record<string, number>>> = BOBOT_U,
 ): Record<string, number> {
   const out: Record<string, number> = {};
+  const terukur = ikTerukur(bobotU);
   for (const ik of DAFTAR_IK) {
+    if (!terukur.has(ik.kode)) continue;
     let total = 0;
     for (const [kodeCpmk, peta] of Object.entries(bobotU)) {
       const b = peta[ik.kode];
@@ -91,13 +103,23 @@ export function hitungIK(
   return out;
 }
 
-/** Persamaan (3.4): S_CPL_m = Σ S_IK_l · z_lm */
-export function hitungCPL(ik: Record<string, number>): Record<string, number> {
+/**
+ * Persamaan (3.4) tingkat MK: S_CPL_m = Σ S_IK_l · z'_lm, dengan z' = z dinormalisasi atas IK yang
+ * diukur MK ini. CPL tanpa IK terukur tidak dimunculkan (bukan 0), karena MK ini tidak mengukurnya.
+ */
+export function hitungCPL(
+  ik: Record<string, number>,
+  terukur: Set<string>,
+  ikList: IK[] = DAFTAR_IK,
+  cplList: { kode: string }[] = DAFTAR_CPL,
+): Record<string, number> {
   const out: Record<string, number> = {};
-  for (const cpl of DAFTAR_CPL) {
-    const penyusun = DAFTAR_IK.filter((i) => i.cpl === cpl.kode);
+  for (const cpl of cplList) {
+    const penyusun = ikList.filter((i) => i.cpl === cpl.kode && terukur.has(i.kode));
+    const totalZ = penyusun.reduce((a, i) => a + i.z, 0);
+    if (penyusun.length === 0 || totalZ <= 0) continue;
     let total = 0;
-    for (const i of penyusun) total += (ik[i.kode] ?? 0) * i.z;
+    for (const i of penyusun) total += (ik[i.kode] ?? 0) * (i.z / totalZ);
     out[cpl.kode] = round2(total);
   }
   return out;
@@ -112,7 +134,7 @@ export function hitungCapaianSatuMahasiswa(
   const sub = hitungSub(nilai, bobot?.w, subList);
   const cpmk = hitungCPMK(sub, subList, cpmkList);
   const ik = hitungIK(cpmk, bobot?.u);
-  const cpl = hitungCPL(ik);
+  const cpl = hitungCPL(ik, ikTerukur(bobot?.u));
   return { nrp: "", sub, cpmk, ik, cpl, nilaiAkhir: hitungNilaiAkhir(sub, subList) };
 }
 

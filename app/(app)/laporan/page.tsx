@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useApp, offeringTerbaru } from "@/app/lib/store";
 import { DAFTAR_ASESMEN, DAFTAR_CPL, DAFTAR_IK, mahasiswaUntukKelas, AMBANG_DEFAULT } from "@/app/lib/data";
-import { hitungSemua, rataRata, susunRekomendasi } from "@/app/lib/hitung";
+import { hitungSemua, kolomNilai, rataRata, susunRekomendasi } from "@/app/lib/hitung";
 import { BadgeStatus, Btn, Card, EmptyState, PageHeading, StatCard, Td, Th, inputCls } from "@/app/components/ui";
 import Tabs, { TabPanel } from "@/app/components/reactbits/Tabs";
 import FadeContent from "@/app/components/reactbits/FadeContent";
@@ -43,6 +43,10 @@ export default function LaporanPage() {
   const rataCpmk = rataRata(semua, "cpmk");
   const rataIk = rataRata(semua, "ik");
   const rataCpl = rataRata(semua, "cpl");
+  // Kolom CSV: satu per pasangan (asesmen, Sub-CPMK) berbobot; IK/CPL hanya yang diukur MK ini.
+  const kolomCSV = kolomNilai(daftarSub, bobotW, DAFTAR_ASESMEN);
+  const ikCSV = DAFTAR_IK.filter((i) => i.kode in rataIk);
+  const cplCSV = DAFTAR_CPL.filter((c) => c.kode in rataCpl);
 
   const roster = mahasiswaUntukKelas(offering.kelas);
   const bermasalah = roster.map((m) => ({ m, c: semua[m.nrp] })).filter(({ c }) => c && Object.values(c.cpmk).some((v) => v < ambang));
@@ -50,11 +54,12 @@ export default function LaporanPage() {
   function unduhCSV() {
     setInfoUnduh("Menyiapkan file…");    const kepala = [
       "No", "NRP", "Nama",
-      ...DAFTAR_ASESMEN.map((a) => a.kode),
+      ...kolomCSV.map((k) => `${k.asesmen} ${k.sub}`),
       ...daftarSub.map((s) => s.kode),
       ...daftarCPMK.map((cpmk) => cpmk.kode),
-      ...DAFTAR_IK.map((i) => i.kode),
-      ...DAFTAR_CPL.map((c) => c.kode),
+      ...ikCSV.map((i) => i.kode),
+      ...cplCSV.map((c) => c.kode),
+      "Nilai akhir",
       "Status",
     ];
     const baris = roster.map((m, i) => {
@@ -63,11 +68,12 @@ export default function LaporanPage() {
       const tuntas = c && Object.values(c.cpmk).every((v) => v >= ambang);
       return [
         i + 1, m.nrp, `"${m.nama}"`,
-        ...DAFTAR_ASESMEN.map((a) => n?.[a.kode] ?? ""),
+        ...kolomCSV.map((k) => n?.[k.asesmen]?.[k.sub] ?? ""),
         ...daftarSub.map((s) => c?.sub[s.kode]?.toFixed(2) ?? ""),
         ...daftarCPMK.map((cpmk) => c?.cpmk[cpmk.kode]?.toFixed(2) ?? ""),
-        ...DAFTAR_IK.map((ik) => c?.ik[ik.kode]?.toFixed(2) ?? ""),
-        ...DAFTAR_CPL.map((cc) => c?.cpl[cc.kode]?.toFixed(2) ?? ""),
+        ...ikCSV.map((ik) => c?.ik[ik.kode]?.toFixed(2) ?? ""),
+        ...cplCSV.map((cc) => c?.cpl[cc.kode]?.toFixed(2) ?? ""),
+        c?.nilaiAkhir.toFixed(2) ?? "",
         tuntas ? "Tuntas" : "Belum",
       ].join(",");
     });
