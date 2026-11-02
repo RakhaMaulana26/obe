@@ -23,7 +23,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
   const [modalCpmk, setModalCpmk] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string }>(null);
   const [formCpmk, setFormCpmk] = useState<CPMK>({ kode: "", deskripsi: "" });
   const [modalSub, setModalSub] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string }>(null);
-  const [formSub, setFormSub] = useState<SubCPMK>({ kode: "", nomor: 1, deskripsi: "", level: "C4", cpmk: "CPMK-1", v: 0.25 });
+  const [formSub, setFormSub] = useState<SubCPMK>({ kode: "", nomor: 1, deskripsi: "", level: "C4", cpmk: "CPMK-1", v: 0.25, bobot: 0 });
   const [modalAsm, setModalAsm] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string }>(null);
   const [formAsm, setFormAsm] = useState<Asesmen>({ kode: "T1", nama: "", deskripsi: "" });
   const [hapus, setHapus] = useState<null | { jenis: Tab; kode: string }>(null);
@@ -48,6 +48,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
     const kodeBaru = formSub.kode.trim().toUpperCase();
     if (!kodeBaru || !formSub.deskripsi.trim()) return setGalat("Kode dan deskripsi Sub-CPMK wajib diisi.");
     if (formSub.v < 0 || formSub.v > 1) return setGalat("Bobot v harus di antara 0 dan 1.");
+    if (!(formSub.bobot >= 0 && formSub.bobot <= 100)) return setGalat("Bobot terhadap MK harus di antara 0 dan 100%.");
     if (modalSub?.mode === "tambah" && daftarSub.some((s) => s.kode === kodeBaru)) return setGalat("Kode Sub-CPMK sudah ada.");
     if (modalSub?.mode === "tambah") simpanStruktur(mkKode, { ...struktur, sub: [...daftarSub, { ...formSub, kode: kodeBaru }] });
     else if (modalSub?.mode === "ubah") simpanStruktur(mkKode, { ...struktur, sub: daftarSub.map((s) => (s.kode === modalSub.kode ? { ...formSub, kode: modalSub.kode } : s)) });
@@ -141,7 +142,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
         <Card>
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-base font-bold text-primary">Sub-CPMK beserta bobot v ke CPMK induk</h3>
-            <Btn onClick={() => { setFormSub({ kode: "", nomor: daftarSub.length + 1, deskripsi: "", level: "C4", cpmk: daftarCPMK[0]?.kode ?? "CPMK-1", v: 0.25 }); setGalat(""); setModalSub({ mode: "tambah" }); }} tour="Tambah Sub-CPMK: tentukan level, CPMK induk, dan bobot v-nya." tourTitle="Tambah Sub">+ Tambah Sub</Btn>
+            <Btn onClick={() => { setFormSub({ kode: "", nomor: daftarSub.length + 1, deskripsi: "", level: "C4", cpmk: daftarCPMK[0]?.kode ?? "CPMK-1", v: 0.25, bobot: 0 }); setGalat(""); setModalSub({ mode: "tambah" }); }} tour="Tambah Sub-CPMK: tentukan level, CPMK induk, dan bobot v-nya." tourTitle="Tambah Sub">+ Tambah Sub</Btn>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
@@ -226,7 +227,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
             <Field label="Deskripsi">
               <textarea value={formSub.deskripsi} onChange={(e) => setFormSub({ ...formSub, deskripsi: e.target.value })} rows={2} className={inputCls} />
             </Field>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <Field label="Level Bloom">
                 <select value={formSub.level} onChange={(e) => setFormSub({ ...formSub, level: e.target.value })} className={inputCls}>
                   {["C1", "C2", "C3", "C4", "C5", "C6"].map((l) => <option key={l} value={l}>{l}</option>)}
@@ -239,6 +240,9 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
               </Field>
               <Field label="Bobot v">
                 <input type="number" step={0.05} min={0} max={1} value={formSub.v} onChange={(e) => setFormSub({ ...formSub, v: Number(e.target.value) })} className={inputCls} />
+              </Field>
+              <Field label="Bobot MK (%)">
+                <input type="number" step={1} min={0} max={100} value={formSub.bobot ?? 0} onChange={(e) => setFormSub({ ...formSub, bobot: Number(e.target.value) })} className={inputCls} />
               </Field>
             </div>
             <div className="flex justify-end gap-2"><Btn variant="outline" onClick={() => setModalSub(null)}>Batal</Btn><Btn onClick={simpanSub}>Simpan</Btn></div>

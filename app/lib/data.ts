@@ -1,5 +1,6 @@
 import kurikulum2026 from "./sumber-kurikulum-2026.json";
 import rpsRubrikDataMining from "./sumber-dokumen-datamining.json";
+import { turunkanBobotU } from "./bobot";
 
 export type AsesmenKode = "T1" | "T2" | "T3" | "T4" | "Prak" | "ETS" | "EAS";
 export type KategoriMataKuliah = "wajib" | "pilihan-institusi" | "pilihan-prodi" | "belum-ditetapkan";
@@ -17,6 +18,8 @@ export interface SubCPMK {
   level: string;
   cpmk: string;
   v: number;
+  /** Bobot Sub-CPMK terhadap mata kuliah, dalam persen (RPS: 5, 15, …). */
+  bobot: number;
   isDummy?: boolean;
 }
 
@@ -156,6 +159,7 @@ export const DAFTAR_SUB_CPMK: SubCPMK[] = DATA_RPS_DATAMINING.sub.map((sub, inde
   cpmk: sub.cpmk,
   // Bobot v tidak ditulis langsung di RPS; proporsinya diturunkan dari bobot Sub-CPMK terhadap MK.
   v: bobotSubPerCPMK[sub.cpmk] ? sub.bobot / bobotSubPerCPMK[sub.cpmk] : 0,
+  bobot: sub.bobot,
 }));
 
 const KODE_ASESMEN_RUBRIK: Record<"kuis" | "laporan" | "proyek" | "mid" | "post", AsesmenKode> = {
@@ -186,7 +190,15 @@ export const BOBOT_W: Record<string, Partial<Record<AsesmenKode, number>>> = Obj
     return [kodeSub, porsi];
   }),
 );
-export const BOBOT_U: Record<string, Partial<Record<string, number>>> = DATA_RPS_DATAMINING.ikCpmk;
+// JSON menyimpan matriks RPS sebagai [ik][cpmk]; mesin hitung membaca [cpmk][ik].
+// Centang diambil dari JSON, nilainya diturunkan dari bobot Sub-CPMK (CPMK.1 = 20%, CPMK.2 = 30%, …).
+const CENTANG_CPMK_IK: Record<string, string[]> = {};
+for (const [kodeIK, petaCPMK] of Object.entries(DATA_RPS_DATAMINING.ikCpmk)) {
+  for (const [kodeCPMK, nilai] of Object.entries(petaCPMK)) {
+    if (nilai > 0) (CENTANG_CPMK_IK[kodeCPMK] ??= []).push(kodeIK);
+  }
+}
+export const BOBOT_U: Record<string, Partial<Record<string, number>>> = turunkanBobotU(DAFTAR_SUB_CPMK, CENTANG_CPMK_IK);
 
 export const PEMETAAN_KURIKULUM_SEED: Record<string, Record<string, number>> = Object.fromEntries(
   DATA_KURIKULUM.mataKuliah.map((mk) => [mk.kode, mk.bobotIK]),

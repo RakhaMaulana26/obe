@@ -21,6 +21,7 @@ import {
   type SubCPMK,
 } from "./data";
 import { KONFIGURASI_DOKUMEN_SEED, kunciConfigDokumen } from "./dokumen-seed";
+import { lengkapiBobotSub, perbaikiBobotU } from "./bobot";
 
 export interface Pengguna {
   nama: string;
@@ -323,7 +324,13 @@ function strukturMKAwal(daftar: MataKuliahItem[]): Record<string, StrukturMataKu
     if (!dasar[mk.kode]) dasar[mk.kode] = buatStrukturDummy(mk);
   }
   const tersimpan = baca<Record<string, StrukturMataKuliah> | null>("obe-struktur-mk", null);
-  if (tersimpan) return { ...dasar, ...tersimpan };
+  if (tersimpan) {
+    // Data lama: Sub-CPMK tanpa bobot dan bobotU terbalik/tidak ternormalisasi diperbaiki saat dimuat.
+    const diperbaiki = Object.fromEntries(
+      Object.entries(tersimpan).map(([kode, struktur]) => [kode, perbaikiBobotU(lengkapiBobotSub(struktur, STRUKTUR_MK_SEED[kode]))]),
+    );
+    return { ...dasar, ...diperbaiki };
+  }
 
   return dasar;
 }
@@ -457,7 +464,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [strukturMK, mataKuliah],
   );
   const simpanStruktur = useCallback((kode: string, struktur: StrukturMataKuliah) => {
-    setStrukturMK((prev) => ({ ...prev, [kode.toUpperCase()]: struktur }));
+    // bobotU selalu diturunkan ulang dari centang matriks + bobot Sub-CPMK.
+    setStrukturMK((prev) => ({ ...prev, [kode.toUpperCase()]: perbaikiBobotU(struktur) }));
   }, []);
 
   const tambahMK = useCallback((mk: MataKuliahItem) => {

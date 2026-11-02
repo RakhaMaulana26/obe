@@ -13,6 +13,8 @@ import {
   type SubCPMK,
 } from "./data";
 
+export { centangDariBobotU, lengkapiBobotSub, perbaikiBobotU, turunkanBobotU } from "./bobot";
+
 export function konversiHuruf(skor: number): { huruf: string; kualitas: number } {
   const row = TABEL_GRADE.find((r) => skor >= r.min && skor <= r.max) ?? TABEL_GRADE[TABEL_GRADE.length - 1];
   if (!row) return { huruf: "", kualitas: 0 };
