@@ -94,7 +94,10 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
 
   const rataKolom: Record<string, number> = {};
   for (const k of kolom) {
-    const arr = roster.map((m) => draft[m.nrp]?.[k.asesmen]?.[k.sub] ?? 0);
+    const arr = roster.map((m) => {
+      const v = draft[m.nrp]?.[k.asesmen]?.[k.sub];
+      return typeof v === "number" && Number.isFinite(v) ? v : 0;
+    });
     rataKolom[kunciKolom(k)] = arr.length ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 100) / 100 : 0;
   }
   const nilaiAkhir = (nrp: string) => hitungNilaiAkhir(hitungSub(draft[nrp] ?? {}, struktur.bobotW, struktur.sub), struktur.sub);
@@ -194,7 +197,7 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
                       <span className="truncate">{m.nama}</span>
                       {hapusNrp === m.nrp ? (
                         <span className="ml-auto flex shrink-0 gap-1">
-                          <button type="button" onClick={() => { hapusMahasiswa(m.nrp); setHapusNrp(null); }} className="rounded px-1.5 py-0.5 text-[11px] font-semibold text-red-700 hover:bg-red-50">Hapus</button>
+                          <button type="button" onClick={() => { hapusMahasiswa(m.nrp); setDraft((p) => { const salin = { ...p }; delete salin[m.nrp]; return salin; }); setHapusNrp(null); }} className="rounded px-1.5 py-0.5 text-[11px] font-semibold text-red-700 hover:bg-red-50">Hapus</button>
                           <button type="button" onClick={() => setHapusNrp(null)} className="rounded px-1.5 py-0.5 text-[11px] text-gray-500 hover:bg-gray-100">Batal</button>
                         </span>
                       ) : (

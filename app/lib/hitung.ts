@@ -16,7 +16,7 @@ import {
   type SubCPMK,
 } from "./data";
 
-export { centangDariBobotU, lengkapiBobotSub, perbaikiBobotU, turunkanBobotU } from "./bobot";
+export { centangDariBobotU, lengkapiBobotSub, perbaikiBobotU, strukturValid, turunkanBobotU } from "./bobot";
 
 export function konversiHuruf(skor: number): { huruf: string; kualitas: number } {
   const urut = [...TABEL_GRADE].sort((a, b) => b.min - a.min);
@@ -53,7 +53,9 @@ export function hitungSub(
     const w = bobotAktif[s.kode] ?? {};
     let total = 0;
     for (const [kode, b] of Object.entries(w)) {
-      total += (nilai[kode as AsesmenKode]?.[s.kode] ?? 0) * (b ?? 0);
+      const n = nilai[kode as AsesmenKode]?.[s.kode];
+      // Sel kosong/tidak valid (undefined, null, NaN) dihitung 0.
+      total += (typeof n === "number" && Number.isFinite(n) ? n : 0) * (b ?? 0);
     }
     out[s.kode] = round2(total);
   }

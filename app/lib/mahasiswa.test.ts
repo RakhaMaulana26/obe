@@ -27,3 +27,17 @@ describe("parseCSVMahasiswa", () => {
     assert.deepEqual(r.galat, ["Baris 2: NRP kosong", "Baris 3: nama kosong"]);
   });
 });
+
+import { daftarMahasiswaValid, hapusNilaiMahasiswa } from "./mahasiswa";
+
+describe("temuan review akhir — mahasiswa", () => {
+  it("#3 hapusNilaiMahasiswa membuang nilai NRP itu dari semua penawaran", () => {
+    const awal = { "A::1": { "1": { T1: { S: 9 } }, "2": { T1: { S: 8 } } }, "B::1": { "1": { T1: { S: 7 } } } };
+    assert.deepEqual(hapusNilaiMahasiswa(awal, "1"), { "A::1": { "2": { T1: { S: 8 } } }, "B::1": {} });
+  });
+  it("#4 daftarMahasiswaValid membuang data localStorage yang rusak", () => {
+    assert.deepEqual(daftarMahasiswaValid("x"), []);
+    assert.deepEqual(daftarMahasiswaValid(null), []);
+    assert.deepEqual(daftarMahasiswaValid([{ nrp: "1", nama: "A", kelas: "A" }, { nrp: 2 }, null]), [{ nrp: "1", nama: "A", kelas: "A" }]);
+  });
+});

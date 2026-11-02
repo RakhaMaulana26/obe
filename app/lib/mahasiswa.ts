@@ -1,4 +1,4 @@
-import { DAFTAR_KELAS, type Mahasiswa } from "./data";
+import { DAFTAR_KELAS, type Mahasiswa, type NilaiMap } from "./data";
 
 /** Pecah satu baris CSV; mendukung sel berkutip ("Budi, S.") dan kutip ganda di dalamnya (""). */
 function pecahBaris(baris: string, pemisah: string): string[] {
@@ -55,4 +55,22 @@ export function parseCSVMahasiswa(teks: string): { data: Mahasiswa[]; galat: str
     data.push({ nrp, nama, kelas });
   });
   return { data, galat };
+}
+
+/** Buang nilai satu NRP dari semua penawaran, agar mahasiswa yang dihapus tidak ikut statistik. */
+export function hapusNilaiMahasiswa(nilaiOffering: Record<string, NilaiMap>, nrp: string): Record<string, NilaiMap> {
+  return Object.fromEntries(
+    Object.entries(nilaiOffering).map(([kunci, peta]) => {
+      const salin = { ...peta };
+      delete salin[nrp];
+      return [kunci, salin];
+    }),
+  );
+}
+
+/** Data mahasiswa dari localStorage: hanya entri berbentuk { nrp, nama, kelas } bertipe string yang dipakai. */
+export function daftarMahasiswaValid(x: unknown): Mahasiswa[] {
+  if (!Array.isArray(x)) return [];
+  return x.filter((m): m is Mahasiswa =>
+    Boolean(m) && typeof m === "object" && typeof m.nrp === "string" && typeof m.nama === "string" && typeof m.kelas === "string");
 }

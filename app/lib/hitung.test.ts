@@ -98,3 +98,36 @@ describe("konversi huruf", () => {
     it(`skor ${skor} → ${huruf}`, () => assert.equal(konversiHuruf(skor).huruf, huruf));
   }
 });
+
+import { strukturValid } from "./hitung";
+import type { StrukturMataKuliah } from "./data";
+
+describe("temuan review akhir", () => {
+  const mkKustom = (bobotSub: number[], bobotU: StrukturMataKuliah["bobotU"]): StrukturMataKuliah => ({
+    cpmk: [{ kode: "CPMK-1", deskripsi: "" }, { kode: "CPMK-2", deskripsi: "" }],
+    sub: bobotSub.map((b, i) => ({ kode: `S${i + 1}`, nomor: i + 1, deskripsi: "", level: "C3", cpmk: i === 0 ? "CPMK-1" : "CPMK-2", v: 1, bobot: b })),
+    bobotW: {},
+    bobotU,
+  });
+  it("#1 centang MK kustom tanpa bobot Sub-CPMK tidak hilang (porsi rata)", () => {
+    const hasil = perbaikiBobotU(mkKustom([0, 0], { "CPMK-1": { "IK-1.a": 1 }, "CPMK-2": { "IK-1.a": 1 } })).bobotU;
+    dekat(hasil["CPMK-1"]?.["IK-1.a"], 0.5);
+    dekat(hasil["CPMK-2"]?.["IK-1.a"], 0.5);
+  });
+  it("#1 centang tidak hilang bila sebagian CPMK berbobot 0", () => {
+    const hasil = perbaikiBobotU(mkKustom([0, 40], { "CPMK-1": { "IK-1.a": 1 }, "CPMK-2": { "IK-1.a": 1 } })).bobotU;
+    assert.ok((hasil["CPMK-1"]?.["IK-1.a"] ?? 0) > 0, JSON.stringify(hasil));
+  });
+  it("#2 sel NaN (dikosongkan) tidak menghasilkan NaN", () => {
+    const n = penuh(80);
+    n.T2!["Sub-CPMK.2"] = Number.NaN;
+    const c = hitungCapaianSatuMahasiswa(n);
+    assert.ok(Number.isFinite(c.sub["Sub-CPMK.2"]) && Number.isFinite(c.nilaiAkhir), JSON.stringify(c.sub));
+  });
+  it("#4 strukturValid menolak entri localStorage yang rusak", () => {
+    for (const rusak of [null, "str", { cpmk: [], sub: [] }, { cpmk: [], bobotU: {} }, { sub: [], bobotU: {}, bobotW: {} }]) {
+      assert.equal(strukturValid(rusak), false, JSON.stringify(rusak));
+    }
+    assert.equal(strukturValid(STRUKTUR_MK_SEED["TI045105"]), true);
+  });
+});

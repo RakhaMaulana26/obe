@@ -22,7 +22,8 @@ import {
   type SubCPMK,
 } from "./data";
 import { KONFIGURASI_DOKUMEN_SEED, kunciConfigDokumen } from "./dokumen-seed";
-import { lengkapiBobotSub, perbaikiBobotU } from "./bobot";
+import { lengkapiBobotSub, perbaikiBobotU, strukturValid } from "./bobot";
+import { daftarMahasiswaValid, hapusNilaiMahasiswa } from "./mahasiswa";
 
 export interface Pengguna {
   nama: string;
@@ -326,8 +327,11 @@ function strukturMKAwal(daftar: MataKuliahItem[]): Record<string, StrukturMataKu
   const tersimpan = baca<Record<string, StrukturMataKuliah> | null>("obe-struktur-mk", null);
   if (tersimpan) {
     // Data lama: Sub-CPMK tanpa bobot dan bobotU terbalik/tidak ternormalisasi diperbaiki saat dimuat.
+    // Entri yang bentuknya rusak dilewati (dipakai struktur dasar) agar tidak menjatuhkan seluruh aplikasi.
     const diperbaiki = Object.fromEntries(
-      Object.entries(tersimpan).map(([kode, struktur]) => [kode, perbaikiBobotU(lengkapiBobotSub(struktur, STRUKTUR_MK_SEED[kode]))]),
+      Object.entries(tersimpan)
+        .filter(([, struktur]) => strukturValid(struktur))
+        .map(([kode, struktur]) => [kode, perbaikiBobotU(lengkapiBobotSub(struktur, STRUKTUR_MK_SEED[kode]))]),
     );
     return { ...dasar, ...diperbaiki };
   }
@@ -399,7 +403,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const [strukturMK, setStrukturMK] = useState<Record<string, StrukturMataKuliah>>(() => strukturMKAwal(mataKuliah));
   const [daftarAsesmen, setDaftarAsesmen] = useState<Asesmen[]>(() => baca("obe-asesmen", DAFTAR_ASESMEN));
-  const [mahasiswa, setMahasiswa] = useState<Mahasiswa[]>(() => baca<Mahasiswa[]>("obe-mahasiswa", []));
+  const [mahasiswa, setMahasiswa] = useState<Mahasiswa[]>(() => daftarMahasiswaValid(baca<unknown>("obe-mahasiswa", [])));
 
   useEffect(() => {
     simpan(KUNCI_NILAI, nilaiOffering);
@@ -439,6 +443,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const hapusMahasiswa = useCallback((nrp: string) => {
     setMahasiswa((prev) => prev.filter((m) => m.nrp !== nrp));
+    // Nilai ikut dihapus agar tidak terhitung di dashboard/laporan dan tidak muncul lagi bila NRP ditambah ulang.
+    setNilaiOfferingState((prev) => hapusNilaiMahasiswa(prev, nrp));
   }, []);
   const imporMahasiswa = useCallback((daftar: Mahasiswa[]) => {
     setMahasiswa((prev) => {
