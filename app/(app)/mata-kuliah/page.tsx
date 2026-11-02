@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { bacaDataTersimpan, useApp, TAHUN_DEFAULT, type MataKuliahItem } from "@/app/lib/store";
-import { DAFTAR_CPL, DAFTAR_KELAS, DAFTAR_MAHASISWA } from "@/app/lib/data";
+import { DAFTAR_CPL, DAFTAR_KELAS } from "@/app/lib/data";
 import { Btn, Card, EmptyState, Field, Modal, PageHeading, StatCard, inputCls } from "@/app/components/ui";
 import Stepper, { StepPanel } from "@/app/components/reactbits/Stepper";
 import FadeContent from "@/app/components/reactbits/FadeContent";
@@ -30,7 +30,7 @@ function bacaCplTersedia(): { kode: string; deskripsiSingkat: string }[] {
 }
 
 export default function MataKuliahPage() {
-  const { mataKuliah, tambahMK, ubahMK, hapusMK, setKelasDipilih, setTahunDipilih } = useApp();
+  const { mataKuliah, tambahMK, ubahMK, hapusMK, setKelasDipilih, setTahunDipilih, mahasiswa } = useApp();
   const [cari, setCari] = useState("");
   const [modal, setModal] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string; tahun: string; kelas: string }>(null);
   const [hapus, setHapus] = useState<null | { kode: string; tahun: string; kelas: string }>(null);
@@ -115,7 +115,7 @@ export default function MataKuliahPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <StatCard label="Total MK" value={String(new Set(mataKuliah.map((mk) => mk.kode)).size)} numeric={new Set(mataKuliah.map((mk) => mk.kode)).size} />
         <StatCard label="Penawaran" value={String(mataKuliah.length)} numeric={mataKuliah.length} />
-        <StatCard label="Mahasiswa" value={String(DAFTAR_MAHASISWA.length)} numeric={DAFTAR_MAHASISWA.length} />
+        <StatCard label="Mahasiswa" value={String(mahasiswa.length)} numeric={mahasiswa.length} />
       </div>
 
       <FadeContent>

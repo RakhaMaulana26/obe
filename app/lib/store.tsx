@@ -16,6 +16,7 @@ import {
   type AsesmenKode,
   type CPMK,
   type KategoriMataKuliah,
+  type Mahasiswa,
   type NilaiMap,
   type StrukturMataKuliah,
   type SubCPMK,
@@ -367,6 +368,14 @@ interface AppState {
   hapusMK: (kode: string, tahun: string, kelas: string) => void;
   daftarAsesmen: Asesmen[];
   setDaftarAsesmen: (d: Asesmen[]) => void;
+  /** Daftar mahasiswa yang dimasukkan dosen (manual atau impor CSV). */
+  mahasiswa: Mahasiswa[];
+  mahasiswaUntuk: (kelas: string) => Mahasiswa[];
+  /** Mengembalikan pesan galat bila NRP sudah terdaftar, atau null bila berhasil. */
+  tambahMahasiswa: (m: Mahasiswa) => string | null;
+  hapusMahasiswa: (nrp: string) => void;
+  /** Gabungkan hasil impor; NRP yang sudah ada ditimpa. */
+  imporMahasiswa: (daftar: Mahasiswa[]) => void;
 }
 
 const AppContext = createContext<AppState | null>(null);
@@ -390,6 +399,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const [strukturMK, setStrukturMK] = useState<Record<string, StrukturMataKuliah>>(() => strukturMKAwal(mataKuliah));
   const [daftarAsesmen, setDaftarAsesmen] = useState<Asesmen[]>(() => baca("obe-asesmen", DAFTAR_ASESMEN));
+  const [mahasiswa, setMahasiswa] = useState<Mahasiswa[]>(() => baca<Mahasiswa[]>("obe-mahasiswa", []));
 
   useEffect(() => {
     simpan(KUNCI_NILAI, nilaiOffering);
@@ -409,6 +419,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     simpan("obe-asesmen", daftarAsesmen);
   }, [daftarAsesmen]);
+  useEffect(() => {
+    simpan("obe-mahasiswa", mahasiswa);
+  }, [mahasiswa]);
+
+  const mahasiswaUntuk = useCallback(
+    (kelas: string) => mahasiswa.filter((m) => m.kelas === kelas).sort((a, b) => a.nrp.localeCompare(b.nrp)),
+    [mahasiswa],
+  );
+  const tambahMahasiswa = useCallback(
+    (m: Mahasiswa): string | null => {
+      const bersih = { nrp: m.nrp.trim(), nama: m.nama.trim(), kelas: m.kelas };
+      if (!bersih.nrp || !bersih.nama) return "NRP dan nama wajib diisi.";
+      if (mahasiswa.some((x) => x.nrp === bersih.nrp)) return `NRP ${bersih.nrp} sudah terdaftar.`;
+      setMahasiswa((prev) => [...prev, bersih]);
+      return null;
+    },
+    [mahasiswa],
+  );
+  const hapusMahasiswa = useCallback((nrp: string) => {
+    setMahasiswa((prev) => prev.filter((m) => m.nrp !== nrp));
+  }, []);
+  const imporMahasiswa = useCallback((daftar: Mahasiswa[]) => {
+    setMahasiswa((prev) => {
+      const baru = new Map(prev.map((m) => [m.nrp, m]));
+      for (const m of daftar) baru.set(m.nrp, m);
+      return [...baru.values()];
+    });
+  }, []);
 
   const masuk = useCallback((p: Pengguna) => {
     setPengguna(p);
@@ -535,6 +573,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       hapusMK,
       daftarAsesmen,
       setDaftarAsesmen,
+      mahasiswa,
+      mahasiswaUntuk,
+      tambahMahasiswa,
+      hapusMahasiswa,
+      imporMahasiswa,
     }),
     [
       pengguna,
@@ -555,6 +598,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       hapusMK,
       daftarAsesmen,
       setDaftarAsesmen,
+      mahasiswa,
+      mahasiswaUntuk,
+      tambahMahasiswa,
+      hapusMahasiswa,
+      imporMahasiswa,
     ],
   );
 

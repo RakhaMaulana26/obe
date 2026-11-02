@@ -296,11 +296,6 @@ export const RPS_SEED: RPSSeed[] = [{
   metode: "Kuliah tatap muka, praktikum laboratorium, kelas sinkron daring, dan mini project sesuai RPS Mingguan.",
   isDummy: false,
 }];
-export const DAFTAR_MAHASISWA: Mahasiswa[] = [];
-
-export function mahasiswaUntukKelas(_kelas: string): Mahasiswa[] {
-  return [];
-}
 
 export function nilaiAwalUntuk(_kode: string, _tahun: string, _kelas = "A"): NilaiMap {
   return {};

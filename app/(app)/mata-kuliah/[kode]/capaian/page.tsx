@@ -3,7 +3,7 @@
 import { use, useState } from "react";
 import Link from "next/link";
 import { useApp, daftarTahunOffering, daftarKelasOffering, kelasAktifUntuk, tahunAktifUntuk } from "@/app/lib/store";
-import { DAFTAR_KELAS, mahasiswaUntukKelas, AMBANG_DEFAULT } from "@/app/lib/data";
+import { DAFTAR_KELAS, AMBANG_DEFAULT } from "@/app/lib/data";
 import { hitungSemua, konversiHuruf, rataRata, titikTerlemah } from "@/app/lib/hitung";
 import { BadgeHuruf, BadgeStatus, Bar, Card, EmptyState, PageHeading, StatCard, Td, Th, inputCls } from "@/app/components/ui";
 
@@ -34,7 +34,7 @@ function JenjangBar({ data, label, ambang }: { data: Record<string, number>; lab
 export default function CapaianCPMKPage({ params }: { params: Promise<{ kode: string }> }) {
   const { kode } = use(params);
   const mkKode = decodeURIComponent(kode).toUpperCase();
-  const { mataKuliah, nilaiUntuk, strukturUntuk, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih } = useApp();
+  const { mataKuliah, nilaiUntuk, strukturUntuk, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih, mahasiswaUntuk } = useApp();
   const daftarTahun = daftarTahunOffering(mataKuliah, mkKode);
   const tahun = tahunAktifUntuk(mataKuliah, tahunDipilih, mkKode);
   const daftarKelas = daftarKelasOffering(mataKuliah, mkKode, tahun);
@@ -52,7 +52,7 @@ export default function CapaianCPMKPage({ params }: { params: Promise<{ kode: st
   const capaianMahasiswa = Object.values(semua);
   const totalSkor = capaianMahasiswa.flatMap((capaian) => daftarCPMK.map((cpmk) => capaian.cpmk[cpmk.kode] ?? 0));
   const rataCPMK = totalSkor.length ? totalSkor.reduce((jumlah, skor) => jumlah + skor, 0) / totalSkor.length : 0;
-  const roster = mahasiswaUntukKelas(kelas);
+  const roster = mahasiswaUntuk(kelas);
   const query = cari.trim().toLowerCase();
   const mahasiswa = query
     ? roster.filter((item) => item.nama.toLowerCase().includes(query) || item.nrp.includes(query))

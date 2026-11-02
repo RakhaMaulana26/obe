@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useApp, offeringTerbaru } from "@/app/lib/store";
-import { DAFTAR_ASESMEN, DAFTAR_CPL, DAFTAR_IK, mahasiswaUntukKelas, AMBANG_DEFAULT } from "@/app/lib/data";
+import { DAFTAR_ASESMEN, DAFTAR_CPL, DAFTAR_IK, AMBANG_DEFAULT } from "@/app/lib/data";
 import { hitungSemua, kolomNilai, rataRata, susunRekomendasi } from "@/app/lib/hitung";
 import { BadgeStatus, Btn, Card, EmptyState, PageHeading, StatCard, Td, Th, inputCls } from "@/app/components/ui";
 import Tabs, { TabPanel } from "@/app/components/reactbits/Tabs";
@@ -12,7 +12,7 @@ import AnimatedList, { AnimatedItem } from "@/app/components/reactbits/AnimatedL
 import OfferingSelect, { DosenChip } from "@/app/components/OfferingSelect";
 
 export default function LaporanPage() {
-  const { nilaiUntuk, strukturUntuk, mataKuliah } = useApp();
+  const { nilaiUntuk, strukturUntuk, mataKuliah, mahasiswaUntuk } = useApp();
   const [offering, setOffering] = useState(() => offeringTerbaru(mataKuliah));
   const [ambang, setAmbang] = useState(AMBANG_DEFAULT);
   const [tab, setTab] = useState("insight");
@@ -48,7 +48,7 @@ export default function LaporanPage() {
   const ikCSV = DAFTAR_IK.filter((i) => i.kode in rataIk);
   const cplCSV = DAFTAR_CPL.filter((c) => c.kode in rataCpl);
 
-  const roster = mahasiswaUntukKelas(offering.kelas);
+  const roster = mahasiswaUntuk(offering.kelas);
   const bermasalah = roster.map((m) => ({ m, c: semua[m.nrp] })).filter(({ c }) => c && Object.values(c.cpmk).some((v) => v < ambang));
 
   function unduhCSV() {

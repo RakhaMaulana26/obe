@@ -43,7 +43,7 @@ describe("perbaikan struktur tersimpan", () => {
   });
   it("Sub-CPMK tersimpan tanpa bobot dilengkapi dari acuan seed", () => {
     const seed = STRUKTUR_MK_SEED["TI045105"];
-    const lama = { ...seed, sub: seed.sub.map(({ bobot: _b, ...s }) => s as typeof seed.sub[number]) };
+    const lama = { ...seed, sub: seed.sub.map((s) => Object.fromEntries(Object.entries(s).filter(([k]) => k !== "bobot")) as typeof s) };
     assert.deepEqual(lengkapiBobotSub(lama, seed).sub.map((s) => s.bobot), [5, 15, 15, 15, 10, 15, 10, 15]);
   });
 });

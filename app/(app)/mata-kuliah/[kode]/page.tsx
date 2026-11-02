@@ -3,7 +3,7 @@
 import { use } from "react";
 import Link from "next/link";
 import { useApp, daftarTahunOffering, daftarKelasOffering, kelasAktifUntuk, tahunAktifUntuk } from "@/app/lib/store";
-import { DAFTAR_KELAS, mahasiswaUntukKelas } from "@/app/lib/data";
+import { DAFTAR_KELAS } from "@/app/lib/data";
 import { Card, EmptyState, PageHeading, inputCls } from "@/app/components/ui";
 import FadeContent from "@/app/components/reactbits/FadeContent";
 import AnimatedList, { AnimatedItem } from "@/app/components/reactbits/AnimatedList";
@@ -11,7 +11,7 @@ import AnimatedList, { AnimatedItem } from "@/app/components/reactbits/AnimatedL
 export default function DetailMKHubPage({ params }: { params: Promise<{ kode: string }> }) {
   const { kode } = use(params);
   const mkKode = decodeURIComponent(kode).toUpperCase();
-  const { mataKuliah, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih } = useApp();
+  const { mataKuliah, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih, mahasiswaUntuk } = useApp();
   const penawaran = mataKuliah.filter((m) => m.kode === mkKode);
   const mk = penawaran[0];
   const daftarTahun = daftarTahunOffering(mataKuliah, mkKode);
@@ -33,7 +33,7 @@ export default function DetailMKHubPage({ params }: { params: Promise<{ kode: st
   const menu = [
     { href: `/mata-kuliah/${mk.kode}/dokumen/rps`, title: "RPS", desc: "Lengkapi identitas dan rencana pembelajaran", cta: "Buat RPS", label: "DOKUMEN" },
     { href: `/mata-kuliah/${mk.kode}/dokumen/rubrik`, title: "Rubrik", desc: "Lengkapi bobot dan rincian penilaian", cta: "Buat rubrik", label: "DOKUMEN" },
-    { href: `/mata-kuliah/${mk.kode}/nilai`, title: "Input Nilai", desc: `${mahasiswaUntukKelas(kelasAktif).length} mahasiswa Kelas ${kelasAktif}`, cta: "Input nilai", label: "NILAI" },
+    { href: `/mata-kuliah/${mk.kode}/nilai`, title: "Input Nilai", desc: `${mahasiswaUntuk(kelasAktif).length} mahasiswa Kelas ${kelasAktif}`, cta: "Input nilai", label: "NILAI" },
     { href: `/mata-kuliah/${mk.kode}/capaian`, title: "Capaian CPMK", desc: "Ketercapaian tiap CPMK dan rekapitulasi per mahasiswa", cta: "Lihat capaian CPMK", label: "CAPAIAN" },
     { href: `/mata-kuliah/${mk.kode}/capaian/sub-cpmk`, title: "Capaian Sub-CPMK", desc: "Ketercapaian tiap Sub-CPMK dan rekapitulasi per mahasiswa", cta: "Lihat capaian Sub-CPMK", label: "CAPAIAN" },
   ];

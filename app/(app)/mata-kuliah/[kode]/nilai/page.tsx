@@ -1,16 +1,17 @@
 "use client";
 
-import { use, useMemo, useState } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import { useApp, daftarTahunOffering, daftarKelasOffering, kelasAktifUntuk, tahunAktifUntuk } from "@/app/lib/store";
-import { DAFTAR_KELAS, mahasiswaUntukKelas, nilaiAwalUntuk, type AsesmenKode, type NilaiMap } from "@/app/lib/data";
-import { Btn, Card, EmptyState, PageHeading, inputCls } from "@/app/components/ui";
+import { DAFTAR_KELAS, nilaiAwalUntuk, type AsesmenKode, type NilaiMap } from "@/app/lib/data";
+import { Btn, Card, EmptyState, Field, Modal, PageHeading, inputCls } from "@/app/components/ui";
+import { parseCSVMahasiswa } from "@/app/lib/mahasiswa";
 import { hitungNilaiAkhir, hitungSub, kolomNilai } from "@/app/lib/hitung";
 
 export default function NilaiPage({ params }: { params: Promise<{ kode: string }> }) {
   const { kode } = use(params);
   const mkKode = decodeURIComponent(kode).toUpperCase();
-  const { mataKuliah, nilaiUntuk, setNilaiOffering, daftarAsesmen, strukturUntuk, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih } = useApp();
+  const { mataKuliah, nilaiUntuk, setNilaiOffering, daftarAsesmen, strukturUntuk, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih, mahasiswaUntuk, tambahMahasiswa, hapusMahasiswa, imporMahasiswa } = useApp();
   const daftarTahun = daftarTahunOffering(mataKuliah, mkKode);
   const tahun = tahunAktifUntuk(mataKuliah, tahunDipilih, mkKode);
   const daftarKelas = daftarKelasOffering(mataKuliah, mkKode, tahun);
@@ -19,7 +20,7 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
 
   const struktur = strukturUntuk(mkKode);
   // Satu kolom per pasangan (asesmen, Sub-CPMK) yang berbobot di rubrik.
-  const kolom = useMemo(() => kolomNilai(struktur.sub, struktur.bobotW, daftarAsesmen), [struktur, daftarAsesmen]);
+  const kolom = kolomNilai(struktur.sub, struktur.bobotW, daftarAsesmen);
   const kunciKolom = (k: { asesmen: AsesmenKode; sub: string }) => `${k.asesmen}|${k.sub}`;
   const grupAsesmen = daftarAsesmen
     .map((a) => ({ asesmen: a, jumlah: kolom.filter((k) => k.asesmen === a.kode).length }))
@@ -36,6 +37,26 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
   const [cari, setCari] = useState("");
   const [pesan, setPesan] = useState("");
   const [kotor, setKotor] = useState(false);
+  const [modalMhs, setModalMhs] = useState(false);
+  const [formMhs, setFormMhs] = useState({ nrp: "", nama: "" });
+  const [galatMhs, setGalatMhs] = useState("");
+  const [galatImpor, setGalatImpor] = useState<string[]>([]);
+  const [hapusNrp, setHapusNrp] = useState<string | null>(null);
+
+  function simpanMahasiswa() {
+    const galatBaru = tambahMahasiswa({ ...formMhs, kelas });
+    if (galatBaru) return setGalatMhs(galatBaru);
+    setModalMhs(false);
+    setPesan(`Mahasiswa ${formMhs.nama.trim()} ditambahkan ke Kelas ${kelas}.`);
+  }
+
+  async function imporCSV(file: File | undefined) {
+    if (!file) return;
+    const { data, galat } = parseCSVMahasiswa(await file.text());
+    imporMahasiswa(data);
+    setGalatImpor(galat);
+    setPesan(`${data.length} mahasiswa diimpor${galat.length ? `, ${galat.length} baris dilewati (lihat rincian di bawah)` : ""}.`);
+  }
 
   if (konteksLalu !== konteks) {
     setKonteksLalu(konteks);
@@ -45,7 +66,7 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
   }
 
   const q = cari.trim().toLowerCase();
-  const roster = mahasiswaUntukKelas(kelas);
+  const roster = mahasiswaUntuk(kelas);
   const baris = q ? roster.filter((m) => m.nama.toLowerCase().includes(q) || m.nrp.includes(q)) : roster;
 
   const galat: string[] = [];
@@ -129,7 +150,21 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
           </div>
         </div> : null}
 
-        {roster.length === 0 ? <EmptyState title="Belum ada mahasiswa" desc="Tambahkan data mahasiswa terlebih dahulu sebelum mengisi nilai." /> : <div className="overflow-x-auto">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <Btn variant="outline" onClick={() => { setFormMhs({ nrp: "", nama: "" }); setGalatMhs(""); setModalMhs(true); }}>+ Tambah mahasiswa</Btn>
+          <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-within:ring-2 focus-within:ring-primary/25">
+            Impor CSV
+            <input type="file" accept=".csv,text/csv" className="sr-only" onChange={(e) => { void imporCSV(e.target.files?.[0]); e.target.value = ""; }} />
+          </label>
+          <span className="text-xs text-gray-500">Format CSV: kolom NRP, Nama, Kelas (pemisah koma atau titik koma).</span>
+        </div>
+        {galatImpor.length > 0 ? (
+          <ul className="mb-4 list-disc space-y-0.5 rounded-lg border border-amber-200 bg-amber-50 py-2 pl-8 pr-3 text-xs text-amber-800">
+            {galatImpor.map((g) => <li key={g}>{g}</li>)}
+          </ul>
+        ) : null}
+
+        {roster.length === 0 ? <EmptyState title="Belum ada mahasiswa" desc={`Tambahkan mahasiswa Kelas ${kelas} satu per satu atau impor dari file CSV, lalu isi nilainya.`} /> : <div className="overflow-x-auto">
           <table className="w-full min-w-[1400px] text-left text-sm">
             <thead>
               <tr>
@@ -153,8 +188,19 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
               {baris.map((m, i) => (
                 <tr key={m.nrp} className="hover:bg-gray-50/70">
                   <td className="py-1.5 pr-2 font-mono text-xs text-gray-400">{m.nrp}</td>
-                  <td className="max-w-44 truncate py-1.5 pr-2 text-[13px] font-medium text-gray-800" title={m.nama}>
-                    <span className="mr-1.5 text-[11px] text-gray-300">{i + 1}.</span>{m.nama}
+                  <td className="max-w-52 py-1.5 pr-2 text-[13px] font-medium text-gray-800" title={m.nama}>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[11px] text-gray-400">{i + 1}.</span>
+                      <span className="truncate">{m.nama}</span>
+                      {hapusNrp === m.nrp ? (
+                        <span className="ml-auto flex shrink-0 gap-1">
+                          <button type="button" onClick={() => { hapusMahasiswa(m.nrp); setHapusNrp(null); }} className="rounded px-1.5 py-0.5 text-[11px] font-semibold text-red-700 hover:bg-red-50">Hapus</button>
+                          <button type="button" onClick={() => setHapusNrp(null)} className="rounded px-1.5 py-0.5 text-[11px] text-gray-500 hover:bg-gray-100">Batal</button>
+                        </span>
+                      ) : (
+                        <button type="button" aria-label={`Hapus ${m.nama}`} onClick={() => setHapusNrp(m.nrp)} className="ml-auto shrink-0 rounded px-1.5 text-gray-400 hover:bg-gray-100 hover:text-red-600">×</button>
+                      )}
+                    </div>
                   </td>
                   {kolom.map((k) => {
                     const v = draft[m.nrp]?.[k.asesmen]?.[k.sub];
@@ -188,6 +234,24 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
             </tfoot>
           </table>
         </div>}
+
+        {modalMhs ? (
+          <Modal title={`Tambah mahasiswa — Kelas ${kelas}`} onClose={() => setModalMhs(false)}>
+            <div className="space-y-4">
+              {galatMhs ? <p className="rounded-lg bg-red-50 p-2.5 text-sm text-red-700">{galatMhs}</p> : null}
+              <Field label="NRP" htmlFor="mhs-nrp">
+                <input id="mhs-nrp" value={formMhs.nrp} onChange={(e) => setFormMhs({ ...formMhs, nrp: e.target.value })} className={inputCls} autoFocus />
+              </Field>
+              <Field label="Nama" htmlFor="mhs-nama">
+                <input id="mhs-nama" value={formMhs.nama} onChange={(e) => setFormMhs({ ...formMhs, nama: e.target.value })} className={inputCls} />
+              </Field>
+              <div className="flex justify-end gap-2">
+                <Btn variant="outline" onClick={() => setModalMhs(false)}>Batal</Btn>
+                <Btn onClick={simpanMahasiswa}>Simpan</Btn>
+              </div>
+            </div>
+          </Modal>
+        ) : null}
 
         <div className="mt-4 flex flex-wrap justify-end gap-2">
           <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-[#103968] transition hover:brightness-95">

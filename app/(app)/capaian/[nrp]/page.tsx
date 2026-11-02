@@ -8,8 +8,6 @@ import {
   DAFTAR_ASESMEN,
   DAFTAR_CPL,
   DAFTAR_IK,
-  DAFTAR_MAHASISWA,
-  mahasiswaUntukKelas,
   type AsesmenKode,
   type NilaiMahasiswa,
 } from "@/app/lib/data";
@@ -30,9 +28,9 @@ import { offeringTerbaru } from "@/app/lib/store";
 export default function DetailCapaianPage({ params, searchParams }: { params: Promise<{ nrp: string }>; searchParams: Promise<{ kode?: string | string[]; tahun?: string | string[] }> }) {
   const { nrp } = use(params);
   const query = use(searchParams);
-  const { nilaiUntuk, strukturUntuk, mataKuliah } = useApp();
-  const mhs = DAFTAR_MAHASISWA.find((m) => m.nrp === nrp);
-  const rosterKelas = mahasiswaUntukKelas(mhs?.kelas ?? "A");
+  const { nilaiUntuk, strukturUntuk, mataKuliah, mahasiswa, mahasiswaUntuk } = useApp();
+  const mhs = mahasiswa.find((m) => m.nrp === nrp);
+  const rosterKelas = mahasiswaUntuk(mhs?.kelas ?? "A");
   const penawaranKelas = mataKuliah.filter((mk) => mk.kelas === (mhs?.kelas ?? "A"));
   const kodeQuery = Array.isArray(query.kode) ? query.kode[0] : query.kode;
   const tahunQuery = Array.isArray(query.tahun) ? query.tahun[0] : query.tahun;
