@@ -5,18 +5,30 @@ import Link from "next/link";
 import { useApp, daftarTahunOffering, daftarKelasOffering, kelasAktifUntuk, tahunAktifUntuk } from "@/app/lib/store";
 import { DAFTAR_KELAS, mahasiswaUntukKelas, nilaiAwalUntuk, type AsesmenKode, type NilaiMap } from "@/app/lib/data";
 import { Btn, Card, EmptyState, PageHeading, inputCls } from "@/app/components/ui";
+import { hitungNilaiAkhir, hitungSub, kolomNilai } from "@/app/lib/hitung";
 
 export default function NilaiPage({ params }: { params: Promise<{ kode: string }> }) {
   const { kode } = use(params);
   const mkKode = decodeURIComponent(kode).toUpperCase();
-  const { mataKuliah, nilaiUntuk, setNilaiOffering, daftarAsesmen, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih } = useApp();
+  const { mataKuliah, nilaiUntuk, setNilaiOffering, daftarAsesmen, strukturUntuk, tahunDipilih, setTahunDipilih, kelasDipilih, setKelasDipilih } = useApp();
   const daftarTahun = daftarTahunOffering(mataKuliah, mkKode);
   const tahun = tahunAktifUntuk(mataKuliah, tahunDipilih, mkKode);
   const daftarKelas = daftarKelasOffering(mataKuliah, mkKode, tahun);
   const kelas = kelasAktifUntuk(mataKuliah, kelasDipilih, mkKode, tahun);
   const mk = mataKuliah.find((m) => m.kode === mkKode && m.tahun === tahun && m.kelas === kelas) ?? mataKuliah.find((m) => m.kode === mkKode);
 
-  const kolom = useMemo(() => daftarAsesmen.map((a) => a.kode), [daftarAsesmen]);
+  const struktur = strukturUntuk(mkKode);
+  // Satu kolom per pasangan (asesmen, Sub-CPMK) yang berbobot di rubrik.
+  const kolom = useMemo(() => kolomNilai(struktur.sub, struktur.bobotW, daftarAsesmen), [struktur, daftarAsesmen]);
+  const kunciKolom = (k: { asesmen: AsesmenKode; sub: string }) => `${k.asesmen}|${k.sub}`;
+  const grupAsesmen = daftarAsesmen
+    .map((a) => ({ asesmen: a, jumlah: kolom.filter((k) => k.asesmen === a.kode).length }))
+    .filter((g) => g.jumlah > 0);
+  // Bobot absolut pasangan terhadap MK (persen) = porsi w × bobot Sub-CPMK.
+  const bobotPersen = (k: { asesmen: AsesmenKode; sub: string }) => {
+    const sub = struktur.sub.find((s) => s.kode === k.sub);
+    return (struktur.bobotW[k.sub]?.[k.asesmen] ?? 0) * (sub?.bobot ?? 0);
+  };
   // Salinan kerja nilai penawaran aktif; disetel ulang saat konteks (MK/tahun) berubah.
   const konteks = `${mkKode}::${tahun}::${kelas}`;
   const [konteksLalu, setKonteksLalu] = useState(konteks);
@@ -39,13 +51,13 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
   const galat: string[] = [];
   for (const m of roster) {
     for (const k of kolom) {
-      const v = draft[m.nrp]?.[k];
-      if (v === undefined || v === null || Number.isNaN(v) || v < 0 || v > 100) galat.push(`${m.nrp}/${k}`);
+      const v = draft[m.nrp]?.[k.asesmen]?.[k.sub];
+      if (v === undefined || v === null || Number.isNaN(v) || v < 0 || v > 100) galat.push(`${m.nrp}/${kunciKolom(k)}`);
     }
   }
 
-  function ubah(nrp: string, k: AsesmenKode, v: number) {
-    setDraft((p) => ({ ...p, [nrp]: { ...p[nrp], [k]: v } }));
+  function ubah(nrp: string, k: { asesmen: AsesmenKode; sub: string }, v: number) {
+    setDraft((p) => ({ ...p, [nrp]: { ...p[nrp], [k.asesmen]: { ...p[nrp]?.[k.asesmen], [k.sub]: v } } }));
     setKotor(true);
   }
 
@@ -61,9 +73,10 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
 
   const rataKolom: Record<string, number> = {};
   for (const k of kolom) {
-    const arr = roster.map((m) => draft[m.nrp]?.[k] ?? 0);
-    rataKolom[k] = arr.length ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 100) / 100 : 0;
+    const arr = roster.map((m) => draft[m.nrp]?.[k.asesmen]?.[k.sub] ?? 0);
+    rataKolom[kunciKolom(k)] = arr.length ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 100) / 100 : 0;
   }
+  const nilaiAkhir = (nrp: string) => hitungNilaiAkhir(hitungSub(draft[nrp] ?? {}, struktur.bobotW, struktur.sub), struktur.sub);
 
   return (
     <div className="space-y-6">
@@ -117,13 +130,22 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
         </div> : null}
 
         {roster.length === 0 ? <EmptyState title="Belum ada mahasiswa" desc="Tambahkan data mahasiswa terlebih dahulu sebelum mengisi nilai." /> : <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px] text-left text-sm">
+          <table className="w-full min-w-[1400px] text-left text-sm">
             <thead>
+              <tr>
+                <th rowSpan={2} className="border-b border-gray-200 pb-3 pr-2 align-bottom text-xs font-semibold uppercase tracking-wide text-gray-500">NRP</th>
+                <th rowSpan={2} className="border-b border-gray-200 pb-3 pr-2 align-bottom text-xs font-semibold uppercase tracking-wide text-gray-500">Nama</th>
+                {grupAsesmen.map((g) => (
+                  <th key={g.asesmen.kode} colSpan={g.jumlah} className="border-l border-gray-200 px-1 pb-1 text-center text-xs font-semibold uppercase tracking-wide text-primary" title={g.asesmen.deskripsi}>{g.asesmen.nama}</th>
+                ))}
+                <th rowSpan={2} className="border-b border-l border-gray-200 px-2 pb-3 text-center align-bottom text-xs font-semibold uppercase tracking-wide text-gray-500">Nilai akhir</th>
+              </tr>
               <tr className="border-b border-gray-200">
-                <th className="pb-3 pr-2 text-xs font-semibold uppercase tracking-wide text-gray-500">NRP</th>
-                <th className="pb-3 pr-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Nama</th>
-                {daftarAsesmen.map((a) => (
-                  <th key={a.kode} className="px-1 pb-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" title={`${a.nama} — ${a.deskripsi}`}>{a.kode}</th>
+                {kolom.map((k, i) => (
+                  <th key={kunciKolom(k)} className={`px-1 pb-2 text-center text-xs font-medium text-gray-500 ${i === 0 || kolom[i - 1].asesmen !== k.asesmen ? "border-l border-gray-200" : ""}`} title={`${k.sub} — bobot ${bobotPersen(k).toFixed(0)}% dari nilai MK`}>
+                    {k.sub.replace("Sub-CPMK.", "Sub ")}
+                    <span className="block text-[11px] font-normal text-gray-400">{bobotPersen(k).toFixed(0)}%</span>
+                  </th>
                 ))}
               </tr>
             </thead>
@@ -135,19 +157,21 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
                     <span className="mr-1.5 text-[11px] text-gray-300">{i + 1}.</span>{m.nama}
                   </td>
                   {kolom.map((k) => {
-                    const v = draft[m.nrp]?.[k];
+                    const v = draft[m.nrp]?.[k.asesmen]?.[k.sub];
                     const valid = v !== undefined && v !== null && !Number.isNaN(v) && v >= 0 && v <= 100;
                     return (
-                      <td key={k} className="px-1 py-1.5">
+                      <td key={kunciKolom(k)} className="px-1 py-1.5">
                         <input
                           type="number" min={0} max={100}
                           value={v ?? ""}
-                          onChange={(e) => ubah(m.nrp, k, Number(e.target.value))}
+                          aria-label={`${m.nama} — ${k.asesmen} ${k.sub}`}
+                          onChange={(e) => ubah(m.nrp, k, e.target.value === "" ? Number.NaN : Number(e.target.value))}
                           className={`w-[68px] rounded-md border px-2 py-1.5 text-center font-mono text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/25 ${valid ? "border-gray-200 text-gray-800" : "border-red-400 bg-red-50 text-red-700"}`}
                         />
                       </td>
                     );
                   })}
+                  <td className="border-l border-gray-100 px-2 py-1.5 text-center font-mono text-[13px] font-bold text-primary">{nilaiAkhir(m.nrp).toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
@@ -155,8 +179,11 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
               <tr className="border-t-2 border-gray-200 bg-gray-50/60">
                 <td colSpan={2} className="py-2.5 pr-2 text-right text-xs font-bold text-primary">Rata-rata</td>
                 {kolom.map((k) => (
-                  <td key={k} className="px-1 py-2.5 text-center font-mono text-[13px] font-bold text-primary">{rataKolom[k]?.toFixed(1)}</td>
+                  <td key={kunciKolom(k)} className="px-1 py-2.5 text-center font-mono text-[13px] font-bold text-primary">{rataKolom[kunciKolom(k)]?.toFixed(1)}</td>
                 ))}
+                <td className="px-2 py-2.5 text-center font-mono text-[13px] font-bold text-primary">
+                  {roster.length ? (roster.reduce((a, m) => a + nilaiAkhir(m.nrp), 0) / roster.length).toFixed(2) : "—"}
+                </td>
               </tr>
             </tfoot>
           </table>

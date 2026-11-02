@@ -47,3 +47,37 @@ describe("perbaikan struktur tersimpan", () => {
     assert.deepEqual(lengkapiBobotSub(lama, seed).sub.map((s) => s.bobot), [5, 15, 15, 15, 10, 15, 10, 15]);
   });
 });
+
+import { BOBOT_W, DAFTAR_ASESMEN, type NilaiMahasiswa } from "./data";
+import { hitungCapaianSatuMahasiswa, hitungSub, kolomNilai } from "./hitung";
+
+const penuh = (n: number): NilaiMahasiswa =>
+  Object.fromEntries(DAFTAR_ASESMEN.map((a) => [a.kode, Object.fromEntries(DAFTAR_SUB_CPMK.map((s) => [s.kode, n]))]));
+
+describe("nilai per (asesmen, Sub-CPMK)", () => {
+  it("semua sel 80 → Sub dan nilai akhir 80", () => {
+    const c = hitungCapaianSatuMahasiswa(penuh(80));
+    assert.ok(Object.values(c.sub).every((v) => v === 80), JSON.stringify(c.sub));
+    assert.equal(c.nilaiAkhir, 80);
+  });
+  it("hanya Kuis Sub-CPMK.1 = 0 → Sub-CPMK.1 = 60, nilai akhir 98", () => {
+    const n = penuh(100);
+    n.T1!["Sub-CPMK.1"] = 0;
+    const c = hitungCapaianSatuMahasiswa(n);
+    assert.equal(c.sub["Sub-CPMK.1"], 60);
+    assert.equal(c.nilaiAkhir, 98);
+  });
+  it("asesmen yang belum diisi dihitung 0, bukan NaN", () => {
+    const c = hitungCapaianSatuMahasiswa({ T2: { "Sub-CPMK.2": 90 } });
+    assert.equal(c.sub["Sub-CPMK.2"], 36);
+    assert.ok(Object.values(c.sub).every((v) => !Number.isNaN(v)));
+  });
+  it("Sub-CPMK tanpa asesmen berbobot → 0", () => {
+    assert.equal(hitungSub(penuh(90), { ...BOBOT_W, "Sub-CPMK.1": {} })["Sub-CPMK.1"], 0);
+  });
+  it("kolomNilai Data Mining = 19 kolom, Kuis berisi Sub-CPMK 1, 3, 5", () => {
+    const k = kolomNilai(DAFTAR_SUB_CPMK, BOBOT_W, DAFTAR_ASESMEN);
+    assert.equal(k.length, 19);
+    assert.deepEqual(k.filter((x) => x.asesmen === "T1").map((x) => x.sub), ["Sub-CPMK.1", "Sub-CPMK.3", "Sub-CPMK.5"]);
+  });
+});

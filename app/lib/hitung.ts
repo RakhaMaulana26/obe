@@ -8,7 +8,9 @@ import {
   DAFTAR_IK,
   DAFTAR_SUB_CPMK,
   TABEL_GRADE,
+  type Asesmen,
   type AsesmenKode,
+  type NilaiMahasiswa,
   type NilaiMap,
   type SubCPMK,
 } from "./data";
@@ -31,13 +33,15 @@ export interface CapaianMahasiswa {
   cpmk: Record<string, number>;
   ik: Record<string, number>; // IK-1..5
   cpl: Record<string, number>;
+  /** Nilai akhir MK = Σ skor Sub-CPMK × bobot Sub-CPMK / 100. */
+  nilaiAkhir: number;
 }
 
 type BobotW = Record<string, Partial<Record<AsesmenKode, number>>>;
 
-/** Persamaan (3.1): S_Sub_j = Σ n_i · w_ij */
+/** Persamaan (3.1): S_Sub_j = Σ_a n_aj · w_aj — n_aj = nilai asesmen a pada indikator Sub-CPMK j. */
 export function hitungSub(
-  nilai: Record<AsesmenKode, number>,
+  nilai: NilaiMahasiswa,
   bobotW?: BobotW,
   subList: SubCPMK[] = DAFTAR_SUB_CPMK,
 ): Record<string, number> {
@@ -47,7 +51,7 @@ export function hitungSub(
     const w = bobotAktif[s.kode] ?? {};
     let total = 0;
     for (const [kode, b] of Object.entries(w)) {
-      total += (nilai[kode as AsesmenKode] ?? 0) * (b ?? 0);
+      total += (nilai[kode as AsesmenKode]?.[s.kode] ?? 0) * (b ?? 0);
     }
     out[s.kode] = round2(total);
   }
@@ -100,7 +104,7 @@ export function hitungCPL(ik: Record<string, number>): Record<string, number> {
 }
 
 export function hitungCapaianSatuMahasiswa(
-  nilai: Record<AsesmenKode, number>,
+  nilai: NilaiMahasiswa,
   bobot?: { w?: BobotW; u?: Record<string, Partial<Record<string, number>>> },
   subList: SubCPMK[] = DAFTAR_SUB_CPMK,
   cpmkList: { kode: string }[] = DAFTAR_CPMK,
@@ -109,7 +113,29 @@ export function hitungCapaianSatuMahasiswa(
   const cpmk = hitungCPMK(sub, subList, cpmkList);
   const ik = hitungIK(cpmk, bobot?.u);
   const cpl = hitungCPL(ik);
-  return { nrp: "", sub, cpmk, ik, cpl };
+  return { nrp: "", sub, cpmk, ik, cpl, nilaiAkhir: hitungNilaiAkhir(sub, subList) };
+}
+
+/** Nilai akhir MK = Σ_j S_Sub_j · bobot_j / 100 (bobot Sub-CPMK dalam persen). */
+export function hitungNilaiAkhir(sub: Record<string, number>, subList: SubCPMK[] = DAFTAR_SUB_CPMK): number {
+  let total = 0;
+  for (const s of subList) total += (sub[s.kode] ?? 0) * (s.bobot ?? 0);
+  return round2(total / 100);
+}
+
+/** Pasangan (asesmen, Sub-CPMK) yang berbobot > 0 — kolom input nilai, urut asesmen lalu Sub-CPMK. */
+export function kolomNilai(
+  subList: SubCPMK[],
+  bobotW: BobotW,
+  asesmenList: Asesmen[],
+): Array<{ asesmen: AsesmenKode; sub: string }> {
+  const out: Array<{ asesmen: AsesmenKode; sub: string }> = [];
+  for (const a of asesmenList) {
+    for (const s of subList) {
+      if ((bobotW[s.kode]?.[a.kode] ?? 0) > 0) out.push({ asesmen: a.kode, sub: s.kode });
+    }
+  }
+  return out;
 }
 
 export function hitungSemua(
@@ -129,7 +155,7 @@ export function hitungSemua(
 /** Rata-rata kelas per kode capaian. */
 export function rataRata(
   semua: Record<string, CapaianMahasiswa>,
-  jenjang: keyof Omit<CapaianMahasiswa, "nrp">,
+  jenjang: "sub" | "cpmk" | "ik" | "cpl",
 ): Record<string, number> {
   const keys = new Set<string>();
   for (const c of Object.values(semua)) for (const k of Object.keys(c[jenjang])) keys.add(k);

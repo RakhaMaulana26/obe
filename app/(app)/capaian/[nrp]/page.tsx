@@ -10,12 +10,12 @@ import {
   DAFTAR_IK,
   DAFTAR_MAHASISWA,
   mahasiswaUntukKelas,
+  type AsesmenKode,
+  type NilaiMahasiswa,
 } from "@/app/lib/data";
 import {
-  hitungCPL,
-  hitungCPMK,
-  hitungIK,
-  hitungSub,
+  hitungCapaianSatuMahasiswa,
+  kolomNilai,
   konversiHuruf,
   statusCapaian,
   susunRekomendasi,
@@ -48,11 +48,7 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
 
   const hasil = (() => {
     if (!nilaiMhs) return null;
-    const sub = hitungSub(nilaiMhs, struktur.bobotW, struktur.sub);
-    const cpmk = hitungCPMK(sub, struktur.sub, struktur.cpmk);
-    const ik = hitungIK(cpmk, struktur.bobotU);
-    const cpl = hitungCPL(ik);
-    return { sub, cpmk, ik, cpl };
+    return hitungCapaianSatuMahasiswa(nilaiMhs, { w: struktur.bobotW, u: struktur.bobotU }, struktur.sub, struktur.cpmk);
   })();
 
   if (!mhs || !nilaiMhs || !hasil) {
@@ -73,19 +69,19 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
   const mhsNext = idx >= 0 && idx < rosterKelas.length - 1 ? rosterKelas[idx + 1] : null;
   const hrefMahasiswa = (nomor: string) => `/capaian/${nomor}?kode=${encodeURIComponent(offering.kode)}&tahun=${encodeURIComponent(offering.tahun)}`;
   const saran = susunRekomendasi(
-    { nrp, sub: hasil.sub, cpmk: hasil.cpmk, ik: hasil.ik, cpl: hasil.cpl },
+    { ...hasil, nrp },
     ambang,
     daftarSub,
     bobotW,
   );
 
   // Lolos guard di atas: nilaiMhs pasti terisi — alias bertipe pasti untuk closure di bawah.
-  const nm: Record<string, number> = nilaiMhs;
+  const nm: NilaiMahasiswa = nilaiMhs;
 
   function rincianSub(kode: string): string {
     const w = bobotW[kode] ?? {};
     return Object.entries(w)
-      .map(([a, b]) => `${nm[a]}×${Number(b).toFixed(2)}`)
+      .map(([a, b]) => `${nm[a as AsesmenKode]?.[kode] ?? 0}×${Number(b).toFixed(2)}`)
       .join(" + ");
   }
 
@@ -207,16 +203,27 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
       {langkah === 0 ? (
       <Card>
         <h3 className="mb-1 text-base font-bold text-primary">Langkah 1 — Nilai asesmen (masukan)</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">T1–T4 tugas, Praktikum, ETS, EAS • skala 0–100. Ini satu-satunya data yang diinput dosen.</p>
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:grid-cols-7">
-          {DAFTAR_ASESMEN.map((a) => (
-            <div key={a.kode} className="rounded-lg bg-gray-50 p-3 text-center">
-              <p className="text-xs font-bold text-primary">{a.kode}</p>
-              <p className="truncate text-[11px] text-gray-400">{a.nama}</p>
-              <p className="mt-1 font-mono text-xl font-bold text-gray-800">{nilaiMhs[a.kode]}</p>
-            </div>
-          ))}
+        <p className="mb-4 text-xs leading-relaxed text-gray-500">Nilai tiap asesmen per indikator Sub-CPMK sesuai rubrik • skala 0–100. Ini satu-satunya data yang diinput dosen.</p>
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
+          {DAFTAR_ASESMEN.map((a) => {
+            const kolom = kolomNilai(daftarSub, bobotW, [a]);
+            if (kolom.length === 0) return null;
+            return (
+              <div key={a.kode} className="rounded-lg bg-gray-50 p-3">
+                <p className="text-xs font-bold text-primary">{a.nama}</p>
+                <ul className="mt-2 space-y-1">
+                  {kolom.map(({ sub }) => (
+                    <li key={sub} className="flex items-center justify-between gap-2 text-xs text-gray-600">
+                      <span>{sub}</span>
+                      <span className="font-mono text-sm font-bold text-gray-800">{nilaiMhs[a.kode]?.[sub] ?? 0}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
+        <p className="mt-4 text-sm text-gray-700">Nilai akhir mata kuliah: <span className="font-mono font-bold text-primary">{hasil.nilaiAkhir.toFixed(2)}</span> <BadgeHuruf skor={hasil.nilaiAkhir} /></p>
       </Card>
       ) : null}
 

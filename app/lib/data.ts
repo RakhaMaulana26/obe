@@ -2,7 +2,7 @@ import kurikulum2026 from "./sumber-kurikulum-2026.json";
 import rpsRubrikDataMining from "./sumber-dokumen-datamining.json";
 import { turunkanBobotU } from "./bobot";
 
-export type AsesmenKode = "T1" | "T2" | "T3" | "T4" | "Prak" | "ETS" | "EAS";
+export type AsesmenKode = "T1" | "T2" | "T3" | "ETS" | "EAS";
 export type KategoriMataKuliah = "wajib" | "pilihan-institusi" | "pilihan-prodi" | "belum-ditetapkan";
 
 export interface Asesmen {
@@ -77,7 +77,10 @@ export interface Mahasiswa {
 
 export const DAFTAR_KELAS = ["A", "B", "C", "D"] as const;
 
-export type NilaiMap = Record<string, Record<AsesmenKode, number>>;
+/** Nilai satu mahasiswa: nilai[asesmen][kodeSubCPMK] (0–100), sesuai lembar penilaian rubrik. */
+export type NilaiMahasiswa = Partial<Record<AsesmenKode, Record<string, number>>>;
+/** Kunci = NRP. */
+export type NilaiMap = Record<string, NilaiMahasiswa>;
 
 export interface KurikulumMataKuliah {
   kode: string;

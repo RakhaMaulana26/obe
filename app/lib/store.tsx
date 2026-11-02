@@ -176,7 +176,7 @@ function hapusDataMiningIT() {
         JSON.stringify(daftarMK.filter((mk) => !isDataMiningIT(mk))),
       );
 
-      for (const key of ["obe-nilai-offering", "obe-pemetaan-kurikulum", "obe-struktur-mk", "obe-tahun-dipilih", "obe-kelas-dipilih"]) {
+      for (const key of [KUNCI_NILAI, "obe-pemetaan-kurikulum", "obe-struktur-mk", "obe-tahun-dipilih", "obe-kelas-dipilih"]) {
         const record = bacaRecord(key);
         for (const kode of kodeTerhapus) {
           delete record[kode];
@@ -295,20 +295,19 @@ function normalisasiMK(daftar: Array<Partial<MataKuliahItem> & { kode: string; s
   });
 }
 
-/** Benih dataset nilai per penawaran: data lama (bila ada) atau dataset awal per MK+tahun. */
+/**
+ * Nilai disimpan per (asesmen, Sub-CPMK) sejak v2. Data format lama ("obe-nilai", "obe-nilai-offering")
+ * berisi satu angka per asesmen dan tidak dapat dipetakan ke indikator, sehingga diabaikan.
+ */
+const KUNCI_NILAI = "obe-nilai-offering-v2";
+
+/** Benih dataset nilai per penawaran: data tersimpan atau dataset kosong per MK+tahun+kelas. */
 function benihNilaiOffering(daftar: MataKuliahItem[], tersimpan: Record<string, NilaiMap> | null): Record<string, NilaiMap> {
-  const nilaiLama = baca<NilaiMap | null>("obe-nilai", null);
   const out: Record<string, NilaiMap> = { ...(tersimpan ?? {}) };
   for (const m of daftar) {
-    const kunciBaru = kunciOffering(m.kode, m.tahun, m.kelas);
-    if (out[kunciBaru]) continue;
-    const kunciLama = `${m.kode.toUpperCase()}::${m.tahun.trim()}`;
-    const nilaiMigrasi = m.kelas === "A" ? out[kunciLama] ?? nilaiLama : undefined;
-    out[kunciBaru] = nilaiMigrasi
-      ? (JSON.parse(JSON.stringify(nilaiMigrasi)) as NilaiMap)
-      : nilaiAwalUntuk(m.kode, m.tahun, m.kelas);
+    const kunci = kunciOffering(m.kode, m.tahun, m.kelas);
+    if (!out[kunci]) out[kunci] = nilaiAwalUntuk(m.kode, m.tahun, m.kelas);
   }
-  for (const m of daftar) delete out[`${m.kode.toUpperCase()}::${m.tahun.trim()}`];
   return out;
 }
 
@@ -380,7 +379,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [pengguna, setPengguna] = useState<Pengguna | null>(() => baca<Pengguna | null>("obe-user", null));
   const [mataKuliah, setMataKuliah] = useState<MataKuliahItem[]>(() => daftarMKFinal());
   const [nilaiOffering, setNilaiOfferingState] = useState<Record<string, NilaiMap>>(() => {
-    const tersimpan = baca<Record<string, NilaiMap> | null>("obe-nilai-offering", null);
+    const tersimpan = baca<Record<string, NilaiMap> | null>(KUNCI_NILAI, null);
     return benihNilaiOffering(daftarMKFinal(), tersimpan);
   });
   const [tahunDipilih, setTahunDipilihState] = useState<Record<string, string>>(() =>
@@ -393,7 +392,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [daftarAsesmen, setDaftarAsesmen] = useState<Asesmen[]>(() => baca("obe-asesmen", DAFTAR_ASESMEN));
 
   useEffect(() => {
-    simpan("obe-nilai-offering", nilaiOffering);
+    simpan(KUNCI_NILAI, nilaiOffering);
   }, [nilaiOffering]);
   useEffect(() => {
     simpan("obe-tahun-dipilih", tahunDipilih);
