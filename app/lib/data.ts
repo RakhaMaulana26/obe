@@ -258,11 +258,16 @@ export interface SeedMK extends KatalogMK {
   dosen: string;
 }
 
-export const MK_SEED: SeedMK[] = KATALOG_MK.map((mk) => ({
-  ...mk,
-  tahun: "2026/2027",
-  dosen: mk.kode === KODE_MK_DATAMINING ? DATA_RPS_DATAMINING.mataKuliah.dosen : "",
-}));
+export const MK_SEED: SeedMK[] = KATALOG_MK.flatMap((mk) => {
+  const seed = {
+    ...mk,
+    tahun: "2026/2027",
+    dosen: mk.kode === KODE_MK_DATAMINING ? DATA_RPS_DATAMINING.mataKuliah.dosen : "",
+  };
+  return mk.kode === KODE_MK_DATAMINING
+    ? [{ ...seed, kelas: "A" }, { ...seed, kelas: "B" }]
+    : [seed];
+});
 
 export function buatStrukturDummy(mk: Pick<SeedMK, "kode" | "nama" | "cpl"> & { bahanKajian?: string[] }): StrukturMataKuliah {
   const struktur = STRUKTUR_MK_SEED[mk.kode.toUpperCase()];
@@ -297,8 +302,74 @@ export const RPS_SEED: RPSSeed[] = [{
   isDummy: false,
 }];
 
-export function nilaiAwalUntuk(_kode: string, _tahun: string, _kelas = "A"): NilaiMap {
-  return {};
+export const DAFTAR_MAHASISWA: Mahasiswa[] = [
+  { nrp: "3123600001", nama: "Muhammad Rafi Rizaldi", kelas: "A" },
+  { nrp: "3123600002", nama: "Lintang Arum Sari", kelas: "A" },
+  { nrp: "3123600003", nama: "Zalfail Mumtaza Attamami", kelas: "A" },
+  { nrp: "3123600004", nama: "Muhammad Fajar Siddiq", kelas: "A" },
+  { nrp: "3123600005", nama: "Ivan Rahmat Prakasa", kelas: "A" },
+  { nrp: "3123600006", nama: "Fransiska Elsa Dina Mareta", kelas: "A" },
+  { nrp: "3123600007", nama: "Rifki Alaudin", kelas: "A" },
+  { nrp: "3123600008", nama: "Salwa Fadhila Rahmania", kelas: "A" },
+  { nrp: "3123600009", nama: "Kansa Adeneva Riti Syarani", kelas: "A" },
+  { nrp: "3123600010", nama: "Yofi Yudistian", kelas: "A" },
+  { nrp: "3123600011", nama: "Mohammad Rizaldy Ramadhan", kelas: "A" },
+  { nrp: "3123600012", nama: "Adrian Mendienta Tumanggor", kelas: "A" },
+  { nrp: "3123600013", nama: "Nanda Ahmad Zidan", kelas: "A" },
+  { nrp: "3123600014", nama: "Shalsabilla Wahyu Arifhana", kelas: "A" },
+  { nrp: "3123600015", nama: "Nayla Herfiana Putri", kelas: "A" },
+  { nrp: "3123600016", nama: "Muhammad Alif Aditya", kelas: "A" },
+  { nrp: "3123600017", nama: "Salma Afifa Azis", kelas: "A" },
+  { nrp: "3123600018", nama: "Eugenia Valiant Van True", kelas: "A" },
+  { nrp: "3123600019", nama: "Raihan Malano Arrasyid", kelas: "A" },
+  { nrp: "3123600020", nama: "Vemas Satria Edy Pratama", kelas: "A" },
+  { nrp: "3123600021", nama: "Muhammad Zaidan Zhafiz Satrianto", kelas: "A" },
+  { nrp: "3123600022", nama: "George Winston Kalim", kelas: "A" },
+  { nrp: "3123600023", nama: "Muhammad Felda Hibatullah", kelas: "A" },
+  { nrp: "3123600024", nama: "Shafrial Azis", kelas: "A" },
+  { nrp: "3123600025", nama: "Moch. Alif Akbar", kelas: "A" },
+  { nrp: "3123600026", nama: "Renaldy Izza Briliandin Tino Saputra", kelas: "A" },
+  { nrp: "3123600027", nama: "Muhammad Raihan Ghani", kelas: "A" },
+  { nrp: "3123600028", nama: "Muhammad Zaky Mubarok", kelas: "A" },
+  { nrp: "3123600029", nama: "Mohammad Zidan Wianto Putra", kelas: "A" },
+  { nrp: "3123600030", nama: "Aldino Matasik", kelas: "A" },
+  { nrp: "3123600031", nama: "Dwi Indah Cahyani", kelas: "B" },
+  { nrp: "3123600032", nama: "Aulia Syfa Ramadhani", kelas: "B" },
+  { nrp: "3123600033", nama: "Sarah Rizqi Firyal", kelas: "B" },
+  { nrp: "3123600034", nama: "Yeremia Christian Candra Octaviano", kelas: "B" },
+  { nrp: "3123600035", nama: "Naufal Zhafransyah Setiawan", kelas: "B" },
+  { nrp: "3123600036", nama: "Eka Danis Saputri", kelas: "B" },
+  { nrp: "3123600037", nama: "Tiara Vania Wijaya Putri", kelas: "B" },
+  { nrp: "3123600038", nama: "Alfansyah Ahmad Al Ghozaly", kelas: "B" },
+  { nrp: "3123600039", nama: "Halimatuz Zahra Sakin Sabilla", kelas: "B" },
+  { nrp: "3123600040", nama: "Nurul Fatimah Azmi", kelas: "B" },
+  { nrp: "3123600041", nama: "Marcel Dwi Astika", kelas: "B" },
+  { nrp: "3123600042", nama: "Saifullah Ahmad Musyanto", kelas: "B" },
+  { nrp: "3123600043", nama: "Ridho Fahrizal", kelas: "B" },
+  { nrp: "3123600044", nama: "Muhammad Farhan Hibatullah Akbar", kelas: "B" },
+  { nrp: "3123600045", nama: "Mohammad Farrel Ponco Hutomo", kelas: "B" },
+  { nrp: "3123600046", nama: "Moh. Nizar Nugraha Adi", kelas: "B" },
+  { nrp: "3123600047", nama: "Muhammad Ayman Fahad", kelas: "B" },
+  { nrp: "3123600048", nama: "Rakha Maulana Kaysah Putra", kelas: "B" },
+  { nrp: "3123600049", nama: "Sonny Kurniadi", kelas: "B" },
+  { nrp: "3123600050", nama: "Ali Akbar Nafis", kelas: "B" },
+  { nrp: "3123600051", nama: "M. Filsaf Aelang Abilt", kelas: "B" },
+  { nrp: "3123600052", nama: "Rangga Rizqy Awanda Putra", kelas: "B" },
+  { nrp: "3123600053", nama: "Nickolas Yudistira Krisando", kelas: "B" },
+  { nrp: "3123600054", nama: "Julio Betara Affandi", kelas: "B" },
+  { nrp: "3123600055", nama: "Andhika Fadli Bhaskara", kelas: "B" },
+  { nrp: "3123600056", nama: "Muhammad Satrio Asadel", kelas: "B" },
+  { nrp: "3123600058", nama: "Aisha Sabina", kelas: "B" },
+  { nrp: "3123600060", nama: "Ibrahim Ahmad Al-'Ashim", kelas: "B" },
+];
+
+export function nilaiAwalUntuk(kode: string, _tahun: string, kelas = "A"): NilaiMap {
+  const kelasAktif = kelas.toUpperCase();
+  if (kode.toUpperCase() !== KODE_MK_DATAMINING || !["A", "B"].includes(kelasAktif)) return {};
+  return Object.fromEntries(
+    DAFTAR_MAHASISWA.filter((mahasiswa) => mahasiswa.kelas === kelasAktif)
+      .map((mahasiswa) => [mahasiswa.nrp, {}]),
+  );
 }
 
 export const NILAI_AWAL: NilaiMap = {};

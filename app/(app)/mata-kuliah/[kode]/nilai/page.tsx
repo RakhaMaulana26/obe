@@ -92,15 +92,23 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
     setPesan(`Nilai ${mkKode} tahun ${tahun} Kelas ${kelas} tersimpan. Dashboard dan detail capaian otomatis menghitung ulang.`);
   }
 
-  const rataKolom: Record<string, number> = {};
+  const rataKolom: Record<string, number | null> = {};
   for (const k of kolom) {
-    const arr = roster.map((m) => {
-      const v = draft[m.nrp]?.[k.asesmen]?.[k.sub];
-      return typeof v === "number" && Number.isFinite(v) ? v : 0;
-    });
-    rataKolom[kunciKolom(k)] = arr.length ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 100) / 100 : 0;
+    const arr = roster
+      .map((m) => draft[m.nrp]?.[k.asesmen]?.[k.sub])
+      .filter((v): v is number => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 100);
+    rataKolom[kunciKolom(k)] = arr.length
+      ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 100) / 100
+      : null;
   }
-  const nilaiAkhir = (nrp: string) => hitungNilaiAkhir(hitungSub(draft[nrp] ?? {}, struktur.bobotW, struktur.sub), struktur.sub);
+  const nilaiAkhir = (nrp: string): number | null => {
+    const nilai = draft[nrp] ?? {};
+    const lengkap = kolom.length > 0 && kolom.every((k) => {
+      const skor = nilai[k.asesmen]?.[k.sub];
+      return typeof skor === "number" && Number.isFinite(skor) && skor >= 0 && skor <= 100;
+    });
+    return lengkap ? hitungNilaiAkhir(hitungSub(nilai, struktur.bobotW, struktur.sub), struktur.sub) : null;
+  };
 
   return (
     <div className="space-y-6">
@@ -220,18 +228,26 @@ export default function NilaiPage({ params }: { params: Promise<{ kode: string }
                       </td>
                     );
                   })}
-                  <td className="border-l border-gray-100 px-2 py-1.5 text-center font-mono text-[13px] font-bold text-primary">{nilaiAkhir(m.nrp).toFixed(2)}</td>
+                  <td className="border-l border-gray-100 px-2 py-1.5 text-center font-mono text-[13px] font-bold text-primary">{nilaiAkhir(m.nrp)?.toFixed(2) ?? "—"}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
               <tr className="border-t-2 border-gray-200 bg-gray-50/60">
                 <td colSpan={2} className="py-2.5 pr-2 text-right text-xs font-bold text-primary">Rata-rata</td>
-                {kolom.map((k) => (
-                  <td key={kunciKolom(k)} className="px-1 py-2.5 text-center font-mono text-[13px] font-bold text-primary">{rataKolom[kunciKolom(k)]?.toFixed(1)}</td>
-                ))}
+                {kolom.map((k) => {
+                  const rata = rataKolom[kunciKolom(k)];
+                  return (
+                    <td key={kunciKolom(k)} className="px-1 py-2.5 text-center font-mono text-[13px] font-bold text-primary">{rata === null ? "—" : rata.toFixed(1)}</td>
+                  );
+                })}
                 <td className="px-2 py-2.5 text-center font-mono text-[13px] font-bold text-primary">
-                  {roster.length ? (roster.reduce((a, m) => a + nilaiAkhir(m.nrp), 0) / roster.length).toFixed(2) : "—"}
+                  {(() => {
+                    const nilaiTerisi = roster.map((m) => nilaiAkhir(m.nrp)).filter((nilai): nilai is number => nilai !== null);
+                    return nilaiTerisi.length
+                      ? (nilaiTerisi.reduce((total, nilai) => total + nilai, 0) / nilaiTerisi.length).toFixed(2)
+                      : "—";
+                  })()}
                 </td>
               </tr>
             </tfoot>

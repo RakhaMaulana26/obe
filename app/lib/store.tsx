@@ -6,6 +6,7 @@ import {
   DAFTAR_KELAS,
   DAFTAR_CPL,
   DAFTAR_IK,
+  DAFTAR_MAHASISWA,
   DAFTAR_PL,
   MK_SEED,
   PEMETAAN_KURIKULUM_SEED,
@@ -56,6 +57,7 @@ export const TAHUN_DEFAULT = "";
 
 const KUNCI_RESET_DATA = "obe-data-kosong-v1";
 const KUNCI_IMPORT_SUMBER = "obe-import-sumber-kurikulum-2026-v1";
+const KUNCI_IMPORT_ROSTER_WORKSHOP = "obe-import-roster-workshop-dm-v1";
 const KUNCI_HAPUS_DATA_MINING_IT = "obe-hapus-data-mining-it-v1";
 
 function isDataMiningIT(nilai: unknown): nilai is { kode: string; nama: string } {
@@ -152,6 +154,28 @@ function muatDataSumberBerkas() {
 }
 
 /** Hapus entri lokal Data Mining berkode IT/TI yang tidak berasal dari workbook. */
+function muatSeedRosterWorkshop() {
+  if (typeof window === "undefined") return;
+  try {
+    if (window.localStorage.getItem(KUNCI_IMPORT_ROSTER_WORKSHOP) === "1") return;
+
+    const daftarMK = bacaDataTersimpan<MataKuliahItem[]>("obe-mk", []);
+    const offeringAda = new Set(daftarMK.map((mk) => `${mk.kode.toUpperCase()}::${mk.tahun}::${mk.kelas.toUpperCase()}`));
+    const offeringBaru = MK_SEED.filter((mk) => mk.kode === "TI045105" && !offeringAda.has(`${mk.kode}::${mk.tahun}::${mk.kelas}`));
+    if (offeringBaru.length > 0) {
+      window.localStorage.setItem("obe-mk", JSON.stringify([...daftarMK, ...offeringBaru]));
+    }
+
+    const mahasiswaTersimpan = daftarMahasiswaValid(bacaDataTersimpan<unknown>("obe-mahasiswa", []));
+    const mahasiswaGabungan = new Map(mahasiswaTersimpan.map((mahasiswa) => [mahasiswa.nrp, mahasiswa]));
+    for (const mahasiswa of DAFTAR_MAHASISWA) mahasiswaGabungan.set(mahasiswa.nrp, mahasiswa);
+    window.localStorage.setItem("obe-mahasiswa", JSON.stringify([...mahasiswaGabungan.values()]));
+    window.localStorage.setItem(KUNCI_IMPORT_ROSTER_WORKSHOP, "1");
+  } catch {
+    /* Impor diulang pada pemuatan aplikasi berikutnya jika penyimpanan belum tersedia. */
+  }
+}
+
 function hapusDataMiningIT() {
   if (typeof window === "undefined") return;
   try {
@@ -308,7 +332,10 @@ function benihNilaiOffering(daftar: MataKuliahItem[], tersimpan: Record<string, 
   const out: Record<string, NilaiMap> = { ...(tersimpan ?? {}) };
   for (const m of daftar) {
     const kunci = kunciOffering(m.kode, m.tahun, m.kelas);
-    if (!out[kunci]) out[kunci] = nilaiAwalUntuk(m.kode, m.tahun, m.kelas);
+    out[kunci] = {
+      ...nilaiAwalUntuk(m.kode, m.tahun, m.kelas),
+      ...(out[kunci] ?? {}),
+    };
   }
   return out;
 }
@@ -387,6 +414,7 @@ const AppContext = createContext<AppState | null>(null);
 export function AppProvider({ children }: { children: ReactNode }) {
   kosongkanDataLokalLama();
   muatDataSumberBerkas();
+  muatSeedRosterWorkshop();
   hapusDataMiningIT();
   // Inisialisasi malas dari localStorage (aman untuk prerender server: baca() mengembalikan fallback).
   const [pengguna, setPengguna] = useState<Pengguna | null>(() => baca<Pengguna | null>("obe-user", null));
@@ -403,7 +431,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const [strukturMK, setStrukturMK] = useState<Record<string, StrukturMataKuliah>>(() => strukturMKAwal(mataKuliah));
   const [daftarAsesmen, setDaftarAsesmen] = useState<Asesmen[]>(() => baca("obe-asesmen", DAFTAR_ASESMEN));
-  const [mahasiswa, setMahasiswa] = useState<Mahasiswa[]>(() => daftarMahasiswaValid(baca<unknown>("obe-mahasiswa", [])));
+  const [mahasiswa, setMahasiswa] = useState<Mahasiswa[]>(() => daftarMahasiswaValid(baca<unknown>("obe-mahasiswa", DAFTAR_MAHASISWA)));
 
   useEffect(() => {
     simpan(KUNCI_NILAI, nilaiOffering);
