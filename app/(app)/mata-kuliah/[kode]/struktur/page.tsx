@@ -23,7 +23,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
   const [modalCpmk, setModalCpmk] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string }>(null);
   const [formCpmk, setFormCpmk] = useState<CPMK>({ kode: "", deskripsi: "" });
   const [modalSub, setModalSub] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string }>(null);
-  const [formSub, setFormSub] = useState<SubCPMK>({ kode: "", nomor: 1, deskripsi: "", level: "C4", cpmk: "CPMK-1", v: 0.25 });
+  const [formSub, setFormSub] = useState<SubCPMK>({ kode: "", nomor: 1, deskripsi: "", level: "C4", cpmk: "CPMK-1", v: 0.25, bobot: 0 });
   const [modalAsm, setModalAsm] = useState<null | { mode: "tambah" } | { mode: "ubah"; kode: string }>(null);
   const [formAsm, setFormAsm] = useState<Asesmen>({ kode: "T1", nama: "", deskripsi: "" });
   const [hapus, setHapus] = useState<null | { jenis: Tab; kode: string }>(null);
@@ -48,6 +48,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
     const kodeBaru = formSub.kode.trim().toUpperCase();
     if (!kodeBaru || !formSub.deskripsi.trim()) return setGalat("Kode dan deskripsi Sub-CPMK wajib diisi.");
     if (formSub.v < 0 || formSub.v > 1) return setGalat("Bobot v harus di antara 0 dan 1.");
+    if (!(formSub.bobot >= 0 && formSub.bobot <= 100)) return setGalat("Bobot terhadap MK harus di antara 0 dan 100%.");
     if (modalSub?.mode === "tambah" && daftarSub.some((s) => s.kode === kodeBaru)) return setGalat("Kode Sub-CPMK sudah ada.");
     if (modalSub?.mode === "tambah") simpanStruktur(mkKode, { ...struktur, sub: [...daftarSub, { ...formSub, kode: kodeBaru }] });
     else if (modalSub?.mode === "ubah") simpanStruktur(mkKode, { ...struktur, sub: daftarSub.map((s) => (s.kode === modalSub.kode ? { ...formSub, kode: modalSub.kode } : s)) });
@@ -91,8 +92,9 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
   return (
     <div className="space-y-6">
       <PageHeading
-        title={`Struktur RPS — ${mk?.kode ?? mkKode}`}
-        action={<Link href={`/mata-kuliah/${mkKode}`} className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">← Hub MK</Link>}
+        title="Struktur RPS"
+        desc={`${mk?.kode ?? mkKode}${mk?.nama ? ` ${mk.nama}` : ""}. CPMK, Sub-CPMK beserta bobotnya, dan daftar asesmen.`}
+        action={<Link href={`/mata-kuliah/${mkKode}`} className="inline-flex items-center gap-2 rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-paper">Halaman mata kuliah</Link>}
       />
 
       <div
@@ -106,7 +108,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
       />
       </div>
 
-      {galat && <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{galat}</div>}
+      {galat && <div className="rounded-lg border border-danger/30 bg-danger-bg p-3 text-sm text-danger">{galat}</div>}
 
       {tab === "cpmk" && (
         <Card>
@@ -116,17 +118,17 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead><tr className="border-b border-gray-200"><Th>Kode</Th><Th>Deskripsi</Th><Th>Sub penyusun</Th><Th>Aksi</Th></tr></thead>
-              <tbody className="divide-y divide-gray-100">
+              <thead><tr className="border-b border-line"><Th>Kode</Th><Th>Deskripsi</Th><Th>Sub penyusun</Th><Th>Aksi</Th></tr></thead>
+              <tbody className="divide-y divide-line">
                 {daftarCPMK.map((c) => (
-                  <tr key={c.kode} className="hover:bg-gray-50/70">
-                    <Td><span className="rounded-md bg-primary px-2 py-0.5 font-mono text-xs font-bold text-white">{c.kode}</span></Td>
-                    <Td className="max-w-xl text-[13px] text-gray-700">{c.deskripsi}</Td>
-                    <Td className="text-[13px] text-gray-600">{(subByCpmk[c.kode] ?? []).map((s) => s.kode).join(", ") || "—"}</Td>
+                  <tr key={c.kode} className="hover:bg-paper/70">
+                    <Td><span className="font-semibold tabular-nums text-primary">{c.kode}</span></Td>
+                    <Td className="max-w-xl text-sm text-ink">{c.deskripsi}</Td>
+                    <Td className="text-sm text-ink">{(subByCpmk[c.kode] ?? []).map((s) => s.kode).join(", ") || "—"}</Td>
                     <Td>
                       <div className="flex gap-1">
-                        <button onClick={() => { setFormCpmk({ ...c }); setGalat(""); setModalCpmk({ mode: "ubah", kode: c.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-primary text-[13px] font-semibold">Ubah</button>
-                        <button onClick={() => setHapus({ jenis: "cpmk", kode: c.kode })} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-gray-500 hover:bg-red-50 hover:text-red-600 text-[13px] font-semibold">Hapus</button>
+                        <button onClick={() => { setFormCpmk({ ...c }); setGalat(""); setModalCpmk({ mode: "ubah", kode: c.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-ink-muted hover:bg-paper hover:text-primary text-sm font-semibold">Ubah</button>
+                        <button onClick={() => setHapus({ jenis: "cpmk", kode: c.kode })} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-ink-muted hover:bg-danger-bg hover:text-danger text-sm font-semibold">Hapus</button>
                       </div>
                     </Td>
                   </tr>
@@ -141,23 +143,23 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
         <Card>
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-base font-bold text-primary">Sub-CPMK beserta bobot v ke CPMK induk</h3>
-            <Btn onClick={() => { setFormSub({ kode: "", nomor: daftarSub.length + 1, deskripsi: "", level: "C4", cpmk: daftarCPMK[0]?.kode ?? "CPMK-1", v: 0.25 }); setGalat(""); setModalSub({ mode: "tambah" }); }} tour="Tambah Sub-CPMK: tentukan level, CPMK induk, dan bobot v-nya." tourTitle="Tambah Sub">+ Tambah Sub</Btn>
+            <Btn onClick={() => { setFormSub({ kode: "", nomor: daftarSub.length + 1, deskripsi: "", level: "C4", cpmk: daftarCPMK[0]?.kode ?? "CPMK-1", v: 0.25, bobot: 0 }); setGalat(""); setModalSub({ mode: "tambah" }); }} tour="Tambah Sub-CPMK: tentukan level, CPMK induk, dan bobot v-nya." tourTitle="Tambah Sub">+ Tambah Sub</Btn>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead><tr className="border-b border-gray-200"><Th>Kode</Th><Th>Deskripsi</Th><Th>Level</Th><Th>CPMK</Th><Th className="text-right">v</Th><Th>Aksi</Th></tr></thead>
-              <tbody className="divide-y divide-gray-100">
+              <thead><tr className="border-b border-line"><Th>Kode</Th><Th>Deskripsi</Th><Th>Level</Th><Th>CPMK</Th><Th className="text-right">v</Th><Th>Aksi</Th></tr></thead>
+              <tbody className="divide-y divide-line">
                 {daftarSub.map((s) => (
-                  <tr key={s.kode} className="hover:bg-gray-50/70">
-                    <Td><span className="rounded-md bg-primary px-2 py-0.5 font-mono text-xs font-bold text-white">{s.kode}</span></Td>
-                    <Td className="max-w-md text-[13px] text-gray-700">{s.deskripsi}</Td>
-                    <Td><span className="rounded-full bg-accent/25 px-2 py-0.5 text-xs font-bold text-primary">{s.level}</span></Td>
-                    <Td className="font-mono text-xs text-gray-600">{s.cpmk}</Td>
-                    <Td className="text-right font-mono text-[13px] font-semibold text-gray-800">{s.v.toFixed(2)}</Td>
+                  <tr key={s.kode} className="hover:bg-paper/70">
+                    <Td><span className="font-semibold tabular-nums text-primary">{s.kode}</span></Td>
+                    <Td className="max-w-md text-sm text-ink">{s.deskripsi}</Td>
+                    <Td><span className="rounded-md bg-accent/25 px-2 py-0.5 text-xs font-bold text-primary">{s.level}</span></Td>
+                    <Td className="tabular-nums text-xs text-ink">{s.cpmk}</Td>
+                    <Td className="text-right tabular-nums text-sm font-semibold text-ink">{s.v.toFixed(2)}</Td>
                     <Td>
                       <div className="flex gap-1">
-                        <button onClick={() => { setFormSub({ ...s }); setGalat(""); setModalSub({ mode: "ubah", kode: s.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-[13px] font-semibold text-gray-500 hover:bg-gray-100 hover:text-primary">Ubah</button>
-                        <button onClick={() => setHapus({ jenis: "sub", kode: s.kode })} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-[13px] font-semibold text-gray-500 hover:bg-red-50 hover:text-red-600">Hapus</button>
+                        <button onClick={() => { setFormSub({ ...s }); setGalat(""); setModalSub({ mode: "ubah", kode: s.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-sm font-semibold text-ink-muted hover:bg-paper hover:text-primary">Ubah</button>
+                        <button onClick={() => setHapus({ jenis: "sub", kode: s.kode })} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-sm font-semibold text-ink-muted hover:bg-danger-bg hover:text-danger">Hapus</button>
                       </div>
                     </Td>
                   </tr>
@@ -165,7 +167,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-xs text-gray-400">Bobot v divalidasi total = 1 per CPMK pada halaman Pengaturan Bobot.</p>
+          <p className="mt-3 text-xs text-ink-muted">Bobot v divalidasi total = 1 per CPMK pada halaman Pengaturan Bobot.</p>
         </Card>
       )}
 
@@ -177,17 +179,17 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead><tr className="border-b border-gray-200"><Th>Kode</Th><Th>Nama</Th><Th>Deskripsi</Th><Th>Aksi</Th></tr></thead>
-              <tbody className="divide-y divide-gray-100">
+              <thead><tr className="border-b border-line"><Th>Kode</Th><Th>Nama</Th><Th>Deskripsi</Th><Th>Aksi</Th></tr></thead>
+              <tbody className="divide-y divide-line">
                 {daftarAsesmen.map((a) => (
-                  <tr key={a.kode} className="hover:bg-gray-50/70">
-                    <Td><span className="rounded-md bg-accent px-2 py-0.5 font-mono text-xs font-bold text-[#103968]">{a.kode}</span></Td>
-                    <Td className="font-medium text-gray-800">{a.nama}</Td>
-                    <Td className="text-[13px] text-gray-600">{a.deskripsi}</Td>
+                  <tr key={a.kode} className="hover:bg-paper/70">
+                    <Td><span className="rounded-md bg-accent px-2 py-0.5 tabular-nums text-xs font-bold text-primary">{a.kode}</span></Td>
+                    <Td className="font-medium text-ink">{a.nama}</Td>
+                    <Td className="text-sm text-ink">{a.deskripsi}</Td>
                     <Td>
                       <div className="flex gap-1">
-                        <button onClick={() => { setFormAsm({ ...a }); setGalat(""); setModalAsm({ mode: "ubah", kode: a.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-[13px] font-semibold text-gray-500 hover:bg-gray-100 hover:text-primary">Ubah</button>
-                        <button onClick={() => setHapus({ jenis: "asesmen", kode: a.kode })} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-[13px] font-semibold text-gray-500 hover:bg-red-50 hover:text-red-600">Hapus</button>
+                        <button onClick={() => { setFormAsm({ ...a }); setGalat(""); setModalAsm({ mode: "ubah", kode: a.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-sm font-semibold text-ink-muted hover:bg-paper hover:text-primary">Ubah</button>
+                        <button onClick={() => setHapus({ jenis: "asesmen", kode: a.kode })} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-sm font-semibold text-ink-muted hover:bg-danger-bg hover:text-danger">Hapus</button>
                       </div>
                     </Td>
                   </tr>
@@ -202,7 +204,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
         <Modal title={modalCpmk.mode === "tambah" ? "Tambah CPMK" : `Ubah ${modalCpmk.kode}`} onClose={() => setModalCpmk(null)}>
           <div className="space-y-4">
             <Field label="Kode CPMK">
-              <input value={formCpmk.kode} onChange={(e) => setFormCpmk({ ...formCpmk, kode: e.target.value })} placeholder="CPMK-4" className={`${inputCls} font-mono`} disabled={modalCpmk.mode === "ubah"} />
+              <input value={formCpmk.kode} onChange={(e) => setFormCpmk({ ...formCpmk, kode: e.target.value })} placeholder="CPMK-4" className={`${inputCls} tabular-nums`} disabled={modalCpmk.mode === "ubah"} />
             </Field>
             <Field label="Deskripsi">
               <textarea value={formCpmk.deskripsi} onChange={(e) => setFormCpmk({ ...formCpmk, deskripsi: e.target.value })} rows={3} className={inputCls} placeholder="Mahasiswa mampu ..." />
@@ -217,7 +219,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Field label="Kode">
-                <input value={formSub.kode} onChange={(e) => setFormSub({ ...formSub, kode: e.target.value })} placeholder="S11" className={`${inputCls} font-mono`} disabled={modalSub.mode === "ubah"} />
+                <input value={formSub.kode} onChange={(e) => setFormSub({ ...formSub, kode: e.target.value })} placeholder="S11" className={`${inputCls} tabular-nums`} disabled={modalSub.mode === "ubah"} />
               </Field>
               <Field label="Nomor">
                 <input type="number" min={1} value={formSub.nomor} onChange={(e) => setFormSub({ ...formSub, nomor: Number(e.target.value) })} className={inputCls} />
@@ -226,7 +228,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
             <Field label="Deskripsi">
               <textarea value={formSub.deskripsi} onChange={(e) => setFormSub({ ...formSub, deskripsi: e.target.value })} rows={2} className={inputCls} />
             </Field>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <Field label="Level Bloom">
                 <select value={formSub.level} onChange={(e) => setFormSub({ ...formSub, level: e.target.value })} className={inputCls}>
                   {["C1", "C2", "C3", "C4", "C5", "C6"].map((l) => <option key={l} value={l}>{l}</option>)}
@@ -240,6 +242,9 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
               <Field label="Bobot v">
                 <input type="number" step={0.05} min={0} max={1} value={formSub.v} onChange={(e) => setFormSub({ ...formSub, v: Number(e.target.value) })} className={inputCls} />
               </Field>
+              <Field label="Bobot MK (%)">
+                <input type="number" step={1} min={0} max={100} value={formSub.bobot ?? 0} onChange={(e) => setFormSub({ ...formSub, bobot: Number(e.target.value) })} className={inputCls} />
+              </Field>
             </div>
             <div className="flex justify-end gap-2"><Btn variant="outline" onClick={() => setModalSub(null)}>Batal</Btn><Btn onClick={simpanSub}>Simpan</Btn></div>
           </div>
@@ -250,7 +255,7 @@ export default function StrukturPage({ params }: { params: Promise<{ kode: strin
         <Modal title={modalAsm.mode === "tambah" ? "Tambah Asesmen" : `Ubah ${modalAsm.kode}`} onClose={() => setModalAsm(null)}>
           <div className="space-y-4">
             <Field label="Kode">
-                <input value={formAsm.kode} onChange={(e) => setFormAsm({ ...formAsm, kode: e.target.value as Asesmen["kode"] })} placeholder="T5" className={`${inputCls} font-mono`} disabled={modalAsm.mode === "ubah"} />
+                <input value={formAsm.kode} onChange={(e) => setFormAsm({ ...formAsm, kode: e.target.value as Asesmen["kode"] })} placeholder="T5" className={`${inputCls} tabular-nums`} disabled={modalAsm.mode === "ubah"} />
               </Field>
             <Field label="Nama">
               <input value={formAsm.nama} onChange={(e) => setFormAsm({ ...formAsm, nama: e.target.value })} placeholder="Tugas 5" className={inputCls} />

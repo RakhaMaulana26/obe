@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
-// ReactBits — Stepper
-// Penanda langkah horizontal yang mudah dipahami: lingkaran bernomor + label.
-// Terkendali (controlled): parent mengatur `active` dan `onStep`.
+// Penanda langkah berurutan. Terkendali: parent mengatur `active` dan `onStep`.
+// Tampilannya berupa deret segmen dengan garis atas; segmen aktif bergaris kuning.
 export interface StepDef {
   title: string;
   desc?: string;
@@ -23,42 +21,31 @@ export default function Stepper({
   className?: string;
 }) {
   return (
-    <ol className={`flex flex-col gap-0 sm:flex-row sm:items-start ${className}`} aria-label="Langkah">
+    <ol className={`grid grid-cols-1 gap-x-3 gap-y-1 sm:grid-flow-col sm:auto-cols-fr ${className}`} aria-label="Langkah">
       {steps.map((s, i) => {
         const done = i < active;
         const current = i === active;
+        const garis = current ? "border-accent" : done ? "border-primary" : "border-line";
         return (
-          <li key={s.title} className="flex flex-1 items-start gap-3 sm:gap-0">
-            <div className="flex flex-1 items-start gap-3">
-              <button
-                type="button"
-                disabled={!onStep}
-                onClick={() => onStep?.(i)}
-                aria-current={current ? "step" : undefined}
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors ${
-                  current
-                    ? "bg-primary text-white ring-4 ring-primary/15"
-                    : done
-                      ? "bg-emerald-500 text-white"
-                      : "bg-gray-100 text-gray-500"
-                } ${onStep ? "cursor-pointer hover:brightness-95" : "cursor-default"}`}
-              >
-                {done ? "✓" : i + 1}
-              </button>
-              <div className="min-w-0 pb-5 sm:pb-0">
-                <p className={`text-[13px] font-semibold ${current ? "text-primary" : "text-gray-700"}`}>{s.title}</p>
-                {s.desc ? <p className="mt-0.5 text-xs text-gray-500">{s.desc}</p> : null}
-                {current ? (
-                  <motion.span
-                    layoutId="stepper-bar"
-                    className="mt-1.5 block h-1 w-10 rounded-full bg-accent"
-                  />
-                ) : null}
-              </div>
-            </div>
-            {i < steps.length - 1 ? (
-              <span aria-hidden className={`mx-1 mt-4 hidden h-px flex-1 sm:block ${done ? "bg-emerald-300" : "bg-gray-200"}`} />
-            ) : null}
+          <li key={s.title}>
+            <button
+              type="button"
+              disabled={!onStep}
+              onClick={() => onStep?.(i)}
+              aria-current={current ? "step" : undefined}
+              className={`flex h-full w-full gap-3 border-l-[3px] py-2 pl-3 text-left sm:flex-col sm:gap-0.5 sm:border-l-0 sm:border-t-[3px] sm:pl-0 sm:pt-2.5 ${garis} ${
+                onStep ? "cursor-pointer hover:bg-paper/60" : "cursor-default"
+              } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40`}
+            >
+              <span className={`text-sm font-semibold tabular-nums ${current ? "text-primary" : "text-ink-muted"}`}>
+                {i + 1}
+                <span className="sr-only">{done ? ", selesai" : current ? ", sedang dibuka" : ""}</span>
+              </span>
+              <span className="min-w-0">
+                <span className={`block text-sm font-semibold ${current ? "text-primary" : "text-ink"}`}>{s.title}</span>
+                {s.desc ? <span className="block text-xs text-ink-muted">{s.desc}</span> : null}
+              </span>
+            </button>
           </li>
         );
       })}
@@ -66,16 +53,7 @@ export default function Stepper({
   );
 }
 
-// Panel isi langkah dengan animasi masuk ringan.
+// Panel isi langkah, tanpa animasi masuk.
 export function StepPanel({ children, stepKey }: { children: ReactNode; stepKey: string | number }) {
-  return (
-    <motion.div
-      key={stepKey}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div key={stepKey}>{children}</div>;
 }

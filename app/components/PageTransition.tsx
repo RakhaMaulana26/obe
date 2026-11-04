@@ -1,13 +1,14 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 
-// Transisi antar halaman aplikasi: konten lama fade+geser keluar,
-// konten baru fade+geser masuk, dan gulir kembali ke atas.
+// Transisi antar halaman: fade singkat (≤ 150ms, spec desain) dan gulir kembali ke atas.
+// Dimatikan bila pengguna memilih prefers-reduced-motion.
 export default function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const kurangiGerak = useReducedMotion();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,10 +18,10 @@ export default function PageTransition({ children }: { children: ReactNode }) {
     <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: kurangiGerak ? 1 : 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: kurangiGerak ? 1 : 0 }}
+        transition={{ duration: kurangiGerak ? 0 : 0.15, ease: "easeOut" }}
       >
         {children}
       </motion.div>

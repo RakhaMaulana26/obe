@@ -3,16 +3,15 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useApp, offeringTerbaru } from "@/app/lib/store";
-import { DAFTAR_ASESMEN, DAFTAR_CPL, DAFTAR_IK, mahasiswaUntukKelas, AMBANG_DEFAULT } from "@/app/lib/data";
+import { DAFTAR_ASESMEN, DAFTAR_CPL, DAFTAR_IK, AMBANG_DEFAULT } from "@/app/lib/data";
 import { hitungSemua, rataRata, susunRekomendasi } from "@/app/lib/hitung";
+import { ambilNilai, asesmenDariBobot, daftarIndikator } from "@/app/lib/penilaian";
 import { BadgeStatus, Btn, Card, EmptyState, PageHeading, StatCard, Td, Th, inputCls } from "@/app/components/ui";
 import Tabs, { TabPanel } from "@/app/components/reactbits/Tabs";
-import FadeContent from "@/app/components/reactbits/FadeContent";
-import AnimatedList, { AnimatedItem } from "@/app/components/reactbits/AnimatedList";
-import OfferingSelect, { DosenChip } from "@/app/components/OfferingSelect";
+import OfferingSelect from "@/app/components/OfferingSelect";
 
 export default function LaporanPage() {
-  const { nilaiUntuk, strukturUntuk, mataKuliah } = useApp();
+  const { nilaiUntuk, strukturUntuk, mataKuliah, mahasiswaUntuk } = useApp();
   const [offering, setOffering] = useState(() => offeringTerbaru(mataKuliah));
   const [ambang, setAmbang] = useState(AMBANG_DEFAULT);
   const [tab, setTab] = useState("insight");
@@ -30,7 +29,7 @@ export default function LaporanPage() {
     () => (offering.kode ? nilaiUntuk(offering.kode, offering.tahun, offering.kelas) : {}),
     [nilaiUntuk, offering],
   );
-  const semua = hitungSemua(nilaiAktif, { w: struktur.bobotW, u: struktur.bobotU }, struktur.sub, struktur.cpmk);
+  const semua = hitungSemua(nilaiAktif, { w: struktur.bobotW, u: struktur.bobotU, rubrik: struktur.rubrik }, struktur.sub, struktur.cpmk);
 
   const ringkas = (() => {
     const arr = Object.values(semua);
@@ -43,18 +42,28 @@ export default function LaporanPage() {
   const rataCpmk = rataRata(semua, "cpmk");
   const rataIk = rataRata(semua, "ik");
   const rataCpl = rataRata(semua, "cpl");
+  // Kolom CSV mengikuti lembar penilaian rubrik: satu kolom per indikator, lalu rata-rata tiap asesmen.
+  // IK/CPL hanya yang diukur MK ini.
+  const daftarAsesmenCSV = asesmenDariBobot(bobotW, DAFTAR_ASESMEN);
+  const kolomCSV = daftarIndikator(daftarSub, bobotW, daftarAsesmenCSV, struktur.rubrik);
+  const asesmenCSV = daftarAsesmenCSV.filter((a) => kolomCSV.some((k) => k.asesmen === a.kode));
+  const selCSV = (teks: string) => `"${teks.replace(/"/g, '""')}"`;
+  const ikCSV = DAFTAR_IK.filter((i) => i.kode in rataIk);
+  const cplCSV = DAFTAR_CPL.filter((c) => c.kode in rataCpl);
 
-  const roster = mahasiswaUntukKelas(offering.kelas);
+  const roster = mahasiswaUntuk(offering.kelas);
   const bermasalah = roster.map((m) => ({ m, c: semua[m.nrp] })).filter(({ c }) => c && Object.values(c.cpmk).some((v) => v < ambang));
 
   function unduhCSV() {
     setInfoUnduh("Menyiapkan file…");    const kepala = [
       "No", "NRP", "Nama",
-      ...DAFTAR_ASESMEN.map((a) => a.kode),
+      ...kolomCSV.map((k) => selCSV(`${daftarAsesmenCSV.find((a) => a.kode === k.asesmen)?.nama ?? k.asesmen}: ${k.label}`)),
+      ...asesmenCSV.map((a) => selCSV(`Rata-rata ${a.nama}`)),
       ...daftarSub.map((s) => s.kode),
       ...daftarCPMK.map((cpmk) => cpmk.kode),
-      ...DAFTAR_IK.map((i) => i.kode),
-      ...DAFTAR_CPL.map((c) => c.kode),
+      ...ikCSV.map((i) => i.kode),
+      ...cplCSV.map((c) => c.kode),
+      "Nilai akhir",
       "Status",
     ];
     const baris = roster.map((m, i) => {
@@ -63,11 +72,13 @@ export default function LaporanPage() {
       const tuntas = c && Object.values(c.cpmk).every((v) => v >= ambang);
       return [
         i + 1, m.nrp, `"${m.nama}"`,
-        ...DAFTAR_ASESMEN.map((a) => n?.[a.kode] ?? ""),
+        ...kolomCSV.map((k) => (n ? ambilNilai(n, k) : "")),
+        ...asesmenCSV.map((a) => c?.nilaiAsesmen[a.kode]?.toFixed(2) ?? ""),
         ...daftarSub.map((s) => c?.sub[s.kode]?.toFixed(2) ?? ""),
         ...daftarCPMK.map((cpmk) => c?.cpmk[cpmk.kode]?.toFixed(2) ?? ""),
-        ...DAFTAR_IK.map((ik) => c?.ik[ik.kode]?.toFixed(2) ?? ""),
-        ...DAFTAR_CPL.map((cc) => c?.cpl[cc.kode]?.toFixed(2) ?? ""),
+        ...ikCSV.map((ik) => c?.ik[ik.kode]?.toFixed(2) ?? ""),
+        ...cplCSV.map((cc) => c?.cpl[cc.kode]?.toFixed(2) ?? ""),
+        c?.nilaiAkhir.toFixed(2) ?? "",
         tuntas ? "Tuntas" : "Belum",
       ].join(",");
     });
@@ -90,24 +101,24 @@ export default function LaporanPage() {
   return (
     <div className="space-y-6">
       <PageHeading
-        title="Laporan Capaian"
+        title="Laporan capaian"
+        desc="Rekap capaian satu kelas untuk arsip dan bahan akreditasi."
         action={roster.length > 0 ? (
           <>
             <Btn variant="outline" onClick={() => window.print()} tour="Cetak halaman ini sebagai laporan PDF siap akreditasi." tourTitle="Cetak PDF">Cetak PDF</Btn>
-            <Btn variant="accent" onClick={unduhCSV} tour="Unduh rekap capaian per mahasiswa dalam format CSV (Excel)." tourTitle="Unduh Excel">Unduh Excel (CSV)</Btn>
+            <Btn onClick={unduhCSV} tour="Unduh rekap capaian per mahasiswa dalam format CSV (Excel)." tourTitle="Unduh CSV">Unduh CSV</Btn>
           </>
         ) : undefined}
       />
       {infoUnduh ? (
-        <FadeContent>
-          <p className="rounded-xl border border-green-200 bg-green-50 px-4 py-2.5 text-sm font-medium text-green-800">{infoUnduh}</p>
-        </FadeContent>
+        <div>
+          <p className="rounded-lg border border-success/30 bg-success-bg px-4 py-2.5 text-sm font-medium text-success">{infoUnduh}</p>
+        </div>
       ) : null}
 
-      <FadeContent>
+      <div>
       <Card className="print:hidden">
-        <p className="mb-3 text-xs font-bold uppercase tracking-wider text-gray-400">Langkah 1 — Filter laporan</p>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <OfferingSelect
             daftar={mataKuliah}
             kode={offering.kode}
@@ -116,44 +127,41 @@ export default function LaporanPage() {
             onChange={(kode, tahun, kelas) => setOffering({ kode, tahun, kelas })}
             id="f-mk"
             label="Mata kuliah, tahun, dan kelas"
-            tour="Pilih penawaran yang ingin dilaporkan — rekap di bawah mengikuti pilihan ini."
+            tour="Pilih penawaran yang ingin dilaporkan: rekap di bawah mengikuti pilihan ini."
             tourTitle="Filter laporan"
           />
           <div>
-            <label htmlFor="f-smt" className="mb-1.5 block text-sm font-medium text-gray-700">Semester & pengampu</label>
-            <input id="f-smt" value={`${mk?.semester ? `Semester ${mk.semester}` : "Semester belum ditetapkan"} • ${mk?.dosen || "—"}`} disabled className={`${inputCls} opacity-70`} />
+            <label htmlFor="f-smt" className="mb-1.5 block text-sm font-medium text-ink">Semester dan pengampu</label>
+            <input id="f-smt" value={`${mk?.semester ? `Semester ${mk.semester}` : "Semester belum ditetapkan"}, ${mk?.dosen || "—"}`} disabled className={`${inputCls} opacity-70`} />
           </div>
           <div>
-            <label htmlFor="f-t" className="mb-1.5 block text-sm font-medium text-gray-700">Batas lulus T (skor ≥ T = lulus)</label>
-            <input id="f-t" type="number" min={0} max={100} value={ambang} onChange={(e) => setAmbang(Number(e.target.value))} className={inputCls} data-tour="Ubah batas lulus (T) khusus untuk laporan ini." data-tour-title="Batas lulus (T)" />
+            <label htmlFor="f-t" className="mb-1.5 block text-sm font-medium text-ink">Batas lulus</label>
+            <input id="f-t" type="number" min={0} max={100} value={ambang} onChange={(e) => setAmbang(Number(e.target.value))} className={inputCls} data-tour="Ubah batas lulus khusus untuk laporan ini." data-tour-title="Batas lulus" />
           </div>
         </div>
-        <div className="mt-3">
-          <DosenChip daftar={mataKuliah} kode={offering.kode} tahun={offering.tahun} kelas={offering.kelas} />
-        </div>
       </Card>
-      </FadeContent>
+      </div>
 
       {roster.length === 0 ? (
         <Card><EmptyState title="Belum ada data laporan" desc="Tambahkan mata kuliah dan data mahasiswa untuk mulai menyusun laporan capaian." /></Card>
       ) : (
       <>
       <div className="hidden print:block">
-        <h2 className="text-xl font-bold text-black">Laporan Capaian Pembelajaran — {mkKode} (T = {ambang})</h2>
-        <p className="text-sm text-black">PENS • D4 Teknik Informatika • {mkKode} {offering.tahun} • Kelas {mk?.kelas || "—"}</p>
+        <h2 className="text-xl font-bold text-black">Laporan Capaian Pembelajaran: {mkKode} (batas lulus {ambang})</h2>
+        <p className="text-sm text-black">PENS, D4 Teknik Informatika, {mkKode} {offering.tahun}, Kelas {mk?.kelas || "—"}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Mahasiswa" value={String(ringkas.total)} numeric={ringkas.total} sub={`${mkKode} • ${offering.tahun} • Kelas ${mk?.kelas || "—"}`} />
-        <StatCard label="Rata-rata CPMK" value={ringkas.rata.toFixed(2)} numeric={ringkas.rata} decimals={2} sub={`Batas T = ${ambang}`} />
-        <StatCard label="Tuntas" value={`${ringkas.tuntas} mhs`} numeric={ringkas.tuntas} sub={`${((ringkas.tuntas / Math.max(1, ringkas.total)) * 100).toFixed(1)}% kelas`} highlight />
-        <StatCard label="Belum tuntas" value={`${ringkas.belum} mhs`} numeric={ringkas.belum} sub="Ada CPMK di bawah T" />
+        <StatCard label="Mahasiswa" value={String(ringkas.total)} numeric={ringkas.total} sub={`${mkKode}, ${offering.tahun}, Kelas ${mk?.kelas || "—"}`} />
+        <StatCard label="Rata-rata CPMK" value={ringkas.rata.toFixed(2)} numeric={ringkas.rata} decimals={2} sub={`Batas lulus ${ambang}`} />
+        <StatCard label="Tuntas" value={String(ringkas.tuntas)} numeric={ringkas.tuntas} sub={`${((ringkas.tuntas / Math.max(1, ringkas.total)) * 100).toFixed(1)}% dari kelas`} />
+        <StatCard label="Belum tuntas" value={String(ringkas.belum)} numeric={ringkas.belum} highlight={ringkas.belum > 0} sub="Ada CPMK di bawah batas lulus" />
       </div>
 
       <Tabs
         tabs={[
-          { id: "insight", label: "Langkah 2 • Insight", hint: "Rata-rata + rekomendasi" },
-          { id: "tabel", label: "Langkah 3 • Tabel & Ekspor", hint: "Rekap per mahasiswa" },
+          { id: "insight", label: "Ringkasan", hint: "Rata-rata per jenjang dan rekomendasi" },
+          { id: "tabel", label: "Tabel dan ekspor", hint: "Rekap per mahasiswa" },
         ]}
         active={tab}
         onChange={setTab}
@@ -163,50 +171,47 @@ export default function LaporanPage() {
       {tab === "insight" ? (
       <TabPanel tabKey="insight">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <FadeContent>
+        <div>
         <Card>
-          <h3 className="mb-1 text-base font-bold text-primary">Rata-rata per jenjang</h3>
-          <p className="mb-3 text-xs text-gray-500">Hijau = lulus (≥ T), merah = belum</p>
+          <h3 className="mb-1 font-semibold text-primary">Rata-rata per jenjang</h3>
+          <p className="mb-3 text-sm text-ink-muted">CPMK, IK, dan CPL yang diukur mata kuliah ini.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead><tr className="border-b border-gray-200"><Th>Kode</Th><Th className="text-right">Rata-rata</Th><Th>Status</Th></tr></thead>
-              <tbody className="divide-y divide-gray-100">
+              <thead><tr className="border-b border-line"><Th>Kode</Th><Th className="text-right">Rata-rata</Th><Th className="pl-6">Status</Th></tr></thead>
+              <tbody className="divide-y divide-line">
                 {[...Object.entries(rataCpmk), ...Object.entries(rataIk), ...Object.entries(rataCpl)].map(([k, v]) => (
                   <tr key={k}>
-                    <Td className="font-mono text-xs font-bold text-primary">{k}</Td>
-                    <Td className="text-right font-mono font-semibold">{v.toFixed(2)}</Td>
-                    <Td><BadgeStatus tercapai={v >= ambang} /></Td>
+                    <Td className="font-semibold tabular-nums text-primary">{k}</Td>
+                    <Td className="text-right tabular-nums font-semibold">{v.toFixed(2)}</Td>
+                    <Td className="pl-6"><BadgeStatus tercapai={v >= ambang} /></Td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </Card>
-        </FadeContent>
-        <FadeContent delay={0.06}>
+        </div>
+        <div>
         <Card>
-          <h3 className="mb-1 text-base font-bold text-primary">Mahasiswa belum tuntas & rekomendasi</h3>
-          <p className="mb-3 text-xs text-gray-500">Klik Detail untuk traceability per mahasiswa</p>
+          <h3 className="mb-1 font-semibold text-primary">Mahasiswa belum tuntas</h3>
+          <p className="mb-3 text-sm text-ink-muted">Rekomendasi utama tiap mahasiswa. Buka rincian untuk melihat hitungannya.</p>
           {bermasalah.length === 0 ? (
-            <p className="rounded-xl bg-green-50 p-4 text-sm text-green-800">Seluruh mahasiswa tuntas pada T = {ambang}. Pertahankan.</p>
+            <p className="border-l-[3px] border-success py-1 pl-4 text-sm text-ink">Semua mahasiswa tuntas pada batas lulus {ambang}.</p>
           ) : (
-            <AnimatedList className="space-y-2.5" step={0.05}>
+            <ul className="divide-y divide-line border-y border-line">
               {bermasalah.map(({ m, c }) => (
-                <AnimatedItem key={m.nrp}>
-                <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[13px] font-semibold text-primary">{m.nama}</span>
-                    <Link href={`/capaian/${m.nrp}?kode=${mkKode}&tahun=${encodeURIComponent(offering.tahun)}`} className="shrink-0 rounded-lg bg-white px-2.5 py-1 text-xs font-semibold text-primary ring-1 ring-gray-200 hover:ring-primary print:hidden">Detail →</Link>
+                <li key={m.nrp} className="py-3">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="text-sm font-semibold text-ink">{m.nama} <span className="font-normal tabular-nums text-ink-muted">{m.nrp}</span></span>
+                    <Link href={`/capaian/${m.nrp}?kode=${mkKode}&tahun=${encodeURIComponent(offering.tahun)}`} className="shrink-0 text-sm font-semibold text-primary hover:underline print:hidden">Rincian</Link>
                   </div>
-                  <p className="font-mono text-[11px] text-gray-400">{m.nrp}</p>
-                  <p className="mt-1 text-[13px] leading-relaxed text-gray-600">{susunRekomendasi(c, ambang, daftarSub, bobotW)[0]}</p>
-                </div>
-                </AnimatedItem>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-muted">{susunRekomendasi(c, ambang, daftarSub, bobotW)[0]}</p>
+                </li>
               ))}
-            </AnimatedList>
+            </ul>
           )}
         </Card>
-        </FadeContent>
+        </div>
       </div>
       </TabPanel>
       ) : null}
@@ -216,13 +221,13 @@ export default function LaporanPage() {
       <Card>
         <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-base font-bold text-primary">Rekapitulasi CPMK seluruh mahasiswa</h3>
-            <p className="text-xs text-gray-500">Merah = di bawah T. Gunakan pencarian untuk sidang / verifikasi cepat.</p>
+            <h3 className="font-semibold text-primary">Rekap CPMK seluruh mahasiswa</h3>
+            <p className="text-sm text-ink-muted">Angka merah berada di bawah batas lulus {ambang}.</p>
           </div>
           <input
             value={cari}
             onChange={(e) => setCari(e.target.value)}
-            placeholder="Cari nama / NRP…"
+            placeholder="Cari nama atau NRP"
             aria-label="Cari mahasiswa"
             className={`${inputCls} !w-64 print:hidden`}
           />
@@ -230,24 +235,24 @@ export default function LaporanPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-line">
                 <Th>No</Th><Th>NRP</Th><Th>Nama</Th>
                 {daftarCPMK.map((cpmk) => <Th key={cpmk.kode} className="text-right">{cpmk.kode}</Th>)}
                 <Th>Status</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {rekapTampil.map((m, i) => {
                 const c = semua[m.nrp];
                 if (!c) return null;
                 const tuntas = Object.values(c.cpmk).every((v) => v >= ambang);
                 return (
-                  <tr key={m.nrp} className="hover:bg-gray-50/70">
-                    <Td className="text-gray-400">{i + 1}</Td>
-                    <Td className="font-mono text-xs text-gray-500">{m.nrp}</Td>
-                    <Td className="font-medium text-gray-800">{m.nama}</Td>
+                  <tr key={m.nrp} className="hover:bg-paper/70">
+                    <Td className="text-ink-muted">{i + 1}</Td>
+                    <Td className="tabular-nums text-xs text-ink-muted">{m.nrp}</Td>
+                    <Td className="font-medium text-ink">{m.nama}</Td>
                     {daftarCPMK.map((cpmk) => (
-                      <Td key={cpmk.kode} className={`text-right font-mono font-semibold ${(c.cpmk[cpmk.kode] ?? 0) < ambang ? "text-red-600" : "text-gray-800"}`}>
+                      <Td key={cpmk.kode} className={`text-right tabular-nums font-semibold ${(c.cpmk[cpmk.kode] ?? 0) < ambang ? "text-danger" : "text-ink"}`}>
                         {(c.cpmk[cpmk.kode] ?? 0).toFixed(2)}
                       </Td>
                     ))}
@@ -258,11 +263,11 @@ export default function LaporanPage() {
             </tbody>
           </table>
           {rekapTampil.length === 0 ? (
-            <p className="p-4 text-center text-sm text-gray-500">Tidak ada mahasiswa cocok dengan “{cari}”.</p>
+            <p className="p-4 text-center text-sm text-ink-muted">Tidak ada mahasiswa cocok dengan “{cari}”.</p>
           ) : null}
         </div>
-        <p className="mt-3 text-xs leading-relaxed text-gray-400">
-          Metode: rata-rata berbobot berjenjang dari nilai → Sub-CPMK → CPMK → IK → CPL. Perhitungan berhenti di CPL; profil lulusan tidak diberi skor. CSV dapat dibuka di Excel.
+        <p className="mt-3 text-xs leading-relaxed text-ink-muted">
+          Skor dihitung berjenjang dari nilai indikator ke Sub-CPMK, CPMK, IK, lalu CPL. Profil lulusan tidak diberi skor. Berkas CSV bisa dibuka di Excel.
         </p>
       </Card>
       </TabPanel>

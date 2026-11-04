@@ -1,7 +1,8 @@
 import kurikulum2026 from "./sumber-kurikulum-2026.json";
 import rpsRubrikDataMining from "./sumber-dokumen-datamining.json";
+import { turunkanBobotU } from "./bobot";
 
-export type AsesmenKode = "T1" | "T2" | "T3" | "T4" | "Prak" | "ETS" | "EAS";
+export type AsesmenKode = "T1" | "T2" | "T3" | "ETS" | "EAS";
 export type KategoriMataKuliah = "wajib" | "pilihan-institusi" | "pilihan-prodi" | "belum-ditetapkan";
 
 export interface Asesmen {
@@ -17,6 +18,8 @@ export interface SubCPMK {
   level: string;
   cpmk: string;
   v: number;
+  /** Bobot Sub-CPMK terhadap mata kuliah, dalam persen (RPS: 5, 15, …). */
+  bobot: number;
   isDummy?: boolean;
 }
 
@@ -74,7 +77,10 @@ export interface Mahasiswa {
 
 export const DAFTAR_KELAS = ["A", "B", "C", "D"] as const;
 
-export type NilaiMap = Record<string, Record<AsesmenKode, number>>;
+/** Nilai satu mahasiswa: nilai[asesmen][kodeSubCPMK] (0–100), sesuai lembar penilaian rubrik. */
+export type NilaiMahasiswa = Partial<Record<AsesmenKode, Record<string, number>>>;
+/** Kunci = NRP. */
+export type NilaiMap = Record<string, NilaiMahasiswa>;
 
 export interface KurikulumMataKuliah {
   kode: string;
@@ -156,6 +162,7 @@ export const DAFTAR_SUB_CPMK: SubCPMK[] = DATA_RPS_DATAMINING.sub.map((sub, inde
   cpmk: sub.cpmk,
   // Bobot v tidak ditulis langsung di RPS; proporsinya diturunkan dari bobot Sub-CPMK terhadap MK.
   v: bobotSubPerCPMK[sub.cpmk] ? sub.bobot / bobotSubPerCPMK[sub.cpmk] : 0,
+  bobot: sub.bobot,
 }));
 
 const KODE_ASESMEN_RUBRIK: Record<"kuis" | "laporan" | "proyek" | "mid" | "post", AsesmenKode> = {
@@ -186,17 +193,61 @@ export const BOBOT_W: Record<string, Partial<Record<AsesmenKode, number>>> = Obj
     return [kodeSub, porsi];
   }),
 );
-export const BOBOT_U: Record<string, Partial<Record<string, number>>> = DATA_RPS_DATAMINING.ikCpmk;
+// JSON menyimpan matriks RPS sebagai [ik][cpmk]; mesin hitung membaca [cpmk][ik].
+// Centang diambil dari JSON, nilainya diturunkan dari bobot Sub-CPMK (CPMK.1 = 20%, CPMK.2 = 30%, …).
+const CENTANG_CPMK_IK: Record<string, string[]> = {};
+for (const [kodeIK, petaCPMK] of Object.entries(DATA_RPS_DATAMINING.ikCpmk)) {
+  for (const [kodeCPMK, nilai] of Object.entries(petaCPMK)) {
+    if (nilai > 0) (CENTANG_CPMK_IK[kodeCPMK] ??= []).push(kodeIK);
+  }
+}
+export const BOBOT_U: Record<string, Partial<Record<string, number>>> = turunkanBobotU(DAFTAR_SUB_CPMK, CENTANG_CPMK_IK);
+
+// Indikator lembar penilaian rubrik.docx (22 baris untuk TI045105), urut sesuai lembar.
+type RubrikDetailJSON = Record<string, Record<string, Array<{ indikator: string; bobot: number; tingkat: string[] }>>>;
+const RUBRIK_DETAIL = (rpsRubrikDataMining as unknown as { rubrikDetail: RubrikDetailJSON }).rubrikDetail;
+export const RUBRIK_DATAMINING: RubrikIndikator[] = Object.entries(KODE_ASESMEN_RUBRIK).flatMap(([kategori, asesmen]) =>
+  Object.entries(RUBRIK_DETAIL[kategori] ?? {}).flatMap(([sub, daftar]) =>
+    daftar.map((item) => ({ asesmen, sub, label: item.indikator, porsi: item.bobot, tingkat: item.tingkat })),
+  ),
+);
 
 export const PEMETAAN_KURIKULUM_SEED: Record<string, Record<string, number>> = Object.fromEntries(
   DATA_KURIKULUM.mataKuliah.map((mk) => [mk.kode, mk.bobotIK]),
 );
+
+/** Satu baris lembar penilaian rubrik: indikator suatu asesmen yang mengukur satu Sub-CPMK. */
+export interface RubrikIndikator {
+  asesmen: AsesmenKode;
+  sub: string;
+  label: string;
+  /** Porsi relatif di antara indikator pada pasangan (asesmen, Sub-CPMK) yang sama, mis. 3:3:2:2. */
+  porsi: number;
+  /** Deskripsi tingkat capaian dari yang tertinggi ke terendah. */
+  tingkat: string[];
+}
+
+/** Indikator siap pakai: satu sel input nilai. */
+export interface Indikator {
+  asesmen: AsesmenKode;
+  sub: string;
+  /** Kunci penyimpanan nilai: kode Sub-CPMK, atau `Sub-CPMK.8#1` bila pasangan punya beberapa indikator. */
+  kunci: string;
+  label: string;
+  /** Bobot terhadap nilai mata kuliah, dalam persen (0 bila bobot Sub-CPMK belum diisi). */
+  bobot: number;
+  /** Bobot relatif di dalam rata-rata skor Sub-CPMK-nya (porsi w × porsi indikator). */
+  bobotSub: number;
+  tingkat: string[];
+}
 
 export interface StrukturMataKuliah {
   cpmk: CPMK[];
   sub: SubCPMK[];
   bobotW: Record<string, Partial<Record<AsesmenKode, number>>>;
   bobotU: Record<string, Partial<Record<string, number>>>;
+  /** Indikator lembar penilaian rubrik; bila kosong, satu indikator per pasangan (asesmen, Sub-CPMK). */
+  rubrik?: RubrikIndikator[];
 }
 
 export const DAFTAR_RUBRIK: Rubrik[] = [];
@@ -243,11 +294,16 @@ export interface SeedMK extends KatalogMK {
   dosen: string;
 }
 
-export const MK_SEED: SeedMK[] = KATALOG_MK.map((mk) => ({
-  ...mk,
-  tahun: "2026/2027",
-  dosen: mk.kode === KODE_MK_DATAMINING ? DATA_RPS_DATAMINING.mataKuliah.dosen : "",
-}));
+export const MK_SEED: SeedMK[] = KATALOG_MK.flatMap((mk) => {
+  const seed = {
+    ...mk,
+    tahun: "2026/2027",
+    dosen: mk.kode === KODE_MK_DATAMINING ? DATA_RPS_DATAMINING.mataKuliah.dosen : "",
+  };
+  return mk.kode === KODE_MK_DATAMINING
+    ? [{ ...seed, kelas: "A" }, { ...seed, kelas: "B" }]
+    : [seed];
+});
 
 export function buatStrukturDummy(mk: Pick<SeedMK, "kode" | "nama" | "cpl"> & { bahanKajian?: string[] }): StrukturMataKuliah {
   const struktur = STRUKTUR_MK_SEED[mk.kode.toUpperCase()];
@@ -261,6 +317,7 @@ export const STRUKTUR_MK_SEED: Record<string, StrukturMataKuliah> = {
     sub: DAFTAR_SUB_CPMK,
     bobotW: BOBOT_W,
     bobotU: BOBOT_U,
+    rubrik: RUBRIK_DATAMINING,
   },
 };
 
@@ -281,14 +338,75 @@ export const RPS_SEED: RPSSeed[] = [{
   metode: "Kuliah tatap muka, praktikum laboratorium, kelas sinkron daring, dan mini project sesuai RPS Mingguan.",
   isDummy: false,
 }];
-export const DAFTAR_MAHASISWA: Mahasiswa[] = [];
 
-export function mahasiswaUntukKelas(_kelas: string): Mahasiswa[] {
-  return [];
-}
+export const DAFTAR_MAHASISWA: Mahasiswa[] = [
+  { nrp: "3123600001", nama: "Muhammad Rafi Rizaldi", kelas: "A" },
+  { nrp: "3123600002", nama: "Lintang Arum Sari", kelas: "A" },
+  { nrp: "3123600003", nama: "Zalfail Mumtaza Attamami", kelas: "A" },
+  { nrp: "3123600004", nama: "Muhammad Fajar Siddiq", kelas: "A" },
+  { nrp: "3123600005", nama: "Ivan Rahmat Prakasa", kelas: "A" },
+  { nrp: "3123600006", nama: "Fransiska Elsa Dina Mareta", kelas: "A" },
+  { nrp: "3123600007", nama: "Rifki Alaudin", kelas: "A" },
+  { nrp: "3123600008", nama: "Salwa Fadhila Rahmania", kelas: "A" },
+  { nrp: "3123600009", nama: "Kansa Adeneva Riti Syarani", kelas: "A" },
+  { nrp: "3123600010", nama: "Yofi Yudistian", kelas: "A" },
+  { nrp: "3123600011", nama: "Mohammad Rizaldy Ramadhan", kelas: "A" },
+  { nrp: "3123600012", nama: "Adrian Mendienta Tumanggor", kelas: "A" },
+  { nrp: "3123600013", nama: "Nanda Ahmad Zidan", kelas: "A" },
+  { nrp: "3123600014", nama: "Shalsabilla Wahyu Arifhana", kelas: "A" },
+  { nrp: "3123600015", nama: "Nayla Herfiana Putri", kelas: "A" },
+  { nrp: "3123600016", nama: "Muhammad Alif Aditya", kelas: "A" },
+  { nrp: "3123600017", nama: "Salma Afifa Azis", kelas: "A" },
+  { nrp: "3123600018", nama: "Eugenia Valiant Van True", kelas: "A" },
+  { nrp: "3123600019", nama: "Raihan Malano Arrasyid", kelas: "A" },
+  { nrp: "3123600020", nama: "Vemas Satria Edy Pratama", kelas: "A" },
+  { nrp: "3123600021", nama: "Muhammad Zaidan Zhafiz Satrianto", kelas: "A" },
+  { nrp: "3123600022", nama: "George Winston Kalim", kelas: "A" },
+  { nrp: "3123600023", nama: "Muhammad Felda Hibatullah", kelas: "A" },
+  { nrp: "3123600024", nama: "Shafrial Azis", kelas: "A" },
+  { nrp: "3123600025", nama: "Moch. Alif Akbar", kelas: "A" },
+  { nrp: "3123600026", nama: "Renaldy Izza Briliandin Tino Saputra", kelas: "A" },
+  { nrp: "3123600027", nama: "Muhammad Raihan Ghani", kelas: "A" },
+  { nrp: "3123600028", nama: "Muhammad Zaky Mubarok", kelas: "A" },
+  { nrp: "3123600029", nama: "Mohammad Zidan Wianto Putra", kelas: "A" },
+  { nrp: "3123600030", nama: "Aldino Matasik", kelas: "A" },
+  { nrp: "3123600031", nama: "Dwi Indah Cahyani", kelas: "B" },
+  { nrp: "3123600032", nama: "Aulia Syfa Ramadhani", kelas: "B" },
+  { nrp: "3123600033", nama: "Sarah Rizqi Firyal", kelas: "B" },
+  { nrp: "3123600034", nama: "Yeremia Christian Candra Octaviano", kelas: "B" },
+  { nrp: "3123600035", nama: "Naufal Zhafransyah Setiawan", kelas: "B" },
+  { nrp: "3123600036", nama: "Eka Danis Saputri", kelas: "B" },
+  { nrp: "3123600037", nama: "Tiara Vania Wijaya Putri", kelas: "B" },
+  { nrp: "3123600038", nama: "Alfansyah Ahmad Al Ghozaly", kelas: "B" },
+  { nrp: "3123600039", nama: "Halimatuz Zahra Sakin Sabilla", kelas: "B" },
+  { nrp: "3123600040", nama: "Nurul Fatimah Azmi", kelas: "B" },
+  { nrp: "3123600041", nama: "Marcel Dwi Astika", kelas: "B" },
+  { nrp: "3123600042", nama: "Saifullah Ahmad Musyanto", kelas: "B" },
+  { nrp: "3123600043", nama: "Ridho Fahrizal", kelas: "B" },
+  { nrp: "3123600044", nama: "Muhammad Farhan Hibatullah Akbar", kelas: "B" },
+  { nrp: "3123600045", nama: "Mohammad Farrel Ponco Hutomo", kelas: "B" },
+  { nrp: "3123600046", nama: "Moh. Nizar Nugraha Adi", kelas: "B" },
+  { nrp: "3123600047", nama: "Muhammad Ayman Fahad", kelas: "B" },
+  { nrp: "3123600048", nama: "Rakha Maulana Kaysah Putra", kelas: "B" },
+  { nrp: "3123600049", nama: "Sonny Kurniadi", kelas: "B" },
+  { nrp: "3123600050", nama: "Ali Akbar Nafis", kelas: "B" },
+  { nrp: "3123600051", nama: "M. Filsaf Aelang Abilt", kelas: "B" },
+  { nrp: "3123600052", nama: "Rangga Rizqy Awanda Putra", kelas: "B" },
+  { nrp: "3123600053", nama: "Nickolas Yudistira Krisando", kelas: "B" },
+  { nrp: "3123600054", nama: "Julio Betara Affandi", kelas: "B" },
+  { nrp: "3123600055", nama: "Andhika Fadli Bhaskara", kelas: "B" },
+  { nrp: "3123600056", nama: "Muhammad Satrio Asadel", kelas: "B" },
+  { nrp: "3123600058", nama: "Aisha Sabina", kelas: "B" },
+  { nrp: "3123600060", nama: "Ibrahim Ahmad Al-'Ashim", kelas: "B" },
+];
 
-export function nilaiAwalUntuk(_kode: string, _tahun: string, _kelas = "A"): NilaiMap {
-  return {};
+export function nilaiAwalUntuk(kode: string, _tahun: string, kelas = "A"): NilaiMap {
+  const kelasAktif = kelas.toUpperCase();
+  if (kode.toUpperCase() !== KODE_MK_DATAMINING || !["A", "B"].includes(kelasAktif)) return {};
+  return Object.fromEntries(
+    DAFTAR_MAHASISWA.filter((mahasiswa) => mahasiswa.kelas === kelasAktif)
+      .map((mahasiswa) => [mahasiswa.nrp, {}]),
+  );
 }
 
 export const NILAI_AWAL: NilaiMap = {};
@@ -300,7 +418,17 @@ export interface GradeRow {
   kualitas: number;
 }
 
-export const TABEL_GRADE: GradeRow[] = [];
+// Skala nilai huruf dari lembar penilaian rubrik.docx. Batas 86 tertulis di dua rentang (AB 76–86, A 86–100);
+// di sini 86 masuk A. `max` hanya untuk tampilan rentang — konversi memakai `min` saja agar nilai desimal tidak jatuh ke celah.
+export const TABEL_GRADE: GradeRow[] = [
+  { min: 86, max: 100, huruf: "A", kualitas: 4 },
+  { min: 76, max: 85.99, huruf: "AB", kualitas: 3.5 },
+  { min: 66, max: 75.99, huruf: "B", kualitas: 3 },
+  { min: 61, max: 65.99, huruf: "BC", kualitas: 2.5 },
+  { min: 56, max: 60.99, huruf: "C", kualitas: 2 },
+  { min: 41, max: 55.99, huruf: "D", kualitas: 1 },
+  { min: 0, max: 40.99, huruf: "E", kualitas: 0 },
+];
 export const AMBANG_DEFAULT = 60;
 
 // Akun demo dipertahankan hanya sebagai akses awal ke aplikasi lokal.

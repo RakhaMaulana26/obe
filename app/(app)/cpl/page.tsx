@@ -4,7 +4,6 @@ import { useState } from "react";
 import { DAFTAR_CPL, DAFTAR_IK, type CPL } from "@/app/lib/data";
 import { bacaDataTersimpan } from "@/app/lib/store";
 import { Btn, Card, EmptyState, Field, Modal, PageHeading, StatCard, Td, Th, inputCls } from "@/app/components/ui";
-import FadeContent from "@/app/components/reactbits/FadeContent";
 
 function bacaLS<T>(kunci: string, fallback: T): T {
   return bacaDataTersimpan(kunci, fallback);
@@ -54,7 +53,8 @@ export default function CPLPage() {
   return (
     <div className="space-y-6">
       <PageHeading
-        title="Capaian Lulusan (CPL)"
+        title="Capaian pembelajaran lulusan"
+        desc="CPL program studi menurut Kurikulum 2026, beserta indikator kinerjanya."
         action={<Btn onClick={() => { setForm({ kode: "", deskripsiSingkat: "", deskripsi: "" }); setGalat(""); setModal({ mode: "tambah" }); }} tour="Tambah Capaian Pembelajaran Lulusan (CPL) baru." tourTitle="Tambah CPL">+ Tambah CPL</Btn>}
       />
 
@@ -64,30 +64,30 @@ export default function CPLPage() {
         <StatCard label="Tanpa IK" value={String(cplList.filter((c) => !ikList.some((i) => i.cpl === c.kode)).length)} sub="CPL yang belum dijabarkan" highlight={cplList.some((c) => !ikList.some((i) => i.cpl === c.kode))} />
       </div>
 
-      {galat && <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{galat}</div>}
+      {galat && <div className="rounded-lg border border-danger/30 bg-danger-bg p-3 text-sm text-danger">{galat}</div>}
 
-      <FadeContent>
+      <div>
       <Card>
         <div className="mb-3 flex items-center justify-between">
           <div>
-            <h3 className="text-base font-bold text-primary">Daftar CPL</h3>
-            <p className="text-xs text-gray-500">Kolom “IK penopang” menunjukkan indikator dan porsinya pada setiap CPL. Atur hubungan tersebut di halaman IK.</p>
+            <h3 className="font-semibold text-primary">Daftar CPL</h3>
+            <p className="text-sm text-ink-muted">Kolom “IK penopang” menunjukkan indikator dan porsinya pada setiap CPL. Atur hubungan tersebut di halaman IK.</p>
           </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead><tr className="border-b border-gray-200"><Th>Kode</Th><Th>Nama singkat</Th><Th>Deskripsi</Th><Th>IK penopang</Th><Th>Aksi</Th></tr></thead>
-            <tbody className="divide-y divide-gray-100">
+            <thead><tr className="border-b border-line"><Th>Kode</Th><Th>Nama singkat</Th><Th>Deskripsi</Th><Th>IK penopang</Th><Th>Aksi</Th></tr></thead>
+            <tbody className="divide-y divide-line">
               {cplList.map((c) => (
-                <tr key={c.kode} className="hover:bg-gray-50/70">
-                  <Td><span className="rounded-md bg-primary px-2 py-0.5 font-mono text-xs font-bold text-white">{c.kode}</span></Td>
-                  <Td className="font-medium text-gray-800">{c.deskripsiSingkat}</Td>
-                  <Td className="max-w-xl text-[13px] text-gray-600">{c.deskripsi}</Td>
-                  <Td><span className="font-mono text-xs text-gray-500">{ikList.filter((i) => i.cpl === c.kode).map((i) => `${i.kode} (${Math.round(i.z * 100)}%)`).join(", ") || "— belum ada —"}</span></Td>
+                <tr key={c.kode} className="hover:bg-paper/70">
+                  <Td><span className="font-semibold tabular-nums text-primary">{c.kode}</span></Td>
+                  <Td className="font-medium text-ink">{c.deskripsiSingkat}</Td>
+                  <Td className="max-w-xl text-sm text-ink">{c.deskripsi}</Td>
+                  <Td><span className="tabular-nums text-xs text-ink-muted">{ikList.filter((i) => i.cpl === c.kode).map((i) => `${i.kode} (${Math.round(i.z * 100)}%)`).join(", ") || "Belum ada"}</span></Td>
                   <Td>
                     <div className="flex gap-1">
-                      <button onClick={() => { setForm({ ...c }); setGalat(""); setModal({ mode: "ubah", kode: c.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-[13px] font-semibold text-gray-500 hover:bg-gray-100 hover:text-primary">Ubah</button>
-                      <button onClick={() => setHapus(c.kode)} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-[13px] font-semibold text-gray-500 hover:bg-red-50 hover:text-red-600">Hapus</button>
+                      <button onClick={() => { setForm({ ...c }); setGalat(""); setModal({ mode: "ubah", kode: c.kode }); }} data-tour="Ubah data pada baris ini." data-tour-title="Ubah" className="rounded p-1.5 text-sm font-semibold text-ink-muted hover:bg-paper hover:text-primary">Ubah</button>
+                      <button onClick={() => setHapus(c.kode)} data-tour="Hapus data pada baris ini (ada konfirmasi dulu)." data-tour-title="Hapus" className="rounded p-1.5 text-sm font-semibold text-ink-muted hover:bg-danger-bg hover:text-danger">Hapus</button>
                     </div>
                   </Td>
                 </tr>
@@ -96,18 +96,18 @@ export default function CPLPage() {
           </table>
         </div>
         {cplList.length === 0 && <EmptyState title="Belum ada CPL" desc="Tambah CPL pertama program studi." />}
-        <p className="mt-3 rounded-xl bg-primary/[0.04] p-3 text-xs leading-relaxed text-gray-600">
+        <p className="mt-4 max-w-[72ch] border-l-[3px] border-primary/40 pl-3 text-sm leading-relaxed text-ink-muted">
           Perhitungan program studi berakhir di CPL. Profil lulusan dikelola terpisah sebagai informasi referensi dan tidak masuk ke perhitungan skor.
         </p>
       </Card>
-      </FadeContent>
+      </div>
 
       {modal && (
         <Modal title={modal.mode === "tambah" ? "Tambah CPL" : `Ubah ${modal.kode}`} onClose={() => setModal(null)}>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Field label="Kode CPL">
-                <input value={form.kode} onChange={(e) => setForm({ ...form, kode: e.target.value })} placeholder="CPL12" className={`${inputCls} font-mono`} disabled={modal.mode === "ubah"} />
+                <input value={form.kode} onChange={(e) => setForm({ ...form, kode: e.target.value })} placeholder="CPL12" className={`${inputCls} tabular-nums`} disabled={modal.mode === "ubah"} />
               </Field>
               <Field label="Nama singkat">
                 <input value={form.deskripsiSingkat} onChange={(e) => setForm({ ...form, deskripsiSingkat: e.target.value })} placeholder="Keamanan siber" className={inputCls} />
@@ -125,7 +125,7 @@ export default function CPLPage() {
         <Modal title={`Hapus ${hapus}?`} onClose={() => setHapus(null)}>
           <div className="flex justify-end gap-2">
             <Btn variant="outline" onClick={() => setHapus(null)}>Batal</Btn>
-            <Btn variant="danger" onClick={prosesHapus}>Ya, Hapus</Btn>
+            <Btn variant="danger" onClick={prosesHapus}>Hapus CPL</Btn>
           </div>
         </Modal>
       )}

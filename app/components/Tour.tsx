@@ -135,7 +135,7 @@ export default function Tour() {
       {/* Sorotan: bingkai + gelap sekeliling via box-shadow */}
       <div
         aria-hidden
-        className="pointer-events-none fixed z-[91] rounded-xl ring-2 ring-accent transition-all duration-300"
+        className="pointer-events-none fixed z-[91] rounded-lg ring-2 ring-accent transition-all duration-300"
         style={{
           left: kotak.left - pad,
           top: kotak.top - pad,
@@ -148,31 +148,31 @@ export default function Tour() {
       <div
         role="dialog"
         aria-label={`Panduan langkah ${idx + 1} dari ${langkah.length}`}
-        className="fixed z-[92] w-[320px] max-w-[calc(100vw-1.5rem)] rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl"
+        className="fixed z-[92] w-[320px] max-w-[calc(100vw-1.5rem)] rounded-lg border border-line bg-white p-5"
         style={diBawah ? { left: kiri, top: kotak.bottom + 12 } : { left: kiri, bottom: window.innerHeight - kotak.top + 12 }}
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-gray-400">
+            <p className="text-xs font-bold tracking-[0.14em] text-ink-muted">
               Langkah {idx + 1} dari {langkah.length}
             </p>
-            <h3 className="mt-1 text-[15px] font-bold text-primary">{aktif.judul}</h3>
+            <h3 className="mt-1 text-base font-bold text-primary">{aktif.judul}</h3>
           </div>
           <button
             onClick={() => akhiri(true)}
             aria-label="Lewati panduan"
-            className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
+            className="rounded-lg p-1.5 text-ink-muted transition-colors hover:bg-paper hover:text-ink"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
-        <p className="mt-2 text-sm leading-relaxed text-gray-600">{aktif.teks}</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink">{aktif.teks}</p>
         <div className="mt-4 flex items-center justify-between gap-2">
           <button
             onClick={() => akhiri(true)}
-            className="rounded-lg px-3 py-2 text-[13px] font-medium text-gray-500 transition-colors hover:bg-gray-100"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-ink-muted transition-colors hover:bg-paper"
           >
             Lewati semua
           </button>
@@ -180,7 +180,7 @@ export default function Tour() {
             {idx > 0 ? (
               <button
                 onClick={() => setIdx(idx - 1)}
-                className="rounded-lg border border-gray-300 px-4 py-2 text-[13px] font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                className="rounded-lg border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-paper"
               >
                 ← Kembali
               </button>
@@ -188,16 +188,16 @@ export default function Tour() {
             {terakhir ? (
               <button
                 onClick={() => akhiri(true)}
-                className="rounded-lg bg-accent px-4 py-2 text-[13px] font-bold text-primary transition hover:brightness-95"
+                className="rounded-lg bg-accent px-4 py-2 text-sm font-bold text-primary transition hover:brightness-95"
               >
                 Selesai ✓
               </button>
             ) : (
               <button
                 onClick={() => setIdx(idx + 1)}
-                className="rounded-lg bg-primary px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-primary/90"
+                className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90"
               >
-                Lanjut →
+                Lanjut
               </button>
             )}
           </div>

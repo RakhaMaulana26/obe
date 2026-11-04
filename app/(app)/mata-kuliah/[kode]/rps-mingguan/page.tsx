@@ -31,9 +31,9 @@ export default function RPSMingguanPage({ params }: { params: Promise<{ kode: st
   if (!mk) {
     return (
       <div className="space-y-6">
-        <PageHeading title={`RPS Mingguan — ${mkKode}`} />
+        <PageHeading title="RPS mingguan" />
         <EmptyState title="Mata kuliah tidak ditemukan" desc="Periksa kode mata kuliah atau kembali ke daftar mata kuliah." />
-        <Link href="/mata-kuliah" className="text-sm font-semibold text-primary hover:underline">← Daftar mata kuliah</Link>
+        <Link href="/mata-kuliah" className="text-sm font-semibold text-primary hover:underline">Daftar mata kuliah</Link>
       </div>
     );
   }
@@ -41,8 +41,9 @@ export default function RPSMingguanPage({ params }: { params: Promise<{ kode: st
   return (
     <div className="space-y-6">
       <PageHeading
-        title={`RPS Mingguan — ${mk.kode}`}
-        action={<Link href={`/mata-kuliah/${mk.kode}`} className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">← Hub MK</Link>}
+        title="RPS mingguan"
+        desc={`${mk.kode} ${mk.nama}. Rencana tiap pertemuan: Sub-CPMK, indikator, metode, dan bobot penilaian.`}
+        action={<Link href={`/mata-kuliah/${mk.kode}`} className="inline-flex items-center gap-2 rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-paper">Halaman mata kuliah</Link>}
       />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <StatCard label="Sub-CPMK" value={String(struktur.sub.length)} sub="Dari struktur mata kuliah" />
@@ -53,7 +54,7 @@ export default function RPSMingguanPage({ params }: { params: Promise<{ kode: st
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 className="text-base font-bold text-primary">Kegiatan pembelajaran per minggu</h2>
-            <p className="mt-1 text-sm text-gray-600">Rencana mingguan {mk.nama} mengikuti data yang sama dengan generator RPS.</p>
+            <p className="mt-1 text-sm text-ink">Rencana mingguan {mk.nama} mengikuti data yang sama dengan generator RPS.</p>
           </div>
           <Link href={`/mata-kuliah/${mk.kode}/dokumen`} className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90">Atur kegiatan RPS</Link>
         </div>
@@ -63,7 +64,7 @@ export default function RPSMingguanPage({ params }: { params: Promise<{ kode: st
           <div className="overflow-x-auto">
             <table className="min-w-[1120px] w-full border-collapse text-left text-sm">
               <thead>
-                <tr className="border-y border-gray-200 bg-gray-50 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <tr className="border-y border-line bg-paper text-xs font-semibold text-ink-muted">
                   <th className="px-3 py-3">Pertemuan</th>
                   <th className="px-3 py-3">Sub-CPMK</th>
                   <th className="px-3 py-3">Indikator & kriteria penilaian</th>
@@ -73,25 +74,25 @@ export default function RPSMingguanPage({ params }: { params: Promise<{ kode: st
                   <th className="px-3 py-3 text-right">Bobot</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 align-top">
+              <tbody className="divide-y divide-line align-top">
                 {struktur.sub.map((sub) => {
                   const rencana = konfigurasi.rencanaSub[sub.kode];
                   const bobot = KATEGORI_RUBRIK.reduce((total, kategori) => total + (konfigurasi.bobotRubrik[sub.kode]?.[kategori] ?? 0), 0);
                   return (
                     <tr key={sub.kode}>
-                      <td className="whitespace-nowrap px-3 py-4 font-mono text-xs font-semibold text-gray-600">{rencana?.pertemuan || "—"}</td>
+                      <td className="whitespace-nowrap px-3 py-4 tabular-nums text-xs font-semibold text-ink">{rencana?.pertemuan || "—"}</td>
                       <td className="max-w-64 px-3 py-4">
-                        <span className="font-mono text-xs font-bold text-primary">{sub.kode}</span>
-                        <p className="mt-1 text-xs leading-relaxed text-gray-600">{sub.deskripsi}</p>
+                        <span className="tabular-nums text-xs font-bold text-primary">{sub.kode}</span>
+                        <p className="mt-1 text-xs leading-relaxed text-ink">{sub.deskripsi}</p>
                       </td>
-                      <td className="max-w-72 px-3 py-4 text-xs leading-relaxed text-gray-600">
+                      <td className="max-w-72 px-3 py-4 text-xs leading-relaxed text-ink">
                         <p>{rencana?.indikator || "—"}</p>
-                        <p className="mt-2 text-gray-500">{rencana?.kriteria || "—"}</p>
+                        <p className="mt-2 text-ink-muted">{rencana?.kriteria || "—"}</p>
                       </td>
-                      <td className="max-w-64 px-3 py-4 text-xs leading-relaxed text-gray-600">{rencana?.tatapMuka || "—"}</td>
-                      <td className="max-w-64 px-3 py-4 text-xs leading-relaxed text-gray-600">{rencana?.daring || "—"}</td>
-                      <td className="max-w-64 px-3 py-4 text-xs leading-relaxed text-gray-600">{rencana?.materi || "—"}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-right font-mono text-xs font-bold tabular-nums text-gray-700">{formatPersen(bobot)}</td>
+                      <td className="max-w-64 px-3 py-4 text-xs leading-relaxed text-ink">{rencana?.tatapMuka || "—"}</td>
+                      <td className="max-w-64 px-3 py-4 text-xs leading-relaxed text-ink">{rencana?.daring || "—"}</td>
+                      <td className="max-w-64 px-3 py-4 text-xs leading-relaxed text-ink">{rencana?.materi || "—"}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-right tabular-nums text-xs font-bold tabular-nums text-ink">{formatPersen(bobot)}</td>
                     </tr>
                   );
                 })}

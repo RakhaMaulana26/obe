@@ -8,31 +8,26 @@ import {
   DAFTAR_ASESMEN,
   DAFTAR_CPL,
   DAFTAR_IK,
-  DAFTAR_MAHASISWA,
-  mahasiswaUntukKelas,
+  type NilaiMahasiswa,
 } from "@/app/lib/data";
 import {
-  hitungCPL,
-  hitungCPMK,
-  hitungIK,
-  hitungSub,
-  konversiHuruf,
+  hitungCapaianSatuMahasiswa,
   statusCapaian,
   susunRekomendasi,
 } from "@/app/lib/hitung";
+import { ambilNilai, asesmenDariBobot, daftarIndikator } from "@/app/lib/penilaian";
 import { BadgeHuruf, BadgeStatus, Btn, Card, EmptyState, PageHeading, Td, Th, inputCls } from "@/app/components/ui";
 import Stepper, { StepPanel } from "@/app/components/reactbits/Stepper";
 import Accordion from "@/app/components/reactbits/Accordion";
-import FadeContent from "@/app/components/reactbits/FadeContent";
 import OfferingSelect, { DosenChip } from "@/app/components/OfferingSelect";
 import { offeringTerbaru } from "@/app/lib/store";
 
 export default function DetailCapaianPage({ params, searchParams }: { params: Promise<{ nrp: string }>; searchParams: Promise<{ kode?: string | string[]; tahun?: string | string[] }> }) {
   const { nrp } = use(params);
   const query = use(searchParams);
-  const { nilaiUntuk, strukturUntuk, mataKuliah } = useApp();
-  const mhs = DAFTAR_MAHASISWA.find((m) => m.nrp === nrp);
-  const rosterKelas = mahasiswaUntukKelas(mhs?.kelas ?? "A");
+  const { nilaiUntuk, strukturUntuk, mataKuliah, mahasiswa, mahasiswaUntuk } = useApp();
+  const mhs = mahasiswa.find((m) => m.nrp === nrp);
+  const rosterKelas = mahasiswaUntuk(mhs?.kelas ?? "A");
   const penawaranKelas = mataKuliah.filter((mk) => mk.kelas === (mhs?.kelas ?? "A"));
   const kodeQuery = Array.isArray(query.kode) ? query.kode[0] : query.kode;
   const tahunQuery = Array.isArray(query.tahun) ? query.tahun[0] : query.tahun;
@@ -48,20 +43,16 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
 
   const hasil = (() => {
     if (!nilaiMhs) return null;
-    const sub = hitungSub(nilaiMhs, struktur.bobotW, struktur.sub);
-    const cpmk = hitungCPMK(sub, struktur.sub, struktur.cpmk);
-    const ik = hitungIK(cpmk, struktur.bobotU);
-    const cpl = hitungCPL(ik);
-    return { sub, cpmk, ik, cpl };
+    return hitungCapaianSatuMahasiswa(nilaiMhs, { w: struktur.bobotW, u: struktur.bobotU, rubrik: struktur.rubrik }, struktur.sub, struktur.cpmk);
   })();
 
   if (!mhs || !nilaiMhs || !hasil) {
     return (
       <div className="space-y-6">
-        <PageHeading title="Detail Capaian Mahasiswa" />
+        <PageHeading title="Detail capaian mahasiswa" />
         <EmptyState title="Mahasiswa tidak ditemukan" desc={`Tidak ada data nilai untuk NRP ${nrp}.`} />
         <Link href="/dashboard" className="text-sm font-semibold text-primary hover:underline">
-          ← Kembali ke Dashboard
+          Kembali ke dashboard
         </Link>
       </div>
     );
@@ -73,20 +64,24 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
   const mhsNext = idx >= 0 && idx < rosterKelas.length - 1 ? rosterKelas[idx + 1] : null;
   const hrefMahasiswa = (nomor: string) => `/capaian/${nomor}?kode=${encodeURIComponent(offering.kode)}&tahun=${encodeURIComponent(offering.tahun)}`;
   const saran = susunRekomendasi(
-    { nrp, sub: hasil.sub, cpmk: hasil.cpmk, ik: hasil.ik, cpl: hasil.cpl },
+    { ...hasil, nrp },
     ambang,
     daftarSub,
     bobotW,
   );
 
   // Lolos guard di atas: nilaiMhs pasti terisi — alias bertipe pasti untuk closure di bawah.
-  const nm: Record<string, number> = nilaiMhs;
+  const nm: NilaiMahasiswa = nilaiMhs;
+
+  // Indikator lembar penilaian rubrik; dipakai untuk rincian Langkah 1 dan cara hitung Sub-CPMK.
+  const daftarAsesmenAktif = asesmenDariBobot(bobotW, DAFTAR_ASESMEN);
+  const indikator = daftarIndikator(daftarSub, bobotW, daftarAsesmenAktif, struktur.rubrik);
 
   function rincianSub(kode: string): string {
-    const w = bobotW[kode] ?? {};
-    return Object.entries(w)
-      .map(([a, b]) => `${nm[a]}×${Number(b).toFixed(2)}`)
-      .join(" + ");
+    const milik = indikator.filter((i) => i.sub === kode);
+    // Sama dengan hitungSubDariIndikator: bobot distribusi rubrik per indikator (bobotSub).
+    const total = milik.reduce((t, i) => t + i.bobotSub, 0) || 1;
+    return milik.map((i) => `${ambilNilai(nm, i)}×${(i.bobotSub / total).toFixed(2)}`).join(" + ");
   }
 
   function rincianCpmk(kode: string): string {
@@ -105,20 +100,24 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
     return bagian.join(" + ");
   }
 
+  // Hanya IK yang diukur MK ini; porsi z dinormalisasi atas IK tersebut (sama dengan hitungCPL).
+  const daftarIKTerukur = DAFTAR_IK.filter((i) => i.kode in hasil.ik);
+  const daftarCPLTerukur = DAFTAR_CPL.filter((c) => c.kode in hasil.cpl);
+
   function rincianCpl(kode: string): string {
-    return DAFTAR_IK.filter((i) => i.cpl === kode)
-      .map((i) => `${(hasil?.ik[i.kode] ?? 0).toFixed(2)}×${i.z.toFixed(2)}`)
+    const penyusun = daftarIKTerukur.filter((i) => i.cpl === kode);
+    const totalZ = penyusun.reduce((a, i) => a + i.z, 0) || 1;
+    return penyusun
+      .map((i) => `${(hasil?.ik[i.kode] ?? 0).toFixed(2)}×${(i.z / totalZ).toFixed(2)}`)
       .join(" + ");
   }
 
   function BlokSkor({ skor }: { skor: number }) {
     const ok = statusCapaian(skor, ambang) === "Tercapai";
-    const { huruf } = konversiHuruf(skor);
     return (
       <span className="inline-flex items-center gap-2">
-        <span className={`font-mono text-sm font-bold ${ok ? "text-primary" : "text-red-600"}`}>{skor.toFixed(2)}</span>
+        <span className={`tabular-nums text-sm font-bold ${ok ? "text-primary" : "text-danger"}`}>{skor.toFixed(2)}</span>
         <BadgeHuruf skor={skor} />
-        <span className="hidden text-[11px] text-gray-400 xl:inline">{huruf}</span>
         <BadgeStatus tercapai={ok} />
       </span>
     );
@@ -128,35 +127,22 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
     <div className="space-y-6">
       <PageHeading
         title={mhs.nama}
+        desc={`NRP ${mhs.nrp}, kelas ${mhs.kelas}. Hitungan capaian dari nilai indikator sampai CPL.`}
         action={
           <>
-            <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-              ← Dashboard
-            </Link>
-            <Btn variant="accent" onClick={() => window.print()} tour="Cetak rincian capaian mahasiswa ini sebagai PDF." tourTitle="Cetak">
+            <label className="inline-flex items-center gap-2 text-sm text-ink-muted">
+              Batas lulus
+              <input type="number" min={0} max={100} value={ambang} onChange={(e) => setAmbang(Number(e.target.value))} className={`${inputCls} !w-20 tabular-nums`} data-tour="Atur batas lulus khusus halaman ini." data-tour-title="Batas lulus" />
+            </label>
+            <Btn variant="outline" onClick={() => window.print()} tour="Cetak rincian capaian mahasiswa ini sebagai PDF." tourTitle="Cetak">
               Cetak
             </Btn>
-            <span className="inline-flex items-center gap-2 text-sm text-gray-600">
-              T =
-              <input type="number" min={0} max={100} value={ambang} onChange={(e) => setAmbang(Number(e.target.value))} className={`${inputCls} !w-20 !py-1.5`} aria-label="Batas lulus" data-tour="Atur batas lulus (T) khusus halaman ini." data-tour-title="Batas lulus (T)" />
-            </span>
           </>
         }
       />
 
-      <div className="flex items-center justify-between gap-2 print:hidden">
-        {mhsPrev ? (
-          <Link href={hrefMahasiswa(mhsPrev.nrp)} className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-semibold text-gray-600 hover:bg-gray-50">← {mhsPrev.nama}</Link>
-        ) : <span />}
-        <span className="font-mono text-[11px] text-gray-400">Mahasiswa {idx + 1} dari {rosterKelas.length} Kelas {mhs.kelas}</span>
-        {mhsNext ? (
-          <Link href={hrefMahasiswa(mhsNext.nrp)} className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-semibold text-gray-600 hover:bg-gray-50">{mhsNext.nama} →</Link>
-        ) : <span />}
-      </div>
-
-      <FadeContent>
-        <Card className="!p-5 print:hidden">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+      <section aria-label="Konteks" className="rounded-lg border border-line bg-white print:hidden">
+        <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-end">
             <OfferingSelect
               daftar={penawaranKelas}
               kode={offering.kode}
@@ -164,83 +150,109 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
               kelas={offering.kelas}
               onChange={(kode, tahun, kelas) => setOffering({ kode, tahun, kelas })}
               id="konteks-capaian"
-              label="Sumber nilai — mata kuliah & tahun ajaran"
+              label="Mata kuliah"
               className="w-full sm:max-w-md"
             />
-            <div className="pb-0.5">
-              <DosenChip daftar={penawaranKelas} kode={offering.kode} tahun={offering.tahun} kelas={offering.kelas} />
-            </div>
+          <div className="pb-0.5">
+            <DosenChip daftar={penawaranKelas} kode={offering.kode} tahun={offering.tahun} kelas={offering.kelas} />
           </div>
-        </Card>
-      </FadeContent>
-
-      <Card className={`flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ${tuntas ? "border-green-200 bg-green-50/50" : "border-red-200 bg-red-50/50"}`}>
-        <div>
-          <p className="text-sm font-semibold text-primary">
-            {tuntas ? "Tuntas — seluruh capaian mata kuliah (CPMK) sudah ≥ T" : "Belum tuntas — ada capaian mata kuliah (CPMK) di bawah T"}
-          </p>
-          <p className="text-[13px] text-gray-600">
-            CPMK-1 {hasil.cpmk["CPMK-1"]?.toFixed(2)} • CPMK-2 {hasil.cpmk["CPMK-2"]?.toFixed(2)} • CPMK-3{" "}
-            {hasil.cpmk["CPMK-3"]?.toFixed(2)} (batas T = {ambang})
-          </p>
         </div>
-        <BadgeStatus tercapai={tuntas} />
-      </Card>
+        <nav aria-label="Mahasiswa lain di kelas ini" className="flex items-center justify-between gap-3 border-t border-line px-5 py-2.5 text-sm">
+          {mhsPrev ? (
+            <Link href={hrefMahasiswa(mhsPrev.nrp)} className="min-w-0 truncate text-primary hover:underline">Sebelumnya: {mhsPrev.nama}</Link>
+          ) : <span />}
+          <span className="shrink-0 tabular-nums text-ink-muted">{idx + 1} dari {rosterKelas.length}</span>
+          {mhsNext ? (
+            <Link href={hrefMahasiswa(mhsNext.nrp)} className="min-w-0 truncate text-right text-primary hover:underline">Berikutnya: {mhsNext.nama}</Link>
+          ) : <span />}
+        </nav>
+      </section>
 
-      <FadeContent>
-        <Card className="print:hidden">
-          <Stepper
-            steps={[
-              { title: "Nilai", desc: "Tugas & ujian" },
-              { title: "Sub-CPMK", desc: "Capaian kecil" },
-              { title: "CPMK", desc: "Capaian MK" },
-              { title: "IK", desc: "Kemampuan spesifik" },
-              { title: "CPL", desc: "Capaian lulusan" },
-            ]}
-            active={langkah}
-            onStep={setLangkah}
-          />
-        </Card>
-      </FadeContent>
+      <section aria-labelledby="status-cpmk" className={`rounded-lg border border-l-[3px] bg-white p-5 ${tuntas ? "border-line border-l-success" : "border-line border-l-danger"}`}>
+        <h2 id="status-cpmk" className="font-semibold text-ink">
+          {tuntas ? "Semua CPMK sudah mencapai batas lulus" : "Ada CPMK yang belum mencapai batas lulus"}
+        </h2>
+        <dl className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+          {daftarCPMK.map((c) => {
+            const skor = hasil.cpmk[c.kode] ?? 0;
+            return (
+              <div key={c.kode} className="flex gap-1.5">
+                <dt className="text-ink-muted">{c.kode}</dt>
+                <dd className={`font-semibold tabular-nums ${skor >= ambang ? "text-ink" : "text-danger"}`}>{skor.toFixed(2)}</dd>
+              </div>
+            );
+          })}
+        </dl>
+      </section>
+
+      <div className="print:hidden">
+        <Stepper
+          steps={[
+            { title: "Nilai", desc: "Indikator rubrik" },
+            { title: "Sub-CPMK", desc: "Per topik" },
+            { title: "CPMK", desc: "Mata kuliah" },
+            { title: "IK", desc: "Indikator kinerja" },
+            { title: "CPL", desc: "Capaian lulusan" },
+          ]}
+          active={langkah}
+          onStep={setLangkah}
+        />
+      </div>
 
       <StepPanel stepKey={langkah}>
       {langkah === 0 ? (
       <Card>
-        <h3 className="mb-1 text-base font-bold text-primary">Langkah 1 — Nilai asesmen (masukan)</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">T1–T4 tugas, Praktikum, ETS, EAS • skala 0–100. Ini satu-satunya data yang diinput dosen.</p>
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:grid-cols-7">
-          {DAFTAR_ASESMEN.map((a) => (
-            <div key={a.kode} className="rounded-lg bg-gray-50 p-3 text-center">
-              <p className="text-xs font-bold text-primary">{a.kode}</p>
-              <p className="truncate text-[11px] text-gray-400">{a.nama}</p>
-              <p className="mt-1 font-mono text-xl font-bold text-gray-800">{nilaiMhs[a.kode]}</p>
-            </div>
-          ))}
+        <h3 className="mb-1 text-lg font-semibold text-primary">Nilai asesmen</h3>
+        <p className="mb-4 max-w-[70ch] text-sm leading-relaxed text-ink-muted">Skor tiap indikator rubrik (0–100). Nilai komponen adalah rata-rata indikatornya; nilai akhir adalah jumlah nilai komponen dikali bobotnya.</p>
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
+          {daftarAsesmenAktif.map((a) => {
+            const milik = indikator.filter((i) => i.asesmen === a.kode);
+            if (milik.length === 0) return null;
+            const bobotKomponen = milik.reduce((t, i) => t + i.bobot, 0);
+            return (
+              <div key={a.kode} className="rounded-lg bg-paper p-3">
+                <p className="text-xs font-bold text-primary">{a.nama} <span className="font-normal text-ink-muted">({bobotKomponen.toFixed(0)}%)</span></p>
+                <ul className="mt-2 space-y-1">
+                  {milik.map((i) => (
+                    <li key={i.kunci} className="flex items-start justify-between gap-2 text-xs text-ink">
+                      <span title={i.label} className="line-clamp-2">{i.label}</span>
+                      <span className="tabular-nums text-sm font-bold text-ink">{ambilNilai(nilaiMhs, i)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-2 flex justify-between border-t border-line pt-1.5 text-xs font-semibold text-ink">
+                  <span>Rata-rata</span>
+                  <span className="tabular-nums">{(hasil.nilaiAsesmen[a.kode] ?? 0).toFixed(2)}</span>
+                </p>
+              </div>
+            );
+          })}
         </div>
+        <p className="mt-4 text-sm text-ink">Nilai akhir mata kuliah: <span className="tabular-nums font-bold text-primary">{hasil.nilaiAkhir.toFixed(2)}</span> <BadgeHuruf skor={hasil.nilaiAkhir} /></p>
       </Card>
       ) : null}
 
       {langkah === 1 ? (
       <Card>
-        <h3 className="mb-1 text-base font-bold text-primary">Langkah 2 — Skor capaian kecil (Sub-CPMK)</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">Rata-rata berbobot dari nilai asesmen. Skor + status di depan, detail hitung tersembunyi di bawah.</p>
+        <h3 className="mb-1 text-lg font-semibold text-primary">Sub-CPMK</h3>
+        <p className="mb-4 max-w-[70ch] text-sm leading-relaxed text-ink-muted">Rata-rata berbobot dari indikator yang terhubung ke tiap Sub-CPMK, mengikuti tabel distribusi rubrik.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-line">
                 <Th>Kode</Th>
                 <Th>Deskripsi</Th>
                 <Th className="text-right">Skor</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {daftarSub.map((s) => (
-                <tr key={s.kode} className="hover:bg-gray-50/70">
+                <tr key={s.kode} className="hover:bg-paper/70">
                   <Td>
-                    <span className="rounded-md bg-primary px-2 py-0.5 font-mono text-xs font-bold text-white">{s.kode}</span>
-                    <span className="ml-2 text-[11px] text-gray-400">→ {s.cpmk}</span>
+                    <span className="font-semibold tabular-nums text-primary">{s.kode}</span>
+                    <span className="block text-xs text-ink-muted">bagian dari {s.cpmk}</span>
                   </Td>
-                  <Td className="max-w-56 text-gray-700">{s.deskripsi} <span className="text-gray-400">({s.level})</span></Td>
+                  <Td className="max-w-56 text-ink">{s.deskripsi} <span className="text-ink-muted">({s.level})</span></Td>
                   <Td className="text-right">
                     <BlokSkor skor={hasil.sub[s.kode] ?? 0} />
                   </Td>
@@ -249,10 +261,10 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
             </tbody>
           </table>
         </div>
-        <Accordion title="Lihat cara hitung Sub-CPMK" desc="Contoh: 80×0,50 + 70×0,50 = 75" className="mt-4">
+        <Accordion title="Lihat cara hitung Sub-CPMK" desc="Nilai indikator × porsinya di Sub-CPMK" className="mt-4">
           <div className="space-y-1.5">
             {daftarSub.map((s) => (
-              <p key={s.kode} className="font-mono text-[11px] text-gray-500"><strong className="text-primary">{s.kode}</strong>: {rincianSub(s.kode)} = {(hasil.sub[s.kode] ?? 0).toFixed(2)}</p>
+              <p key={s.kode} className="tabular-nums text-xs text-ink-muted"><strong className="text-primary">{s.kode}</strong>: {rincianSub(s.kode)} = {(hasil.sub[s.kode] ?? 0).toFixed(2)}</p>
             ))}
           </div>
         </Accordion>
@@ -261,24 +273,24 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
 
       {langkah === 2 ? (
       <Card>
-        <h3 className="mb-1 text-base font-bold text-primary">Langkah 3 — Skor capaian mata kuliah (CPMK)</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">Gabungan capaian-capaian kecil di atasnya sesuai porsinya.</p>
+        <h3 className="mb-1 text-lg font-semibold text-primary">CPMK</h3>
+        <p className="mb-4 max-w-[70ch] text-sm leading-relaxed text-ink-muted">Gabungan Sub-CPMK sesuai bobotnya di RPS.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-line">
                 <Th>Kode</Th>
                 <Th>Deskripsi</Th>
                 <Th className="text-right">Skor</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {daftarCPMK.map((c) => (
-                <tr key={c.kode} className="hover:bg-gray-50/70">
+                <tr key={c.kode} className="hover:bg-paper/70">
                   <Td>
-                    <span className="rounded-md bg-primary px-2 py-0.5 font-mono text-xs font-bold text-white">{c.kode}</span>
+                    <span className="font-semibold tabular-nums text-primary">{c.kode}</span>
                   </Td>
-                  <Td className="max-w-72 text-[13px] text-gray-700">{c.deskripsi}</Td>
+                  <Td className="max-w-72 text-sm text-ink">{c.deskripsi}</Td>
                   <Td className="text-right">
                     <BlokSkor skor={hasil.cpmk[c.kode] ?? 0} />
                   </Td>
@@ -290,7 +302,7 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
         <Accordion title="Lihat cara hitung CPMK" desc="Gabungan Sub-CPMK sesuai porsinya" className="mt-4">
           <div className="space-y-1.5">
             {daftarCPMK.map((c) => (
-              <p key={c.kode} className="font-mono text-[11px] text-gray-500"><strong className="text-primary">{c.kode}</strong>: {rincianCpmk(c.kode)} = {(hasil.cpmk[c.kode] ?? 0).toFixed(2)}</p>
+              <p key={c.kode} className="tabular-nums text-xs text-ink-muted"><strong className="text-primary">{c.kode}</strong>: {rincianCpmk(c.kode)} = {(hasil.cpmk[c.kode] ?? 0).toFixed(2)}</p>
             ))}
           </div>
         </Accordion>
@@ -299,18 +311,18 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
 
       {langkah === 3 ? (
       <Card>
-        <h3 className="mb-1 text-base font-bold text-primary">Langkah 4 — Kemampuan spesifik (IK)</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">Gabungan CPMK yang mengukur kemampuan yang sama.</p>
+        <h3 className="mb-1 text-lg font-semibold text-primary">Indikator kinerja (IK)</h3>
+        <p className="mb-4 max-w-[70ch] text-sm leading-relaxed text-ink-muted">Gabungan CPMK yang menopang indikator kinerja yang sama.</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {DAFTAR_IK.map((i) => (
-            <div key={i.kode} className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
+          {daftarIKTerukur.map((i) => (
+            <div key={i.kode} className="rounded-md border border-line p-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[13px] font-bold text-primary">{i.kode}</span>
+                <span className="text-sm font-bold text-primary">{i.kode}</span>
                 <BlokSkor skor={hasil.ik[i.kode] ?? 0} />
               </div>
-              <p className="mt-1 text-xs leading-relaxed text-gray-600">{i.deskripsi}</p>
-              <Accordion title="Cara hitung" className="mt-2" desc={rincianIk(i.kode)}>
-                <p className="font-mono text-[11px] text-gray-500">{rincianIk(i.kode)} = {(hasil.ik[i.kode] ?? 0).toFixed(2)}</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink">{i.deskripsi}</p>
+              <Accordion title="Cara hitung" className="mt-2">
+                <p className="tabular-nums text-xs text-ink-muted">{rincianIk(i.kode)} = {(hasil.ik[i.kode] ?? 0).toFixed(2)}</p>
               </Accordion>
             </div>
           ))}
@@ -320,18 +332,18 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
 
       {langkah === 4 ? (
       <Card>
-        <h3 className="mb-1 text-base font-bold text-primary">Langkah 5 — Capaian lulusan (CPL)</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">Gabungan kemampuan spesifik sesuai porsinya.</p>
+        <h3 className="mb-1 text-lg font-semibold text-primary">Capaian pembelajaran lulusan (CPL)</h3>
+        <p className="mb-4 max-w-[70ch] text-sm leading-relaxed text-ink-muted">Gabungan IK yang terukur di mata kuliah ini, sesuai porsinya.</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {DAFTAR_CPL.map((c) => (
-            <div key={c.kode} className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
+          {daftarCPLTerukur.map((c) => (
+            <div key={c.kode} className="rounded-md border border-line p-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[13px] font-bold text-primary">{c.kode}</span>
+                <span className="text-sm font-bold text-primary">{c.kode}</span>
                 <BlokSkor skor={hasil.cpl[c.kode] ?? 0} />
               </div>
-              <p className="mt-1 text-xs leading-relaxed text-gray-600">{c.deskripsiSingkat}</p>
-              <Accordion title="Cara hitung" className="mt-2" desc={rincianCpl(c.kode)}>
-                <p className="font-mono text-[11px] text-gray-500">{rincianCpl(c.kode)} = {(hasil.cpl[c.kode] ?? 0).toFixed(2)}</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink">{c.deskripsiSingkat}</p>
+              <Accordion title="Cara hitung" className="mt-2">
+                <p className="tabular-nums text-xs text-ink-muted">{rincianCpl(c.kode)} = {(hasil.cpl[c.kode] ?? 0).toFixed(2)}</p>
               </Accordion>
             </div>
           ))}
@@ -340,10 +352,10 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
       ) : null}
 
       {langkah === 4 ? (
-      <Card className="border-accent/60">
+      <Card className="border-l-[3px] border-l-accent">
         <h3 className="mb-2 text-base font-bold text-primary">Rekomendasi tindak lanjut</h3>
-        <p className="mb-4 text-xs leading-relaxed text-gray-500">Saran perbaikan berdasarkan capaian CPMK dan Sub-CPMK. Perhitungan level program studi berhenti pada CPL.</p>
-        <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-gray-700">
+        <p className="mb-4 max-w-[70ch] text-sm leading-relaxed text-ink-muted">Saran perbaikan berdasarkan capaian CPMK dan Sub-CPMK. Perhitungan level program studi berhenti pada CPL.</p>
+        <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink">
           {saran.map((s, i) => (
             <li key={i}>{s}</li>
           ))}
@@ -356,17 +368,17 @@ export default function DetailCapaianPage({ params, searchParams }: { params: Pr
         <button
           disabled={langkah === 0}
           onClick={() => setLangkah(Math.max(0, langkah - 1))}
-          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 disabled:opacity-40 hover:bg-gray-50"
+          className="h-10 rounded-lg border border-line bg-white px-4 text-sm font-medium text-ink hover:bg-paper disabled:opacity-40"
         >
-          ← Sebelumnya
+          Langkah sebelumnya
         </button>
-        <span className="text-xs text-gray-500">Langkah {langkah + 1} dari 5</span>
+        <span className="text-xs text-ink-muted">Langkah {langkah + 1} dari 5</span>
         <button
           disabled={langkah === 4}
           onClick={() => setLangkah(Math.min(4, langkah + 1))}
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white disabled:opacity-40 hover:bg-primary/90"
+          className="h-10 rounded-lg bg-primary px-4 text-sm font-medium text-white hover:bg-primary-dark disabled:opacity-40"
         >
-          Berikutnya →
+          Langkah berikutnya
         </button>
       </div>
     </div>

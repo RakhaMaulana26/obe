@@ -1,152 +1,65 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { useApp } from "@/app/lib/store";
-import BlurText from "@/app/components/reactbits/BlurText";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Drawer } from "@/app/components/ui";
+import { IsiMenu } from "@/app/components/Sidebar";
 
 const JUDUL: { prefix: string; title: string }[] = [
-  { prefix: "/dashboard", title: "Dashboard Capaian" },
-  { prefix: "/hirarki", title: "Hirarki Capaian" },
+  { prefix: "/dashboard", title: "Dashboard" },
+  { prefix: "/hirarki", title: "Hirarki capaian" },
   { prefix: "/laporan", title: "Laporan" },
-  { prefix: "/evaluasi-dosen", title: "Evaluasi Dosen" },
-  { prefix: "/mata-kuliah", title: "Mata Kuliah" },
-  { prefix: "/capaian", title: "Detail Capaian" },
-  { prefix: "/pl", title: "Profil Lulusan" },
-  { prefix: "/cpl", title: "Capaian Pembelajaran Lulusan" },
-  { prefix: "/ik", title: "Indikator Kinerja" },
+  { prefix: "/evaluasi-dosen", title: "Evaluasi dosen" },
+  { prefix: "/mata-kuliah", title: "Mata kuliah" },
+  { prefix: "/capaian", title: "Detail capaian" },
+  { prefix: "/peta-kurikulum", title: "Peta kurikulum" },
+  { prefix: "/pl", title: "Profil lulusan" },
+  { prefix: "/cpl", title: "CPL" },
+  { prefix: "/ik", title: "Indikator kinerja" },
   { prefix: "/ppm", title: "PPM" },
 ];
 
+/**
+ * Header: tombol menu (< 1024px) yang membuka drawer, judul halaman di HP, dan tombol tur panduan.
+ * Slot konteks MK/tahun/kelas disiapkan untuk sub-proyek 2.
+ */
 export default function Header() {
-  const [buka, setBuka] = useState(false);
-  const [konfirmasiKeluar, setKonfirmasiKeluar] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const router = useRouter();
-  const { pengguna, keluar } = useApp();
-
-  useEffect(() => {
-    function diLuar(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setBuka(false);
-    }
-    document.addEventListener("mousedown", diLuar);
-    return () => document.removeEventListener("mousedown", diLuar);
-  }, []);
-
-  const aktif = JUDUL.find((j) => pathname === j.prefix || pathname.startsWith(`${j.prefix}/`)) ?? {
-    title: "Dashboard",
-  };
-  const inisial = pengguna
-    ? pengguna.nama
-        .split(" ")
-        .map((k) => k.charAt(0))
-        .slice(0, 2)
-        .join("")
-        .toUpperCase()
-    : "–";
-
-  function prosesKeluar() {
-    keluar();
-    setKonfirmasiKeluar(false);
-    setBuka(false);
-    router.push("/login");
-  }
+  const [menuBuka, setMenuBuka] = useState(false);
+  const judul = JUDUL.find((j) => pathname === j.prefix || pathname.startsWith(`${j.prefix}/`))?.title ?? "SPK OBE";
 
   return (
     <>
-      <header
-        className="fixed right-0 top-0 z-40 flex h-[var(--header-height)] items-center justify-between border-b border-gray-200 bg-white px-6 print:hidden"
-        style={{ left: "var(--sidebar-width)", width: "calc(100% - var(--sidebar-width))" }}
-        suppressHydrationWarning
-      >
-        <div className="relative ml-auto flex items-center gap-1" ref={ref}>
-          <button
-            onClick={() => window.dispatchEvent(new Event("obe-tour-mulai"))}
-            title="Ulangi panduan tombol"
-            aria-label="Ulangi panduan tombol"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-lg font-bold text-gray-400 transition-colors hover:bg-gray-100 hover:text-primary"
-          >
-            ?
-          </button>
-          <button
-            onClick={() => (pengguna ? setBuka(!buka) : router.push("/login"))}
-            className="flex items-center gap-3 rounded-full p-1.5 pr-3 transition-colors hover:bg-gray-100"
-            aria-label="Profil pengguna"
-            aria-expanded={buka}
-            data-tour="Buka menu akun untuk melihat info pengguna dan keluar dari aplikasi."
-            data-tour-title="Akun"
-          >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary font-medium text-primary-foreground">
-              {inisial}
-            </div>
-            <div className="hidden text-left md:block">
-              <p className="text-sm font-medium text-primary">{pengguna ? pengguna.nama : "Belum masuk"}</p>
-              <p className="text-xs text-gray-500">{pengguna ? `${pengguna.peran} • ${pengguna.email}` : "Klik untuk masuk"}</p>
-            </div>
-            {pengguna ? (
-              <svg
-                className={`h-4 w-4 text-gray-500 transition-transform ${buka ? "rotate-180" : ""}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            ) : null}
-          </button>
-
-          {buka && pengguna && (
-            <div className="animate-fade-in absolute right-0 top-full z-50 mt-2 w-60 rounded-xl border border-gray-200 bg-white py-2 shadow-lg">
-              <div className="border-b border-gray-100 px-4 py-3">
-                <p className="truncate font-medium text-primary">{pengguna.nama}</p>
-                <p className="truncate text-sm text-gray-500">{pengguna.email}</p>
-                <span className="mt-1.5 inline-flex rounded-full bg-accent/25 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
-                  {pengguna.peran}
-                </span>
-              </div>
-              <button
-                onClick={() => {
-                  setBuka(false);
-                  setKonfirmasiKeluar(true);
-                }}
-                className="w-full px-4 py-2.5 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
-              >
-                Keluar
-              </button>
-            </div>
-          )}
-        </div>
-      </header>
-
-      {konfirmasiKeluar && (
-        <div
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 p-4"
-          onClick={() => setKonfirmasiKeluar(false)}
+      <header className="fixed inset-x-0 top-0 z-40 flex h-[var(--header-height)] items-center gap-3 border-b border-line bg-white px-4 print:hidden sm:px-6 lg:left-[var(--sidebar-rail-width)] xl:left-[var(--sidebar-width)]">
+        <button
+          type="button"
+          onClick={() => setMenuBuka(true)}
+          aria-label="Buka menu"
+          aria-expanded={menuBuka}
+          data-tour="Buka menu untuk berpindah ke Dashboard, Mata kuliah, atau data kurikulum prodi. Keluar dari aplikasi ada di bagian bawah menu."
+          data-tour-title="Menu"
+          className="-ml-2 flex h-10 w-10 items-center justify-center rounded-lg text-ink transition-colors hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 lg:hidden"
         >
-          <div
-            className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="text-lg font-bold text-primary">Keluar dari aplikasi?</h3>
-            <p className="mt-1 text-sm text-gray-600">Sesi Anda akan diakhiri dan kembali ke halaman Login.</p>
-            <div className="mt-5 flex justify-end gap-2">
-              <button
-                onClick={() => setKonfirmasiKeluar(false)}
-                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
-              >
-                Batal
-              </button>
-              <button
-                onClick={prosesKeluar}
-                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700"
-              >
-                Ya, Keluar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <p className="truncate text-base font-semibold text-primary lg:hidden">{judul}</p>
+        {/* Slot konteks MK/tahun/kelas — diisi di sub-proyek 2. */}
+        <div className="flex-1" />
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event("obe-tour-mulai"))}
+          title="Ulangi panduan"
+          aria-label="Ulangi panduan"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-base font-bold text-ink-muted transition-colors hover:bg-paper hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        >
+          ?
+        </button>
+      </header>
+      <Drawer open={menuBuka} onClose={() => setMenuBuka(false)} label="Menu utama">
+        <IsiMenu onPilih={() => setMenuBuka(false)} />
+      </Drawer>
     </>
   );
 }

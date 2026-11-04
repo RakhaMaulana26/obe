@@ -6,6 +6,7 @@ import {
   DAFTAR_KELAS,
   DAFTAR_CPL,
   DAFTAR_IK,
+  DAFTAR_MAHASISWA,
   DAFTAR_PL,
   MK_SEED,
   PEMETAAN_KURIKULUM_SEED,
@@ -16,11 +17,15 @@ import {
   type AsesmenKode,
   type CPMK,
   type KategoriMataKuliah,
+  type Mahasiswa,
   type NilaiMap,
   type StrukturMataKuliah,
   type SubCPMK,
 } from "./data";
 import { KONFIGURASI_DOKUMEN_SEED, kunciConfigDokumen } from "./dokumen-seed";
+import { lengkapiBobotSub, perbaikiBobotU, strukturValid } from "./bobot";
+import { daftarMahasiswaValid, hapusNilaiMahasiswa } from "./mahasiswa";
+import { gabungNilai, lengkapiRubrik, saringRoster } from "./penilaian";
 
 export interface Pengguna {
   nama: string;
@@ -53,6 +58,7 @@ export const TAHUN_DEFAULT = "";
 
 const KUNCI_RESET_DATA = "obe-data-kosong-v1";
 const KUNCI_IMPORT_SUMBER = "obe-import-sumber-kurikulum-2026-v1";
+const KUNCI_IMPORT_ROSTER_WORKSHOP = "obe-import-roster-workshop-dm-v1";
 const KUNCI_HAPUS_DATA_MINING_IT = "obe-hapus-data-mining-it-v1";
 
 function isDataMiningIT(nilai: unknown): nilai is { kode: string; nama: string } {
@@ -149,6 +155,28 @@ function muatDataSumberBerkas() {
 }
 
 /** Hapus entri lokal Data Mining berkode IT/TI yang tidak berasal dari workbook. */
+function muatSeedRosterWorkshop() {
+  if (typeof window === "undefined") return;
+  try {
+    if (window.localStorage.getItem(KUNCI_IMPORT_ROSTER_WORKSHOP) === "1") return;
+
+    const daftarMK = bacaDataTersimpan<MataKuliahItem[]>("obe-mk", []);
+    const offeringAda = new Set(daftarMK.map((mk) => `${mk.kode.toUpperCase()}::${mk.tahun}::${mk.kelas.toUpperCase()}`));
+    const offeringBaru = MK_SEED.filter((mk) => mk.kode === "TI045105" && !offeringAda.has(`${mk.kode}::${mk.tahun}::${mk.kelas}`));
+    if (offeringBaru.length > 0) {
+      window.localStorage.setItem("obe-mk", JSON.stringify([...daftarMK, ...offeringBaru]));
+    }
+
+    const mahasiswaTersimpan = daftarMahasiswaValid(bacaDataTersimpan<unknown>("obe-mahasiswa", []));
+    const mahasiswaGabungan = new Map(mahasiswaTersimpan.map((mahasiswa) => [mahasiswa.nrp, mahasiswa]));
+    for (const mahasiswa of DAFTAR_MAHASISWA) mahasiswaGabungan.set(mahasiswa.nrp, mahasiswa);
+    window.localStorage.setItem("obe-mahasiswa", JSON.stringify([...mahasiswaGabungan.values()]));
+    window.localStorage.setItem(KUNCI_IMPORT_ROSTER_WORKSHOP, "1");
+  } catch {
+    /* Impor diulang pada pemuatan aplikasi berikutnya jika penyimpanan belum tersedia. */
+  }
+}
+
 function hapusDataMiningIT() {
   if (typeof window === "undefined") return;
   try {
@@ -175,7 +203,7 @@ function hapusDataMiningIT() {
         JSON.stringify(daftarMK.filter((mk) => !isDataMiningIT(mk))),
       );
 
-      for (const key of ["obe-nilai-offering", "obe-pemetaan-kurikulum", "obe-struktur-mk", "obe-tahun-dipilih", "obe-kelas-dipilih"]) {
+      for (const key of [KUNCI_NILAI, "obe-pemetaan-kurikulum", "obe-struktur-mk", "obe-tahun-dipilih", "obe-kelas-dipilih"]) {
         const record = bacaRecord(key);
         for (const kode of kodeTerhapus) {
           delete record[kode];
@@ -294,20 +322,22 @@ function normalisasiMK(daftar: Array<Partial<MataKuliahItem> & { kode: string; s
   });
 }
 
-/** Benih dataset nilai per penawaran: data lama (bila ada) atau dataset awal per MK+tahun. */
+/**
+ * Nilai disimpan per (asesmen, Sub-CPMK) sejak v2. Data format lama ("obe-nilai", "obe-nilai-offering")
+ * berisi satu angka per asesmen dan tidak dapat dipetakan ke indikator, sehingga diabaikan.
+ */
+const KUNCI_NILAI = "obe-nilai-offering-v2";
+
+/** Benih dataset nilai per penawaran: data tersimpan atau dataset kosong per MK+tahun+kelas. */
 function benihNilaiOffering(daftar: MataKuliahItem[], tersimpan: Record<string, NilaiMap> | null): Record<string, NilaiMap> {
-  const nilaiLama = baca<NilaiMap | null>("obe-nilai", null);
   const out: Record<string, NilaiMap> = { ...(tersimpan ?? {}) };
   for (const m of daftar) {
-    const kunciBaru = kunciOffering(m.kode, m.tahun, m.kelas);
-    if (out[kunciBaru]) continue;
-    const kunciLama = `${m.kode.toUpperCase()}::${m.tahun.trim()}`;
-    const nilaiMigrasi = m.kelas === "A" ? out[kunciLama] ?? nilaiLama : undefined;
-    out[kunciBaru] = nilaiMigrasi
-      ? (JSON.parse(JSON.stringify(nilaiMigrasi)) as NilaiMap)
-      : nilaiAwalUntuk(m.kode, m.tahun, m.kelas);
+    const kunci = kunciOffering(m.kode, m.tahun, m.kelas);
+    out[kunci] = {
+      ...nilaiAwalUntuk(m.kode, m.tahun, m.kelas),
+      ...(out[kunci] ?? {}),
+    };
   }
-  for (const m of daftar) delete out[`${m.kode.toUpperCase()}::${m.tahun.trim()}`];
   return out;
 }
 
@@ -323,7 +353,16 @@ function strukturMKAwal(daftar: MataKuliahItem[]): Record<string, StrukturMataKu
     if (!dasar[mk.kode]) dasar[mk.kode] = buatStrukturDummy(mk);
   }
   const tersimpan = baca<Record<string, StrukturMataKuliah> | null>("obe-struktur-mk", null);
-  if (tersimpan) return { ...dasar, ...tersimpan };
+  if (tersimpan) {
+    // Data lama: Sub-CPMK tanpa bobot dan bobotU terbalik/tidak ternormalisasi diperbaiki saat dimuat.
+    // Entri yang bentuknya rusak dilewati (dipakai struktur dasar) agar tidak menjatuhkan seluruh aplikasi.
+    const diperbaiki = Object.fromEntries(
+      Object.entries(tersimpan)
+        .filter(([, struktur]) => strukturValid(struktur))
+        .map(([kode, struktur]) => [kode, lengkapiRubrik(perbaikiBobotU(lengkapiBobotSub(struktur, STRUKTUR_MK_SEED[kode])), STRUKTUR_MK_SEED[kode])]),
+    );
+    return { ...dasar, ...diperbaiki };
+  }
 
   return dasar;
 }
@@ -361,6 +400,14 @@ interface AppState {
   hapusMK: (kode: string, tahun: string, kelas: string) => void;
   daftarAsesmen: Asesmen[];
   setDaftarAsesmen: (d: Asesmen[]) => void;
+  /** Daftar mahasiswa yang dimasukkan dosen (manual atau impor CSV). */
+  mahasiswa: Mahasiswa[];
+  mahasiswaUntuk: (kelas: string) => Mahasiswa[];
+  /** Mengembalikan pesan galat bila NRP sudah terdaftar, atau null bila berhasil. */
+  tambahMahasiswa: (m: Mahasiswa) => string | null;
+  hapusMahasiswa: (nrp: string) => void;
+  /** Gabungkan hasil impor; NRP yang sudah ada ditimpa. */
+  imporMahasiswa: (daftar: Mahasiswa[]) => void;
 }
 
 const AppContext = createContext<AppState | null>(null);
@@ -368,12 +415,13 @@ const AppContext = createContext<AppState | null>(null);
 export function AppProvider({ children }: { children: ReactNode }) {
   kosongkanDataLokalLama();
   muatDataSumberBerkas();
+  muatSeedRosterWorkshop();
   hapusDataMiningIT();
   // Inisialisasi malas dari localStorage (aman untuk prerender server: baca() mengembalikan fallback).
   const [pengguna, setPengguna] = useState<Pengguna | null>(() => baca<Pengguna | null>("obe-user", null));
   const [mataKuliah, setMataKuliah] = useState<MataKuliahItem[]>(() => daftarMKFinal());
   const [nilaiOffering, setNilaiOfferingState] = useState<Record<string, NilaiMap>>(() => {
-    const tersimpan = baca<Record<string, NilaiMap> | null>("obe-nilai-offering", null);
+    const tersimpan = baca<Record<string, NilaiMap> | null>(KUNCI_NILAI, null);
     return benihNilaiOffering(daftarMKFinal(), tersimpan);
   });
   const [tahunDipilih, setTahunDipilihState] = useState<Record<string, string>>(() =>
@@ -384,9 +432,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const [strukturMK, setStrukturMK] = useState<Record<string, StrukturMataKuliah>>(() => strukturMKAwal(mataKuliah));
   const [daftarAsesmen, setDaftarAsesmen] = useState<Asesmen[]>(() => baca("obe-asesmen", DAFTAR_ASESMEN));
+  const [mahasiswa, setMahasiswa] = useState<Mahasiswa[]>(() => daftarMahasiswaValid(baca<unknown>("obe-mahasiswa", DAFTAR_MAHASISWA)));
 
   useEffect(() => {
-    simpan("obe-nilai-offering", nilaiOffering);
+    simpan(KUNCI_NILAI, nilaiOffering);
   }, [nilaiOffering]);
   useEffect(() => {
     simpan("obe-tahun-dipilih", tahunDipilih);
@@ -403,6 +452,36 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     simpan("obe-asesmen", daftarAsesmen);
   }, [daftarAsesmen]);
+  useEffect(() => {
+    simpan("obe-mahasiswa", mahasiswa);
+  }, [mahasiswa]);
+
+  const mahasiswaUntuk = useCallback(
+    (kelas: string) => mahasiswa.filter((m) => m.kelas === kelas).sort((a, b) => a.nrp.localeCompare(b.nrp)),
+    [mahasiswa],
+  );
+  const tambahMahasiswa = useCallback(
+    (m: Mahasiswa): string | null => {
+      const bersih = { nrp: m.nrp.trim(), nama: m.nama.trim(), kelas: m.kelas };
+      if (!bersih.nrp || !bersih.nama) return "NRP dan nama wajib diisi.";
+      if (mahasiswa.some((x) => x.nrp === bersih.nrp)) return `NRP ${bersih.nrp} sudah terdaftar.`;
+      setMahasiswa((prev) => [...prev, bersih]);
+      return null;
+    },
+    [mahasiswa],
+  );
+  const hapusMahasiswa = useCallback((nrp: string) => {
+    setMahasiswa((prev) => prev.filter((m) => m.nrp !== nrp));
+    // Nilai ikut dihapus agar tidak terhitung di dashboard/laporan dan tidak muncul lagi bila NRP ditambah ulang.
+    setNilaiOfferingState((prev) => hapusNilaiMahasiswa(prev, nrp));
+  }, []);
+  const imporMahasiswa = useCallback((daftar: Mahasiswa[]) => {
+    setMahasiswa((prev) => {
+      const baru = new Map(prev.map((m) => [m.nrp, m]));
+      for (const m of daftar) baru.set(m.nrp, m);
+      return [...baru.values()];
+    });
+  }, []);
 
   const masuk = useCallback((p: Pengguna) => {
     setPengguna(p);
@@ -420,16 +499,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const nilaiUntuk = useCallback(
     (kode: string, tahun: string, kelas = "A"): NilaiMap => {
-      const ada = nilaiOffering[kunciOffering(kode, tahun, kelas)];
-      if (ada) return ada;
-      return nilaiAwalUntuk(kode, tahun, kelas);
+      // Hanya mahasiswa yang ada di daftar kelas yang dihitung: data awal membuat entri nilai kosong untuk
+      // seluruh roster bawaan, termasuk mahasiswa yang sudah dihapus.
+      const nilai = nilaiOffering[kunciOffering(kode, tahun, kelas)] ?? nilaiAwalUntuk(kode, tahun, kelas);
+      return saringRoster(nilai, mahasiswaUntuk(kelas));
     },
-    [nilaiOffering],
+    [nilaiOffering, mahasiswaUntuk],
   );
 
   const setNilaiOffering = useCallback((kode: string, tahun: string, kelas: string, n: NilaiMap) => {
     const kunci = kunciOffering(kode, tahun, kelas);
-    setNilaiOfferingState((prev) => ({ ...prev, [kunci]: n }));
+    // Digabung, bukan ditimpa: NRP yang tidak tampil di daftar kelas saat ini tidak ikut terhapus.
+    setNilaiOfferingState((prev) => ({ ...prev, [kunci]: gabungNilai(prev[kunci], n) }));
   }, []);
 
   const resetNilaiOffering = useCallback((kode: string, tahun: string, kelas: string) => {
@@ -457,7 +538,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [strukturMK, mataKuliah],
   );
   const simpanStruktur = useCallback((kode: string, struktur: StrukturMataKuliah) => {
-    setStrukturMK((prev) => ({ ...prev, [kode.toUpperCase()]: struktur }));
+    // bobotU selalu diturunkan ulang dari centang matriks + bobot Sub-CPMK.
+    setStrukturMK((prev) => ({ ...prev, [kode.toUpperCase()]: perbaikiBobotU(struktur) }));
   }, []);
 
   const tambahMK = useCallback((mk: MataKuliahItem) => {
@@ -528,6 +610,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       hapusMK,
       daftarAsesmen,
       setDaftarAsesmen,
+      mahasiswa,
+      mahasiswaUntuk,
+      tambahMahasiswa,
+      hapusMahasiswa,
+      imporMahasiswa,
     }),
     [
       pengguna,
@@ -548,6 +635,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       hapusMK,
       daftarAsesmen,
       setDaftarAsesmen,
+      mahasiswa,
+      mahasiswaUntuk,
+      tambahMahasiswa,
+      hapusMahasiswa,
+      imporMahasiswa,
     ],
   );
 

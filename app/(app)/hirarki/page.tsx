@@ -16,10 +16,8 @@ import Tabs from "@/app/components/reactbits/Tabs";
 
 // ------------------------------------------------------------------
 // Hirarki capaian terukur: CPL → IK → CPMK → Sub-CPMK.
-// Gaya kartu + konektor kurva mengikuti acuan hierarchy.webp,
-// dengan warna dan komponen mengikuti style proyek.
-// Geometri dihitung deterministik (kartu固定 tinggi) sehingga
-// konektor SVG tidak membutuhkan pengukuran DOM.
+// Kartu berukuran tetap sehingga konektor SVG bisa dihitung
+// tanpa mengukur DOM.
 // ------------------------------------------------------------------
 
 const CARD_W = 230;
@@ -52,13 +50,12 @@ const LEVEL_LABEL: Record<Level, string> = {
   3: "Sub-CPMK",
 };
 
-const LEVEL_HURUF: Record<Level, string> = { 0: "C", 1: "I", 2: "M", 3: "S" };
-
-const LEVEL_BADGE: Record<Level, string> = {
-  0: "bg-primary text-white",
-  1: "bg-accent text-primary",
-  2: "border border-primary bg-primary/5 text-primary",
-  3: "bg-gray-100 text-gray-500",
+// Garis kiri kartu membedakan jenjang tanpa ikon tambahan.
+const LEVEL_GARIS: Record<Level, string> = {
+  0: "border-l-primary",
+  1: "border-l-accent",
+  2: "border-l-primary/50",
+  3: "border-l-line",
 };
 
 function bacaLS<T>(kunci: string, fallback: T): T {
@@ -66,9 +63,9 @@ function bacaLS<T>(kunci: string, fallback: T): T {
 }
 
 function warnaBar(skor: number, ambang: number): string {
-  if (skor < ambang) return "bg-red-400";
-  if (ambang < 80 && skor < 80) return "bg-amber-400";
-  return "bg-emerald-500";
+  if (skor < ambang) return "bg-danger";
+  if (ambang < 80 && skor < 80) return "bg-warning";
+  return "bg-success";
 }
 
 function KartuSimpul({
@@ -85,28 +82,19 @@ function KartuSimpul({
   const pct = skor === undefined ? 0 : Math.max(0, Math.min(100, skor));
   return (
     <div
-      className={`rounded-xl border bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-md ${
-        aktif ? "border-gray-200" : "border-gray-100 opacity-30 saturate-0 blur-[0.5px]"
-      }`}
+      className={`rounded-md border border-l-[3px] border-line bg-white p-3 ${LEVEL_GARIS[simpul.level]} ${aktif ? "" : "opacity-35"}`}
       style={{ height: CARD_H, width: CARD_W }}
-      title={`${simpul.kode} — ${simpul.judul}. ${simpul.penjelas ?? ""}`}
+      title={`${simpul.kode}: ${simpul.judul}. ${simpul.penjelas ?? ""}`}
     >
       <div className="flex items-center gap-2">
-        <span
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold ${LEVEL_BADGE[simpul.level]}`}
-        >
-          {LEVEL_HURUF[simpul.level]}
-        </span>
-        <p className="min-w-0 flex-1 truncate text-[10px] font-semibold uppercase tracking-wider text-gray-400">
-          {LEVEL_LABEL[simpul.level]} • {simpul.kode}
-        </p>
+        <p className="min-w-0 flex-1 truncate text-sm font-semibold tabular-nums text-primary">{simpul.kode}</p>
         {simpul.isDummy ? (
-          <span title="Deskripsi atau pemetaan simpul ini masih berupa data contoh." className="shrink-0 rounded bg-amber-50 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-amber-800">Demo</span>
+          <span title="Deskripsi atau pemetaan simpul ini masih berupa data contoh." className="shrink-0 rounded bg-warning-bg px-1.5 py-0.5 text-xs font-bold text-warning">Demo</span>
         ) : null}
         <Link
           href={simpul.kelola}
           title={`Kelola ${simpul.kode}`}
-          className="shrink-0 rounded p-1 text-gray-300 transition-colors hover:bg-gray-100 hover:text-primary"
+          className="shrink-0 rounded p-1 text-ink-muted/60 transition-colors hover:bg-paper hover:text-primary"
         >
           <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -114,18 +102,18 @@ function KartuSimpul({
         </Link>
       </div>
 
-      <p className="mt-1.5 line-clamp-2 min-h-9 text-[13px] font-semibold leading-snug text-gray-800">{simpul.judul}</p>
-      <p className="mt-0.5 truncate text-[11px] text-gray-400">{simpul.meta}</p>
+      <p className="mt-1.5 line-clamp-2 min-h-9 text-sm font-semibold leading-snug text-ink">{simpul.judul}</p>
+      <p className="mt-0.5 truncate text-xs text-ink-muted">{simpul.meta}</p>
 
       <div className="mt-1.5 flex items-center gap-2">
-        <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
-          <div className={`h-full rounded-full transition-all duration-300 ${warnaBar(pct, ambang)}`} style={{ width: `${pct}%` }} />
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-paper">
+          <div className={`h-full rounded-full ${warnaBar(pct, ambang)}`} style={{ width: `${pct}%` }} />
         </div>
-        <span className="font-mono text-xs font-bold text-gray-700">{skor === undefined ? "—" : skor.toFixed(0)}</span>
+        <span className="tabular-nums text-xs font-bold text-ink">{skor === undefined ? "—" : skor.toFixed(0)}</span>
       </div>
 
       <div className="mt-1.5 flex items-center justify-between">
-        <span className="font-mono text-[11px] text-gray-400">
+        <span className="tabular-nums text-xs text-ink-muted">
           {skor === undefined ? "belum ada skor" : `skor ${skor.toFixed(2)}`}
         </span>
         {skor === undefined ? null : (
@@ -179,7 +167,7 @@ export default function HirarkiPage() {
     const struktur = strukturUntuk(mkAktif.kode);
     const subValid = struktur.sub.filter((sub) => struktur.cpmk.some((cpmk) => cpmk.kode === sub.cpmk));
     const nilai = nilaiUntuk(mkAktif.kode, mkAktif.tahun, mkAktif.kelas);
-    const capaian = hitungSemua(nilai, { w: struktur.bobotW, u: struktur.bobotU }, subValid, struktur.cpmk);
+    const capaian = hitungSemua(nilai, { w: struktur.bobotW, u: struktur.bobotU, rubrik: struktur.rubrik }, subValid, struktur.cpmk);
     return [{
       mk: mkAktif,
       cpmk: struktur.cpmk,
@@ -236,14 +224,14 @@ export default function HirarkiPage() {
       judul: cpl.deskripsiSingkat || cpl.kode,
       meta: `${ikList.filter((ik) => ik.cpl === cpl.kode).length} kemampuan spesifik penopang`,
       kelola: "/cpl",
-      penjelas: "Batas akhir perhitungan capaian program studi — agregat dari kemampuan spesifik (IK) di bawahnya.",
+      penjelas: "Batas akhir perhitungan capaian program studi: agregat dari kemampuan spesifik (IK) di bawahnya.",
     }));
     const ikNodes: Simpul[] = ikList.map((ik) => ({
       id: ik.kode,
       kode: ik.kode,
       level: 1,
       judul: ik.deskripsi,
-      meta: `→ ${ik.cpl} • berkontribusi ${(ik.z * 100).toFixed(0)}%`,
+      meta: `${(ik.z * 100).toFixed(0)}% dari ${ik.cpl}`,
       kelola: "/ik",
       penjelas: `Berkontribusi ${(ik.z * 100).toFixed(0)}% ke ${ik.cpl}.`,
     }));
@@ -254,10 +242,10 @@ export default function HirarkiPage() {
         kode: `${item.mk.kode} / ${cpmk.kode}`,
         level: 2,
         judul: cpmk.deskripsi,
-        meta: `${item.mk.nama} • ${item.mk.tahun} • ${item.sub.filter((sub) => sub.cpmk === cpmk.kode).length} Sub-CPMK`,
+        meta: `${item.mk.nama}, ${item.mk.tahun}, ${item.sub.filter((sub) => sub.cpmk === cpmk.kode).length} Sub-CPMK`,
         kelola: `/mata-kuliah/${item.mk.kode}/struktur`,
         isDummy: cpmk.isDummy,
-        penjelas: `CPMK pada penawaran ${item.mk.kode} tahun ${item.mk.tahun} — agregat dari Sub-CPMK di bawahnya.`,
+        penjelas: `CPMK pada penawaran ${item.mk.kode} tahun ${item.mk.tahun}: agregat dari Sub-CPMK di bawahnya.`,
       }));
     });
     const subNodes: Simpul[] = penawaranTampil.flatMap((item) => {
@@ -267,7 +255,7 @@ export default function HirarkiPage() {
         kode: `${item.mk.kode} / ${sub.kode}`,
         level: 3,
         judul: sub.deskripsi,
-        meta: `${item.mk.nama} • ${item.mk.tahun} • ${sub.level} • → ${sub.cpmk} • porsi ${(sub.v * 100).toFixed(0)}%`,
+        meta: `${sub.level}, ${(sub.v * 100).toFixed(0)}% dari ${sub.cpmk}`,
         kelola: `/mata-kuliah/${item.mk.kode}/struktur`,
         isDummy: sub.isDummy,
         penjelas: `Sub-CPMK pada ${item.mk.kode} tahun ${item.mk.tahun}, dengan porsi ${(sub.v * 100).toFixed(0)}% ke ${sub.cpmk}.`,
@@ -345,22 +333,22 @@ export default function HirarkiPage() {
   return (
     <div className="space-y-6">
       <PageHeading
-        title="Hirarki Capaian"
+        title="Hirarki capaian"
+        desc="Bagaimana Sub-CPMK, CPMK, dan IK satu mata kuliah menopang CPL program studi."
         action={
-          <span className="inline-flex items-center gap-2 text-sm text-gray-600">
-            Batas lulus T =
+          <label className="inline-flex items-center gap-2 text-sm text-ink-muted">
+            Batas lulus
             <input
               type="number"
               min={0}
               max={100}
               value={ambang}
               onChange={(e) => setAmbang(Number(e.target.value))}
-              className={`${inputCls} !w-20 !py-1.5`}
-              aria-label="Ambang ketercapaian"
-              data-tour="Atur batas lulus (T) — warna simpul (hijau/kuning/merah) mengikuti nilai ini."
-              data-tour-title="Batas lulus (T)"
+              className={`${inputCls} !w-20 tabular-nums`}
+              data-tour="Atur batas lulus. Warna skor pada kartu mengikuti nilai ini."
+              data-tour-title="Batas lulus"
             />
-          </span>
+          </label>
         }
       />
 
@@ -370,8 +358,8 @@ export default function HirarkiPage() {
       >
       <Tabs
         tabs={[
-          { id: "peta", label: "Peta Lengkap", hint: "Seluruh simpul + konektor" },
-          { id: "jalur", label: "Jalur Sederhana", hint: "Pilih jenjang capaian yang ingin ditinjau" },
+          { id: "peta", label: "Peta lengkap", hint: "Semua simpul beserta garis hubungnya" },
+          { id: "jalur", label: "Daftar per jenjang", hint: "Pilih jenjang capaian yang ingin ditinjau" },
         ]}
         active={mode}
         onChange={setMode}
@@ -381,7 +369,7 @@ export default function HirarkiPage() {
       <Card className="sticky top-[calc(var(--header-height)+0.75rem)] z-30">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="w-full max-w-md">
-            <label htmlFor="pilih-mk-hirarki" className="mb-1.5 block text-sm font-medium text-gray-700">
+            <label htmlFor="pilih-mk-hirarki" className="mb-1.5 block text-sm font-medium text-ink">
               Pilih penawaran mata kuliah
             </label>
             <select
@@ -398,7 +386,7 @@ export default function HirarkiPage() {
                 <optgroup key={semester ?? "tanpa-semester"} label={semester === null ? "Semester belum ditentukan" : `Semester ${semester}`}>
                   {daftar.map((mk) => (
                     <option key={kunciOffering(mk.kode, mk.tahun, mk.kelas)} value={kunciOffering(mk.kode, mk.tahun, mk.kelas)}>
-                      {mk.kode} — {mk.nama} • {mk.tahun} | Kelas {mk.kelas}{mk.dosen ? ` • ${mk.dosen}` : ""}
+                      {mk.kode} {mk.nama}, {mk.tahun}, kelas {mk.kelas}
                     </option>
                   ))}
                 </optgroup>
@@ -407,80 +395,58 @@ export default function HirarkiPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg bg-gray-50 px-4 py-2.5 text-xs text-gray-600">
-              <span className="flex items-center gap-1.5">
-                <span className="inline-block h-3 w-3 rounded bg-primary" />
-                Terpetakan
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="inline-block h-3 w-3 rounded bg-gray-300 opacity-50" />
-                Transparan
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="inline-block h-2 w-6 rounded-full bg-emerald-500" />
-                {ambang < 80 ? "≥80" : `≥T (${ambang})`}
-              </span>
-              {ambang < 80 ? (
-                <span className="flex items-center gap-1.5">
-                  <span className="inline-block h-2 w-6 rounded-full bg-amber-400" />
-                  T ≤ skor &lt; 80
-                </span>
-              ) : null}
-              <span className="flex items-center gap-1.5">
-                <span className="inline-block h-2 w-6 rounded-full bg-red-400" />
-                &lt;T
-              </span>
-            </div>
+            <dl className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-ink-muted" aria-label="Keterangan warna skor">
+              <div className="flex items-center gap-1.5"><dt className="flex items-center"><span aria-hidden className="block h-2 w-5 rounded-full bg-success" /><span className="sr-only">Hijau:</span></dt><dd>{ambang < 80 ? "80 ke atas" : `${ambang} ke atas`}</dd></div>
+              {ambang < 80 ? <div className="flex items-center gap-1.5"><dt className="flex items-center"><span aria-hidden className="block h-2 w-5 rounded-full bg-warning" /><span className="sr-only">Cokelat:</span></dt><dd>{ambang} sampai di bawah 80</dd></div> : null}
+              <div className="flex items-center gap-1.5"><dt className="flex items-center"><span aria-hidden className="block h-2 w-5 rounded-full bg-danger" /><span className="sr-only">Merah:</span></dt><dd>di bawah {ambang}</dd></div>
+              <div className="flex items-center gap-1.5"><dt className="flex items-center"><span aria-hidden className="block h-3 w-5 rounded-sm border border-line bg-white opacity-40" /><span className="sr-only">Kartu pucat:</span></dt><dd>tidak dipetakan</dd></div>
+            </dl>
           </div>
         </div>
 
         {mkAktif ? (
-          <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl bg-primary/[0.04] p-4 text-sm">
-            <span className="rounded-md bg-primary px-2.5 py-1 text-xs font-bold text-white">{mkAktif.kode}</span>
-            <span className="font-semibold text-primary">{mkAktif.nama}</span>
-            <span className="text-gray-500">Tahun {mkAktif.tahun} • Kelas {mkAktif.kelas}</span>
-            <span className="ml-auto rounded-full bg-accent px-3 py-1 text-xs font-semibold text-primary">
-              {hitungAktif(0)} CPL • {hitungAktif(1)} IK • {hitungAktif(2)} CPMK • {hitungAktif(3)} Sub terpetakan
-            </span>
-          </div>
+          <p className="mt-4 border-t border-line pt-3 text-sm text-ink-muted">
+            <span className="font-semibold text-ink">{mkAktif.nama}</span> memetakan{" "}
+            <span className="tabular-nums text-ink">{hitungAktif(0)} CPL, {hitungAktif(1)} IK, {hitungAktif(2)} CPMK, dan {hitungAktif(3)} Sub-CPMK</span>.
+          </p>
         ) : null}
       </Card>
 
-      <div className="rounded-xl border border-gray-200 bg-[#fafbfc] p-4 shadow-sm sm:p-6">
+      <div className="rounded-lg border border-line bg-white p-4 sm:p-6">
         {mode === "peta" ? (
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-sm font-bold text-primary">Peta capaian</h2>
             </div>
-            <div role="group" aria-label="Kontrol pembesaran peta" className="inline-flex w-fit items-center gap-1 rounded-xl border border-gray-200 bg-white p-1 shadow-sm">
+            <div role="group" aria-label="Kontrol pembesaran peta" className="inline-flex w-fit items-center gap-1 rounded-lg border border-line bg-white p-1">
               <button
                 type="button"
                 onClick={() => setZoom((nilai) => Math.max(40, nilai - 10))}
                 disabled={zoom <= 40}
                 aria-label="Perkecil peta"
                 title="Perkecil peta"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-lg font-semibold text-primary transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-lg font-semibold text-primary transition hover:bg-paper disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <span aria-hidden>−</span>
               </button>
-              <output aria-live="polite" aria-atomic="true" className="min-w-14 text-center font-mono text-xs font-bold tabular-nums text-slate-700">{zoom}%</output>
+              <output aria-live="polite" aria-atomic="true" className="min-w-14 text-center tabular-nums text-xs font-bold text-ink">{zoom}%</output>
               <button
                 type="button"
                 onClick={() => setZoom((nilai) => Math.min(150, nilai + 10))}
                 disabled={zoom >= 150}
                 aria-label="Perbesar peta"
                 title="Perbesar peta"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-lg font-semibold text-primary transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-lg font-semibold text-primary transition hover:bg-paper disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <span aria-hidden>+</span>
               </button>
-              <span aria-hidden className="mx-0.5 h-5 w-px bg-slate-200" />
+              <span aria-hidden className="mx-0.5 h-5 w-px bg-line" />
               <button
                 type="button"
                 onClick={() => setZoom(70)}
                 aria-label="Atur ulang zoom ke 70 persen"
                 title="Atur ulang zoom"
-                className="rounded-lg px-2.5 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="rounded-lg px-2.5 py-2 text-xs font-semibold text-ink transition hover:bg-paper hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 Reset
               </button>
@@ -488,7 +454,7 @@ export default function HirarkiPage() {
           </div>
         ) : null}
 
-        <div className={mode === "peta" ? "max-h-[72vh] overflow-auto rounded-lg border border-gray-200 bg-white p-4 sm:p-5" : ""}>
+        <div className={mode === "peta" ? "max-h-[72vh] overflow-auto rounded-md border border-line bg-paper p-4 sm:p-5" : ""}>
           {!mkAktif ? (
             <EmptyState title="Belum ada mata kuliah" desc="Tambahkan penawaran mata kuliah untuk meninjau CPL, IK, CPMK, dan Sub-CPMK." />
           ) : mode === "jalur" ? (
@@ -513,7 +479,7 @@ export default function HirarkiPage() {
                       key={s.kunci}
                       d={s.d}
                       fill="none"
-                      stroke={s.aktif ? "#103968" : "#e2e5ea"}
+                      style={{ stroke: s.aktif ? "var(--primary)" : "var(--line)" }}
                       strokeOpacity={s.aktif ? 0.45 : 1}
                       strokeWidth={s.aktif ? 2 : 1.5}
                     />
@@ -529,12 +495,10 @@ export default function HirarkiPage() {
                     return (
                       <div key={LEVEL_LABEL[j as Level]} style={{ marginBottom: j < kolom.length - 1 ? V_GAP : 0 }}>
                         <div className="flex items-center justify-center" style={{ height: LABEL_H }}>
-                          <div className="rounded-lg bg-white px-4 py-1.5 text-center shadow-sm ring-1 ring-gray-100">
-                            <span className="text-xs font-bold uppercase tracking-wider text-primary">{LEVEL_LABEL[j as Level]}</span>{" "}
-                            <span className="font-mono text-[11px] text-gray-500">
-                              {hitungAktif(j as Level)}/{nodes.length} terpetakan • {jumlahBaris} baris
-                            </span>
-                          </div>
+                          <p className="text-center text-sm">
+                            <span className="font-semibold text-primary">{LEVEL_LABEL[j as Level]}</span>{" "}
+                            <span className="tabular-nums text-ink-muted">{hitungAktif(j as Level)} dari {nodes.length} dipetakan</span>
+                          </p>
                         </div>
                         <div className="flex flex-col items-center" style={{ gap: ROW_GAP }}>
                           {baris.map((simpulBaris, indeksBaris) => (
@@ -575,32 +539,31 @@ function KartuCapaianJalur({
   return (
     <Link
       href={simpul.kelola}
-      title={`${simpul.kode} — ${simpul.judul}. ${simpul.penjelas ?? ""}`}
-      className="group block h-full rounded-xl border border-slate-200 bg-white p-4 transition hover:border-primary/50 hover:bg-slate-50/70 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      title={`${simpul.kode}: ${simpul.judul}. ${simpul.penjelas ?? ""}`}
+      className="group block h-full rounded-lg border border-line bg-white p-4 transition hover:border-primary/50 hover:bg-paper/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
       <div className="flex flex-wrap items-center gap-2">
-        <span className="max-w-full truncate rounded-md bg-primary px-2 py-1 font-mono text-xs font-bold text-white">{simpul.kode}</span>
-        <span className="rounded-md bg-slate-100 px-2 py-1 font-mono text-[11px] font-semibold text-slate-700">{tahun}</span>
-        <span className="rounded-md border border-slate-200 px-2 py-1 text-[10px] font-semibold text-slate-600">{LEVEL_LABEL[simpul.level]}</span>
-        {simpul.isDummy ? <span className="rounded-md bg-amber-50 px-2 py-1 text-[10px] font-bold text-amber-800">Demo</span> : null}
+        <span className="font-semibold tabular-nums text-primary">{simpul.kode}</span>
+        <span className="text-sm text-ink-muted">{LEVEL_LABEL[simpul.level]}, {tahun}</span>
+        {simpul.isDummy ? <span className="rounded-md bg-warning-bg px-2 py-1 text-xs font-bold text-warning">Demo</span> : null}
       </div>
 
-      <p className="mt-3 line-clamp-2 min-h-10 text-sm font-semibold leading-snug text-slate-900 group-hover:text-primary" title={simpul.judul}>
+      <p className="mt-3 line-clamp-2 min-h-10 text-sm font-semibold leading-snug text-ink group-hover:text-primary" title={simpul.judul}>
         {simpul.judul}
       </p>
-      <p className="mt-1 min-h-8 line-clamp-2 text-xs leading-relaxed text-slate-500" title={simpul.meta}>
+      <p className="mt-1 min-h-8 line-clamp-2 text-xs leading-relaxed text-ink-muted" title={simpul.meta}>
         {simpul.meta}
       </p>
 
       <div className="mt-4 flex items-center justify-between gap-3">
-        <span className="text-xs font-medium text-slate-500">Rata-rata capaian</span>
-        <span className="font-mono text-sm font-bold tabular-nums text-slate-900">{skor === undefined ? "Belum ada skor" : skor.toFixed(2)}</span>
+        <span className="text-xs font-medium text-ink-muted">Rata-rata capaian</span>
+        <span className="tabular-nums text-sm font-bold text-ink">{skor === undefined ? "Belum ada skor" : skor.toFixed(2)}</span>
       </div>
       {skor === undefined ? (
-        <div className="mt-2 h-2 rounded-full bg-slate-100" aria-hidden="true" />
+        <div className="mt-2 h-2 rounded-full bg-paper" aria-hidden="true" />
       ) : (
         <div
-          className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100"
+          className="mt-2 h-2 overflow-hidden rounded-full bg-paper"
           role="meter"
           aria-label={`Rata-rata capaian ${simpul.kode}`}
           aria-valuemin={0}
@@ -614,7 +577,7 @@ function KartuCapaianJalur({
 
       <div className="mt-3 flex min-h-6 items-center justify-between gap-2">
         {skor === undefined ? (
-          <span className="text-xs text-slate-500">Data skor belum tersedia</span>
+          <span className="text-xs text-ink-muted">Data skor belum tersedia</span>
         ) : (
           <span className="flex items-center gap-1.5">
             <BadgeHuruf skor={skor} />
@@ -622,7 +585,7 @@ function KartuCapaianJalur({
           </span>
         )}
         <span className="inline-flex items-center text-xs font-bold text-primary">
-          {labelKelola}<span aria-hidden className="ml-1 transition-transform group-hover:translate-x-0.5">→</span>
+          {labelKelola}
         </span>
       </div>
     </Link>
@@ -673,24 +636,23 @@ function JalurSederhana({
               onClick={() => setJenjangAktif(item.level)}
               data-tour="Pilih jenjang CPL, IK, CPMK, atau Sub-CPMK."
               data-tour-title={item.judul}
-              className={`flex min-h-[76px] items-center gap-3 rounded-xl border p-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${terpilih ? "border-primary bg-primary/[0.05] shadow-sm" : "border-slate-200 bg-white hover:border-primary/40 hover:bg-slate-50"}`}
+              className={`flex items-baseline justify-between gap-3 rounded-md border px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${terpilih ? "border-primary bg-white ring-1 ring-primary" : "border-line bg-white hover:border-primary/40"}`}
             >
-              <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-mono text-sm font-bold ${terpilih ? "bg-primary text-white" : "bg-slate-100 text-slate-700"}`}>{LEVEL_HURUF[item.level]}</span>
-              <span className="min-w-0 flex-1">
-                <span className={`block truncate text-sm font-bold ${terpilih ? "text-primary" : "text-slate-800"}`}>{item.judul}</span>
-                
+              <span className="min-w-0">
+                <span className={`block text-sm font-semibold ${terpilih ? "text-primary" : "text-ink"}`}>{item.judul}</span>
+                <span className="block text-xs text-ink-muted">{item.deskripsi}</span>
               </span>
-              <span className={`font-mono text-xs font-bold tabular-nums ${terpilih ? "text-primary" : "text-slate-500"}`}>{aktifTerpetakan}</span>
+              <span className={`text-lg font-semibold tabular-nums ${terpilih ? "text-primary" : "text-ink-muted"}`}>{aktifTerpetakan}</span>
             </button>
           );
         })}
       </div>
 
-      <div className="flex flex-col gap-1 border-t border-slate-200 pt-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-1 border-t border-line pt-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h3 className="text-sm font-bold text-slate-900">{labelAktif}</h3>
+          <h3 className="text-sm font-bold text-ink">{labelAktif}</h3>
         </div>
-        <p className="text-xs font-medium text-slate-500">Tahun ajaran {tahun} · Batas kelulusan T = {ambang}</p>
+        <p className="text-xs font-medium text-ink-muted">Tahun ajaran {tahun}, batas lulus {ambang}</p>
       </div>
 
       {daftar.length === 0 ? (

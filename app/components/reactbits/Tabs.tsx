@@ -1,10 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
-// ReactBits — Tabs
-// Tab sederhana + indikator animasi (layoutId). Terkendali via `active`/`onChange`.
+// Tab bergaris bawah: tab aktif ditandai garis primary dan teks tebal. Terkendali via `active`/`onChange`.
 export interface TabDef {
   id: string;
   label: string;
@@ -23,28 +21,22 @@ export default function Tabs({
   className?: string;
 }) {
   return (
-    <div className={`inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-gray-200 bg-gray-50 p-1 ${className}`} role="tablist" aria-label="Navigasi bagian">
+    <div className={`flex max-w-full gap-5 overflow-x-auto overflow-y-hidden border-b border-line ${className}`} role="tablist" aria-label="Navigasi bagian">
       {tabs.map((t) => {
         const current = t.id === active;
         return (
           <button
             key={t.id}
+            type="button"
             role="tab"
             aria-selected={current}
             onClick={() => onChange(t.id)}
             title={t.hint}
-            className={`relative shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-              current ? "text-white" : "text-gray-600 hover:bg-white hover:text-gray-900"
+            className={`-mb-px shrink-0 border-b-2 pb-2.5 pt-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+              current ? "border-primary font-semibold text-primary" : "border-transparent text-ink-muted hover:border-line hover:text-ink"
             }`}
           >
-            {current ? (
-              <motion.span
-                layoutId="tabs-pill"
-                className="absolute inset-0 rounded-lg bg-primary shadow-sm"
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              />
-            ) : null}
-            <span className="relative">{t.label}</span>
+            {t.label}
           </button>
         );
       })}
@@ -53,14 +45,5 @@ export default function Tabs({
 }
 
 export function TabPanel({ children, tabKey }: { children: ReactNode; tabKey: string }) {
-  return (
-    <motion.div
-      key={tabKey}
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div key={tabKey}>{children}</div>;
 }

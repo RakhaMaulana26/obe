@@ -22,17 +22,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, [router, pathname]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-paper">
       <RouteProgress />
       <Sidebar />
       <Header />
+      {/* Konten: lebar penuh di bawah 1024px (menu di drawer), bergeser selebar rail/sidebar di atasnya. */}
       <main
-        className="min-h-screen print:ml-0 print:p-0"
-        style={{
-          marginLeft: "var(--sidebar-width)",
-          padding: "0 1.5rem 1.5rem",
-          paddingTop: "calc(var(--header-height) + 1.5rem)",
-        }}
+        className="min-h-screen min-w-0 px-4 pb-6 pt-[calc(var(--header-height)+1.25rem)] sm:px-6 lg:ml-[var(--sidebar-rail-width)] xl:ml-[var(--sidebar-width)] print:ml-0 print:p-0"
         suppressHydrationWarning
       >
         <PageTransition>{children}</PageTransition>

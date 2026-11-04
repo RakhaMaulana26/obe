@@ -1,21 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Warna identitas PENS dan netral aplikasi (spec 2026-11-04 sub-proyek 1). */
   --primary: #103968;
+  --primary-dark: #0a2547;
   --primary-foreground: #ffffff;
   --accent: #f2c808;
   --accent-foreground: #103968;
-  --success: #10b981;
-  --success-bg: #ecfdf5;
-  --warning: #f59e0b;
-  --warning-bg: #fffbeb;
-  --danger: #ef4444;
-  --danger-bg: #fef2f2;
-  --muted: #6b7280;
-  --sidebar-width: 260px;
-  --sidebar-collapsed-width: 72px;
+  --ink: #1b2433;
+  --ink-muted: #4b5565;
+  --paper: #f5f7fa;
+  --line: #dde2ea;
+  --success: #1e7b4f;
+  --success-bg: #e8f4ee;
+  --warning: #8a5a0b;
+  --warning-bg: #fbf3e2;
+  --danger: #b42318;
+  --danger-bg: #fdecea;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --muted: var(--ink-muted);
+  --sidebar-width: 248px;
+  --sidebar-rail-width: 72px;
   --header-height: 64px;
 }
 
@@ -23,27 +29,40 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-paper: var(--paper);
+  --color-line: var(--line);
   --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
   --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
   --color-danger: var(--danger);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-danger-bg: var(--danger-bg);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  /* Skala teks 12 / 14 / 16 / 20 / 28px. */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 2.25rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 html {

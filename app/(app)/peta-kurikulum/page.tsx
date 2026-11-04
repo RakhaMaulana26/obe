@@ -171,7 +171,7 @@ export default function PetaKurikulumPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeading title="Peta Kurikulum" action={<Btn variant="outline" onClick={unduhCSV} disabled={daftarMK.length === 0}>Unduh CSV</Btn>} />
+      <PageHeading title="Peta kurikulum" desc="Bobot setiap mata kuliah terhadap indikator kinerja (IK), sesuai lembar Peta Kurikulum." action={<Btn variant="outline" onClick={unduhCSV} disabled={daftarMK.length === 0}>Unduh CSV</Btn>} />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Mata kuliah" value={String(daftarMK.length)} numeric={daftarMK.length} sub="Berdasarkan kode mata kuliah" />
@@ -181,29 +181,29 @@ export default function PetaKurikulumPage() {
       </div>
 
       {(cplList.length === 0 || ikList.length === 0) ? (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+        <div className="rounded-lg border border-warning/30 bg-warning-bg p-4 text-sm text-warning">
           <p className="font-semibold">Siapkan struktur CPL dan IK terlebih dahulu.</p>
           <p className="mt-1">Pemetaan memakai IK sebagai kolom dan menampilkan CPL sebagai kelompok indikator.</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {cplList.length === 0 ? <Link href="/cpl" className="rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold hover:bg-amber-100">Kelola CPL</Link> : null}
-            {ikList.length === 0 ? <Link href="/ik" className="rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold hover:bg-amber-100">Kelola IK</Link> : null}
+            {cplList.length === 0 ? <Link href="/cpl" className="rounded-lg border border-warning/30 bg-white px-3 py-1.5 text-xs font-semibold hover:bg-warning-bg">Kelola CPL</Link> : null}
+            {ikList.length === 0 ? <Link href="/ik" className="rounded-lg border border-warning/30 bg-white px-3 py-1.5 text-xs font-semibold hover:bg-warning-bg">Kelola IK</Link> : null}
           </div>
         </div>
       ) : null}
 
       <Card className="p-0">
-        <div className="flex flex-col gap-3 border-b border-gray-200 p-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-3 border-b border-line p-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h3 className="text-base font-bold text-primary">Pemetaan mata kuliah ke IK</h3>
-            <p className="mt-1 text-xs text-gray-500">Atur persentase kontribusi tiap mata kuliah pada IK. CPL ditampilkan sebagai kelompok IK dan mengikuti IK yang diberi bobot.</p>
+            <p className="mt-1 text-xs text-ink-muted">Atur persentase kontribusi tiap mata kuliah pada IK. CPL ditampilkan sebagai kelompok IK dan mengikuti IK yang diberi bobot.</p>
           </div>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-1 block text-xs font-semibold text-gray-500">Cari mata kuliah</span>
+              <span className="mb-1 block text-xs font-semibold text-ink-muted">Cari mata kuliah</span>
               <input value={cari} onChange={(event) => setCari(event.target.value)} placeholder="Kode atau nama MK" className={`${inputCls} min-w-56`} />
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-semibold text-gray-500">Status pemetaan</span>
+              <span className="mb-1 block text-xs font-semibold text-ink-muted">Status pemetaan</span>
               <select value={filterStatus} onChange={(event) => setFilterStatus(event.target.value as StatusFilter)} className={inputCls}>
                 <option value="semua">Semua mata kuliah</option>
                 <option value="belum">Belum dipetakan</option>
@@ -217,7 +217,7 @@ export default function PetaKurikulumPage() {
         {daftarMK.length === 0 ? (
           <div className="p-5">
             <EmptyState title="Belum ada mata kuliah" desc="Tambahkan mata kuliah terlebih dahulu. Setiap kode mata kuliah akan muncul satu kali di peta ini." />
-            <div className="mt-4 text-center"><Link href="/mata-kuliah" className="text-sm font-semibold text-primary hover:underline">Buka halaman Mata Kuliah →</Link></div>
+            <div className="mt-4 text-center"><Link href="/mata-kuliah" className="text-sm font-semibold text-primary hover:underline">Buka halaman Mata Kuliah</Link></div>
           </div>
         ) : daftarKolomIK.length === 0 ? (
           <div className="p-5"><EmptyState title="Kolom IK belum tersedia" desc="Tambahkan CPL dan IK untuk mulai membuat peta bobot mata kuliah." /></div>
@@ -229,23 +229,23 @@ export default function PetaKurikulumPage() {
               <table className="min-w-max border-separate border-spacing-0 text-left">
                 <thead className="sticky top-0 z-20 bg-white">
                   <tr>
-                    <th rowSpan={2} className="sticky left-0 z-30 border-b border-r border-gray-200 bg-gray-50 px-3 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
-                    <th rowSpan={2} className="sticky left-12 z-30 border-b border-r border-gray-200 bg-gray-50 px-3 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Kode MK</th>
-                    <th rowSpan={2} className="sticky left-[150px] z-30 min-w-56 border-b border-r border-gray-200 bg-gray-50 px-3 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Mata Kuliah</th>
-                    <th rowSpan={2} className="border-b border-r border-gray-200 bg-gray-50 px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">SKS</th>
+                    <th rowSpan={2} className="sticky left-0 z-30 border-b border-r border-line bg-paper px-3 py-3 text-xs font-semibold text-ink-muted">No</th>
+                    <th rowSpan={2} className="sticky left-12 z-30 border-b border-r border-line bg-paper px-3 py-3 text-xs font-semibold text-ink-muted">Kode MK</th>
+                    <th rowSpan={2} className="sticky left-[150px] z-30 min-w-56 border-b border-r border-line bg-paper px-3 py-3 text-xs font-semibold text-ink-muted">Mata Kuliah</th>
+                    <th rowSpan={2} className="border-b border-r border-line bg-paper px-3 py-3 text-center text-xs font-semibold text-ink-muted">SKS</th>
                     {kelompok.map((grup) => (
-                      <th key={grup.kode} colSpan={grup.ik.length} title={grup.nama} className={`border-b border-r border-gray-200 px-3 py-2 text-center text-xs font-bold ${grup.kode === "__tanpa_cpl__" ? "bg-amber-50 text-amber-800" : "bg-blue-50 text-primary"}`}>
+                      <th key={grup.kode} colSpan={grup.ik.length} title={grup.nama} className={`border-b border-r border-line px-3 py-2 text-center text-xs font-bold ${grup.kode === "__tanpa_cpl__" ? "bg-warning-bg text-warning" : "bg-primary/[0.05] text-primary"}`}>
                         <span className="block">{grup.kode === "__tanpa_cpl__" ? "CPL belum tersedia" : grup.kode}</span>
-                        {grup.kode !== "__tanpa_cpl__" ? <span className="mt-0.5 block max-w-56 truncate text-[10px] font-normal text-gray-500">{grup.nama}</span> : null}
+                        {grup.kode !== "__tanpa_cpl__" ? <span className="mt-0.5 block max-w-56 truncate text-xs font-normal text-ink-muted">{grup.nama}</span> : null}
                       </th>
                     ))}
-                    <th rowSpan={2} className="border-b border-r border-gray-200 bg-gray-50 px-3 py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Total</th>
-                    <th rowSpan={2} className="border-b border-r border-gray-200 bg-gray-50 px-3 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Status</th>
-                    <th rowSpan={2} className="border-b border-gray-200 bg-gray-50 px-3 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Aksi</th>
+                    <th rowSpan={2} className="border-b border-r border-line bg-paper px-3 py-3 text-right text-xs font-semibold text-ink-muted">Total</th>
+                    <th rowSpan={2} className="border-b border-r border-line bg-paper px-3 py-3 text-xs font-semibold text-ink-muted">Status</th>
+                    <th rowSpan={2} className="border-b border-line bg-paper px-3 py-3 text-xs font-semibold text-ink-muted">Aksi</th>
                   </tr>
                   <tr>
                     {kelompok.flatMap((grup) => grup.ik.map((ik) => (
-                      <th key={ik.kode} title={ik.deskripsi} className="border-b border-r border-gray-200 bg-gray-50 px-3 py-2 text-center font-mono text-[11px] font-bold text-gray-700">{ik.kode}</th>
+                      <th key={ik.kode} title={ik.deskripsi} className="border-b border-r border-line bg-paper px-3 py-2 text-center tabular-nums text-xs font-bold text-ink">{ik.kode}</th>
                     )))}
                   </tr>
                 </thead>
@@ -254,30 +254,30 @@ export default function PetaKurikulumPage() {
                     const total = totalMK(mk.kode);
                     const status = statusMK(mk.kode);
                     const badge = status === "lengkap"
-                      ? "bg-green-50 text-green-700"
+                      ? "bg-success-bg text-success"
                       : status === "draft"
-                        ? "bg-amber-50 text-amber-800"
-                        : "bg-gray-100 text-gray-500";
+                        ? "bg-warning-bg text-warning"
+                        : "bg-paper text-ink-muted";
                     return (
                       <tr key={mk.kode} className="group">
-                        <td className="sticky left-0 z-10 border-b border-r border-gray-100 bg-white px-3 py-3 text-xs text-gray-400 group-hover:bg-gray-50">{index + 1}</td>
-                        <td className="sticky left-12 z-10 border-b border-r border-gray-100 bg-white px-3 py-3 font-mono text-xs font-bold text-primary group-hover:bg-gray-50">{mk.kode}</td>
-                        <td className="sticky left-[150px] z-10 max-w-64 border-b border-r border-gray-100 bg-white px-3 py-3 text-sm text-gray-700 group-hover:bg-gray-50" title={mk.nama}>{mk.nama}</td>
-                        <td className="border-b border-r border-gray-100 px-3 py-3 text-center text-sm text-gray-600">{mk.sks || "—"}</td>
+                        <td className="sticky left-0 z-10 border-b border-r border-line bg-white px-3 py-3 text-xs text-ink-muted group-hover:bg-paper">{index + 1}</td>
+                        <td className="sticky left-12 z-10 border-b border-r border-line bg-white px-3 py-3 tabular-nums text-xs font-bold text-primary group-hover:bg-paper">{mk.kode}</td>
+                        <td className="sticky left-[150px] z-10 max-w-64 border-b border-r border-line bg-white px-3 py-3 text-sm text-ink group-hover:bg-paper" title={mk.nama}>{mk.nama}</td>
+                        <td className="border-b border-r border-line px-3 py-3 text-center text-sm text-ink">{mk.sks || "—"}</td>
                         {daftarKolomIK.map((ik) => {
                           const bobot = pemetaan[mk.kode]?.[ik.kode];
-                          return <td key={ik.kode} className="border-b border-r border-gray-100 px-3 py-3 text-center font-mono text-xs tabular-nums text-gray-700">{bobot ? `${formatPersen(bobot)}%` : <span className="text-gray-300">—</span>}</td>;
+                          return <td key={ik.kode} className="border-b border-r border-line px-3 py-3 text-center tabular-nums text-xs tabular-nums text-ink">{bobot ? `${formatPersen(bobot)}%` : <span className="text-ink-muted/60">—</span>}</td>;
                         })}
-                        <td className="border-b border-r border-gray-100 px-3 py-3 text-right font-mono text-sm font-bold tabular-nums text-gray-800">{formatPersen(total)}%</td>
-                        <td className="border-b border-r border-gray-100 px-3 py-3"><span className={`whitespace-nowrap rounded-full px-2 py-1 text-[11px] font-semibold ${badge}`}>{status === "lengkap" ? "Lengkap" : status === "draft" ? "Perlu dilengkapi" : "Belum dipetakan"}</span></td>
-                        <td className="border-b border-gray-100 px-3 py-3"><button type="button" onClick={() => bukaEditor(mk.kode)} className="whitespace-nowrap rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-semibold text-primary transition hover:border-primary hover:bg-primary/[0.04]">{status === "belum" ? "Atur mapping" : "Ubah"}</button></td>
+                        <td className="border-b border-r border-line px-3 py-3 text-right tabular-nums text-sm font-bold tabular-nums text-ink">{formatPersen(total)}%</td>
+                        <td className="border-b border-r border-line px-3 py-3"><span className={`whitespace-nowrap rounded-md px-2 py-1 text-xs font-semibold ${badge}`}>{status === "lengkap" ? "Lengkap" : status === "draft" ? "Perlu dilengkapi" : "Belum dipetakan"}</span></td>
+                        <td className="border-b border-line px-3 py-3"><button type="button" onClick={() => bukaEditor(mk.kode)} className="whitespace-nowrap rounded-lg border border-line px-3 py-1.5 text-xs font-semibold text-primary transition hover:border-primary hover:bg-primary/[0.04]">{status === "belum" ? "Atur pemetaan" : "Ubah"}</button></td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
             </div>
-            <div className="flex flex-col gap-1 border-t border-gray-200 px-5 py-3 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-1 border-t border-line px-5 py-3 text-xs text-ink-muted sm:flex-row sm:items-center sm:justify-between">
               <span>Menampilkan {daftarTampil.length} dari {daftarMK.length} mata kuliah unik.</span>
               <span>Bobot IK per mata kuliah diharapkan berjumlah 100%.</span>
             </div>
@@ -288,32 +288,32 @@ export default function PetaKurikulumPage() {
       {editKode && mkDiedit ? (
         <Modal
           title={`Pemetaan ${mkDiedit.kode}`}
-          desc={`${mkDiedit.nama} · ${mkDiedit.sks} SKS. Isi bobot (%) untuk setiap IK yang dibebankan; CPL mata kuliah akan mengikuti kelompok IK berbobot.`}
+          desc={`${mkDiedit.nama}, ${mkDiedit.sks} SKS. Isi bobot (%) untuk setiap IK yang dibebankan; CPL mata kuliah akan mengikuti kelompok IK berbobot.`}
           onClose={() => { setEditKode(null); setGalat(""); }}
           wide
         >
           <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-gray-50 p-3">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-paper p-3">
               <div>
-                <p className="text-xs font-medium text-gray-500">Total bobot saat ini</p>
-                <p className={`font-mono text-xl font-bold tabular-nums ${Math.abs(totalDraft - 100) < 0.001 ? "text-green-700" : totalDraft > 100 ? "text-red-600" : "text-amber-700"}`}>{formatPersen(totalDraft)}%</p>
+                <p className="text-xs font-medium text-ink-muted">Total bobot saat ini</p>
+                <p className={`tabular-nums text-xl font-bold tabular-nums ${Math.abs(totalDraft - 100) < 0.001 ? "text-success" : totalDraft > 100 ? "text-danger" : "text-warning"}`}>{formatPersen(totalDraft)}%</p>
               </div>
-              <p className="max-w-md text-xs leading-relaxed text-gray-500">Total 100% berstatus lengkap. Nilai lain tetap dapat disimpan sebagai draft dan dilengkapi nanti. Kosongkan kolom untuk menghapus bobot IK.</p>
+              <p className="max-w-md text-xs leading-relaxed text-ink-muted">Total 100% berstatus lengkap. Nilai lain tetap dapat disimpan sebagai draft dan dilengkapi nanti. Kosongkan kolom untuk menghapus bobot IK.</p>
             </div>
 
             <div className="max-h-[52vh] space-y-4 overflow-y-auto pr-1">
               {kelompok.map((grup) => (
-                <section key={grup.kode} className="rounded-xl border border-gray-200 p-4">
-                  <div className="mb-3 border-b border-gray-100 pb-2">
+                <section key={grup.kode} className="rounded-lg border border-line p-4">
+                  <div className="mb-3 border-b border-line pb-2">
                     <h4 className="text-sm font-bold text-primary">{grup.kode === "__tanpa_cpl__" ? "IK tanpa CPL valid" : grup.kode}</h4>
-                    {grup.kode !== "__tanpa_cpl__" ? <p className="mt-0.5 text-xs text-gray-500">{grup.nama}</p> : null}
+                    {grup.kode !== "__tanpa_cpl__" ? <p className="mt-0.5 text-xs text-ink-muted">{grup.nama}</p> : null}
                   </div>
                   <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
                     {grup.ik.map((ik) => (
-                      <label key={ik.kode} className="flex min-w-0 items-center gap-3 rounded-lg border border-gray-100 p-3 transition hover:border-gray-200">
+                      <label key={ik.kode} className="flex min-w-0 items-center gap-3 rounded-lg border border-line p-3 transition hover:border-line">
                         <span className="min-w-0 flex-1">
-                          <span className="block font-mono text-xs font-bold text-gray-800">{ik.kode}</span>
-                          <span className="mt-0.5 block line-clamp-2 text-[11px] leading-snug text-gray-500" title={ik.deskripsi}>{ik.deskripsi}</span>
+                          <span className="block tabular-nums text-xs font-bold text-ink">{ik.kode}</span>
+                          <span className="mt-0.5 block line-clamp-2 text-xs leading-snug text-ink-muted" title={ik.deskripsi}>{ik.deskripsi}</span>
                         </span>
                         <span className="flex shrink-0 items-center gap-1">
                           <input
@@ -325,9 +325,9 @@ export default function PetaKurikulumPage() {
                             value={draft[ik.kode] ?? ""}
                             onChange={(event) => setDraft((sebelumnya) => ({ ...sebelumnya, [ik.kode]: event.target.value }))}
                             placeholder="0"
-                            className="w-[4.5rem] rounded-lg border border-gray-300 px-2 py-2 text-right font-mono text-sm tabular-nums text-gray-800 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
+                            className="w-[4.5rem] rounded-lg border border-line px-2 py-2 text-right tabular-nums text-sm tabular-nums text-ink outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
                           />
-                          <span className="text-xs text-gray-400">%</span>
+                          <span className="text-xs text-ink-muted">%</span>
                         </span>
                       </label>
                     ))}
@@ -336,8 +336,8 @@ export default function PetaKurikulumPage() {
               ))}
             </div>
 
-            {galat ? <p role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{galat}</p> : null}
-            <div className="flex justify-end gap-2 border-t border-gray-100 pt-4">
+            {galat ? <p role="alert" className="rounded-lg border border-danger/30 bg-danger-bg p-3 text-sm text-danger">{galat}</p> : null}
+            <div className="flex justify-end gap-2 border-t border-line pt-4">
               <Btn variant="outline" onClick={() => { setEditKode(null); setGalat(""); }}>Batal</Btn>
               <Btn onClick={simpanPemetaan}>Simpan pemetaan</Btn>
             </div>

@@ -1,19 +1,30 @@
 "use client";
 
-import type { ReactNode, ThHTMLAttributes } from "react";
+import { useEffect, useRef, type ReactNode, type ThHTMLAttributes } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
 import { konversiHuruf } from "@/app/lib/hitung";
-import BlurText from "@/app/components/reactbits/BlurText";
-import CountUp from "@/app/components/reactbits/CountUp";
 
-// Primitif UI yang mengikuti style proyek:
-// kartu putih rounded, border gray-200, aksen primary #103968 + accent #f2c808.
+// Primitif UI (spec desain 2026-11-04): warna dari token PENS di globals.css, Plus Jakarta Sans,
+// skala teks 12/14/16/20/28px, panel dibedakan dengan garis — tanpa bayangan dan tanpa animasi masuk.
 
+const fokus = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2";
+
+/** Lembar putih bergaris tipis — permukaan data (tabel, form). Tanpa bayangan. */
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <div className={`rounded-lg border border-line bg-white p-5 sm:p-6 ${className}`}>{children}</div>;
+}
+
+/** Judul bagian yang berdiri di atas lembarnya (bukan di dalam kotak), dengan keterangan dan aksi opsional. */
+export function JudulBagian({ judul, keterangan, aksi, id }: { judul: string; keterangan?: ReactNode; aksi?: ReactNode; id?: string }) {
   return (
-    <div className={`rounded-xl border border-gray-200 bg-white p-6 shadow-sm ${className}`}>{children}</div>
+    <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div className="min-w-0">
+        <h2 id={id} className="text-base font-bold text-ink">{judul}</h2>
+        {keterangan ? <p className="mt-0.5 max-w-[68ch] text-sm text-ink-muted">{keterangan}</p> : null}
+      </div>
+      {aksi ? <div className="flex shrink-0 flex-wrap items-center gap-2">{aksi}</div> : null}
+    </div>
   );
 }
 
@@ -21,18 +32,18 @@ const LABEL_SEGMEN: Record<string, string> = {
   dashboard: "Dashboard",
   hirarki: "Hirarki",
   laporan: "Laporan",
-  "evaluasi-dosen": "Evaluasi Dosen",
-  "mata-kuliah": "Mata Kuliah",
-  capaian: "Detail Capaian",
-  pl: "Profil Lulusan",
+  "evaluasi-dosen": "Evaluasi dosen",
+  "mata-kuliah": "Mata kuliah",
+  capaian: "Capaian mahasiswa",
+  pl: "Profil lulusan",
   cpl: "CPL",
-  ik: "Indikator Kinerja",
-  "peta-kurikulum": "Peta Kurikulum",
+  ik: "Indikator kinerja",
+  "peta-kurikulum": "Peta kurikulum",
   ppm: "PPM",
   struktur: "Struktur",
   bobot: "Bobot",
   nilai: "Nilai",
-  "rps-mingguan": "RPS Mingguan",
+  "rps-mingguan": "RPS mingguan",
   dokumen: "Dokumen",
   rps: "RPS",
   rubrik: "Rubrik",
@@ -45,20 +56,22 @@ function Breadcrumbs() {
   if (segmen.length === 0) return null;
 
   return (
-    <nav aria-label="Breadcrumb" className="mt-1">
-      <ol className="flex min-w-0 flex-wrap items-center gap-x-1 gap-y-1 text-xs text-gray-500">
+    <nav aria-label="Breadcrumb" className="mb-1.5">
+      <ol className="flex min-w-0 flex-wrap items-center gap-x-1 gap-y-1 text-xs text-ink-muted">
         {segmen.map((bagian, index) => {
           const terakhir = index === segmen.length - 1;
           const label = bagian === "capaian" && segmen.includes("mata-kuliah")
             ? "Capaian CPMK"
             : LABEL_SEGMEN[bagian] ?? decodeURIComponent(bagian);
           const href = "/" + segmen.slice(0, index + 1).join("/");
+          // /capaian tidak punya halaman sendiri; tampilkan sebagai teks biasa.
+          const tanpaHalaman = href === "/capaian";
 
           return (
             <li key={`${bagian}-${index}`} className="flex min-w-0 items-center gap-1">
-              {index > 0 ? <span aria-hidden className="shrink-0 text-gray-300">/</span> : null}
-              {terakhir ? (
-                <span aria-current="page" className="truncate font-medium text-gray-700">{label}</span>
+              {index > 0 ? <span aria-hidden className="shrink-0 text-line">/</span> : null}
+              {terakhir || tanpaHalaman ? (
+                <span aria-current={terakhir ? "page" : undefined} className={`truncate ${terakhir ? "font-medium text-ink" : ""}`}>{label}</span>
               ) : (
                 <Link href={href} className="truncate transition-colors hover:text-primary hover:underline">{label}</Link>
               )}
@@ -70,18 +83,24 @@ function Breadcrumbs() {
   );
 }
 
-export function PageHeading({ title, action }: { title: string; action?: ReactNode }) {
+/** Kepala halaman: jejak lokasi di atas, judul, satu kalimat tentang tugas halaman, dan aksi utama di kanan. */
+export function PageHeading({ title, desc, action }: { title: string; desc?: ReactNode; action?: ReactNode }) {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-4 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
-        <BlurText text={title} as="h2" className="text-2xl font-bold text-primary" step={0.03} />
         <Breadcrumbs />
+        <h1 className="text-2xl font-bold text-primary">{title}</h1>
+        {desc ? <p className="mt-1 max-w-[70ch] text-sm text-ink-muted">{desc}</p> : null}
       </div>
       {action ? <div className="flex shrink-0 flex-wrap items-center gap-2">{action}</div> : null}
     </div>
   );
 }
 
+/**
+ * Angka ringkasan seperti di buku nilai: label kecil, angka besar berlebar seragam, garis pemisah di kiri.
+ * Beberapa StatCard berjejer membentuk satu baris angka, bukan deretan kartu.
+ */
 export function StatCard({
   label,
   value,
@@ -93,39 +112,31 @@ export function StatCard({
   label: string;
   value: string;
   sub?: string;
+  /** Tandai angka yang perlu diperhatikan (garis kuning PENS). */
   highlight?: boolean;
-  /** Bila diisi, value dianimasikan dengan CountUp. */
+  /** Bila diisi, angka ditampilkan dengan format desimal yang konsisten. */
   numeric?: number;
   decimals?: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20px" }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative overflow-hidden rounded-xl border bg-white p-5 shadow-sm transition-shadow hover:shadow-md ${
-        highlight ? "border-accent ring-1 ring-accent" : "border-gray-200"
-      }`}
-    >
-      {highlight ? <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-accent" /> : null}
-      <h3 className="text-[13px] font-medium text-gray-500">{label}</h3>
-      <p className="mt-1.5 text-[26px] font-bold leading-none text-primary">
-        {numeric !== undefined ? <CountUp value={numeric} decimals={decimals} /> : value}
+    <div className={`border-l-[3px] py-1 pl-4 ${highlight ? "border-accent" : "border-line"}`}>
+      <p className="text-sm text-ink-muted">{label}</p>
+      <p className="mt-1 text-2xl font-bold tabular-nums leading-tight text-primary">
+        {numeric !== undefined ? numeric.toFixed(decimals) : value}
       </p>
-      {sub ? <p className="mt-1.5 text-xs text-gray-500">{sub}</p> : null}
-    </motion.div>
+      {sub ? <p className="mt-0.5 text-xs text-ink-muted">{sub}</p> : null}
+    </div>
   );
 }
 
 export function BadgeStatus({ tercapai }: { tercapai: boolean }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
-        tercapai ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+      className={`inline-flex items-center gap-1.5 rounded border px-1.5 py-px text-xs font-semibold ${
+        tercapai ? "border-success/40 bg-success-bg text-success" : "border-danger/40 bg-danger-bg text-danger"
       }`}
     >
-      <span className={`h-1.5 w-1.5 rounded-full ${tercapai ? "bg-green-600" : "bg-red-600"}`} />
+      <span aria-hidden>{tercapai ? "✓" : "✕"}</span>
       {tercapai ? "Tercapai" : "Belum"}
     </span>
   );
@@ -134,7 +145,7 @@ export function BadgeStatus({ tercapai }: { tercapai: boolean }) {
 export function BadgeHuruf({ skor }: { skor: number }) {
   const { huruf } = konversiHuruf(skor);
   return (
-    <span className="inline-flex min-w-9 items-center justify-center rounded-md bg-primary px-2 py-1 text-[11px] font-bold text-white">
+    <span className="inline-flex min-w-8 items-center justify-center rounded border border-primary/30 px-1.5 py-px text-xs font-bold tabular-nums text-primary">
       {huruf}
     </span>
   );
@@ -142,16 +153,10 @@ export function BadgeHuruf({ skor }: { skor: number }) {
 
 export function Bar({ value, max = 100, tone = "primary" }: { value: number; max?: number; tone?: "primary" | "accent" | "red" }) {
   const pct = Math.max(0, Math.min(100, (value / max) * 100));
-  const bg = tone === "accent" ? "bg-accent" : tone === "red" ? "bg-red-400" : "bg-primary";
+  const bg = tone === "accent" ? "bg-accent" : tone === "red" ? "bg-danger" : "bg-primary";
   return (
-    <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
-      <motion.div
-        className={`h-full rounded-full ${bg}`}
-        initial={{ width: 0 }}
-        whileInView={{ width: `${pct}%` }}
-        viewport={{ once: true, margin: "-20px" }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      />
+    <div className="h-2 w-full overflow-hidden rounded-full bg-line">
+      <div className={`h-full rounded-full ${bg}`} style={{ width: `${pct}%` }} />
     </div>
   );
 }
@@ -159,7 +164,7 @@ export function Bar({ value, max = 100, tone = "primary" }: { value: number; max
 export function Field({ label, children, htmlFor }: { label: string; children: ReactNode; htmlFor?: string }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-gray-700">
+      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-ink">
         {label}
       </label>
       {children}
@@ -168,7 +173,7 @@ export function Field({ label, children, htmlFor }: { label: string; children: R
 }
 
 export const inputCls =
-  "w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25";
+  "min-h-10 w-full rounded-lg border border-line bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/70 transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25";
 
 export function Btn({
   children,
@@ -191,28 +196,57 @@ export function Btn({
   tourTitle?: string;
 }) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+    `inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${fokus}`;
   const map: Record<string, string> = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-    accent: "bg-accent text-[#103968] hover:brightness-95 font-semibold",
-    outline: "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
-    danger: "bg-red-600 text-white hover:bg-red-700",
-    ghost: "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
+    primary: "bg-primary text-primary-foreground hover:bg-primary-dark",
+    accent: "bg-accent text-accent-foreground hover:brightness-95",
+    outline: "border border-line bg-white text-ink hover:border-ink-muted/40 hover:bg-paper",
+    danger: "bg-danger text-white hover:brightness-95",
+    ghost: "text-ink-muted hover:bg-paper hover:text-ink",
   };
   return (
-    <motion.button
+    <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      whileTap={disabled ? undefined : { scale: 0.97 }}
-      transition={{ duration: 0.12 }}
       data-tour={tour}
       data-tour-title={tourTitle}
       className={`${base} ${map[variant]} ${className}`}
     >
       {children}
-    </motion.button>
+    </button>
   );
+}
+
+// Tumpukan dialog yang sedang terbuka: hanya dialog teratas yang bereaksi pada Esc,
+// sehingga Esc di konfirmasi keluar tidak ikut menutup drawer di bawahnya.
+const tumpukanDialog: symbol[] = [];
+
+/** Tutup dengan Esc dan pindahkan fokus ke panel saat dibuka; fokus dikembalikan saat ditutup. */
+function useDialog(onClose: () => void) {
+  const ref = useRef<HTMLDivElement>(null);
+  // onClose sering dikirim sebagai fungsi inline; disimpan di ref agar efek hanya berjalan saat dialog dibuka,
+  // sehingga fokus tidak berpindah setiap kali isi dialog dirender ulang (mis. saat mengetik).
+  const tutupRef = useRef(onClose);
+  useEffect(() => {
+    tutupRef.current = onClose;
+  }, [onClose]);
+  useEffect(() => {
+    const id = Symbol("dialog");
+    tumpukanDialog.push(id);
+    const sebelumnya = document.activeElement as HTMLElement | null;
+    if (!ref.current?.contains(document.activeElement)) ref.current?.focus();
+    function tekan(e: KeyboardEvent) {
+      if (e.key === "Escape" && tumpukanDialog[tumpukanDialog.length - 1] === id) tutupRef.current();
+    }
+    document.addEventListener("keydown", tekan);
+    return () => {
+      document.removeEventListener("keydown", tekan);
+      tumpukanDialog.splice(tumpukanDialog.indexOf(id), 1);
+      sebelumnya?.focus?.();
+    };
+  }, []);
+  return ref;
 }
 
 export function Modal({
@@ -228,58 +262,75 @@ export function Modal({
   children: ReactNode;
   wide?: boolean;
 }) {
+  const ref = useDialog(onClose);
   return (
-    <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4"
-        onClick={onClose}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/40 p-4" onClick={onClose}>
+      <div
+        ref={ref}
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        tabIndex={-1}
+        className={`w-full ${wide ? "max-w-3xl" : "max-w-lg"} max-h-[90vh] overflow-y-auto rounded-xl border border-line bg-white p-6 focus:outline-none`}
+        onClick={(e) => e.stopPropagation()}
       >
-        <motion.div
-          className={`w-full ${wide ? "max-w-3xl" : "max-w-lg"} max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-6 shadow-xl`}
-          onClick={(e) => e.stopPropagation()}
-          initial={{ opacity: 0, y: 16, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 8, scale: 0.98 }}
-          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        >
         <div className="mb-1 flex items-start justify-between gap-4">
           <div>
             <h3 className="text-lg font-bold text-primary">{title}</h3>
-            {desc ? <p className="mt-0.5 text-sm text-gray-500">{desc}</p> : null}
+            {desc ? <p className="mt-0.5 text-sm text-ink-muted">{desc}</p> : null}
           </div>
-          <button
-            onClick={onClose}
-            aria-label="Tutup dialog"
-            className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button onClick={onClose} aria-label="Tutup dialog" className={`rounded-lg p-1.5 text-ink-muted transition-colors hover:bg-paper hover:text-ink ${fokus}`}>
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
         <div className="mt-4">{children}</div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </div>
   );
 }
 
-export function EmptyState({ title, desc }: { title: string; desc: string }) {
+/** Panel geser dari kiri (dipakai menu di layar < 1024px). */
+export function Drawer({ open, onClose, label, children }: { open: boolean; onClose: () => void; label: string; children: ReactNode }) {
+  if (!open) return null;
+  return <DrawerPanel onClose={onClose} label={label}>{children}</DrawerPanel>;
+}
+
+function DrawerPanel({ onClose, label, children }: { onClose: () => void; label: string; children: ReactNode }) {
+  const ref = useDialog(onClose);
   return (
-    <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50/60 p-8 text-center">
-      <p className="font-semibold text-primary">{title}</p>
-      <p className="mx-auto mt-1 max-w-md text-sm text-gray-500">{desc}</p>
+    <div className="fixed inset-0 z-[60] lg:hidden" onClick={onClose}>
+      <div className="absolute inset-0 bg-ink/40" aria-hidden />
+      <div
+        ref={ref}
+        role="dialog"
+        aria-modal="true"
+        aria-label={label}
+        tabIndex={-1}
+        className="absolute inset-y-0 left-0 w-[min(85vw,var(--sidebar-width))] overflow-y-auto bg-white focus:outline-none"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function EmptyState({ title, desc, action }: { title: string; desc: string; action?: ReactNode }) {
+  return (
+    <div className="rounded-lg border border-dashed border-ink-muted/30 px-6 py-8">
+      <p className="font-semibold text-ink">{title}</p>
+      <p className="mt-1 max-w-[60ch] text-sm text-ink-muted">{desc}</p>
+      {action ? <div className="mt-4 flex flex-wrap gap-2">{action}</div> : null}
     </div>
   );
 }
 
 export function Th({ children, className = "", ...props }: ThHTMLAttributes<HTMLTableCellElement>) {
-  return <th {...props} className={`whitespace-nowrap pb-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 ${className}`}>{children}</th>;
+  return <th {...props} className={`whitespace-nowrap pb-2.5 text-left text-xs font-semibold text-ink-muted ${className}`}>{children}</th>;
 }
 
 export function Td({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <td className={`py-3 text-sm ${className}`}>{children}</td>;
+  return <td className={`py-3 text-sm text-ink ${className}`}>{children}</td>;
 }
